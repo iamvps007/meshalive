@@ -79,3 +79,24 @@ func (c *Client) DelDomainID(ctx context.Context, hostname string) error {
 
 func redirectKey(host, slug string) string { return fmt.Sprintf("redirect:%s:%s", host, slug) }
 func domainKey(hostname string) string     { return fmt.Sprintf("domain:%s", hostname) }
+
+const refreshTTL = 30 * 24 * time.Hour
+
+func (c *Client) SetRefreshToken(ctx context.Context, tokenHash string, userID uuid.UUID) error {
+	return c.rdb.Set(ctx, "refresh:"+tokenHash, userID.String(), refreshTTL).Err()
+}
+
+func (c *Client) GetRefreshToken(ctx context.Context, tokenHash string) (uuid.UUID, error) {
+	val, err := c.rdb.Get(ctx, "refresh:"+tokenHash).Result()
+	if err == redis.Nil {
+		return uuid.Nil, nil
+	}
+	if err != nil {
+		return uuid.Nil, err
+	}
+	return uuid.Parse(val)
+}
+
+func (c *Client) DelRefreshToken(ctx context.Context, tokenHash string) error {
+	return c.rdb.Del(ctx, "refresh:"+tokenHash).Err()
+}

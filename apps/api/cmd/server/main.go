@@ -12,6 +12,7 @@ import (
 	"github.com/meshalive/api/internal/config"
 	internaldb "github.com/meshalive/api/internal/db"
 	"github.com/meshalive/api/internal/handler"
+	"github.com/meshalive/api/internal/middleware"
 	"github.com/meshalive/api/internal/service"
 	"github.com/meshalive/api/repository"
 )
@@ -39,6 +40,12 @@ func main() {
 	redirectSvc := service.NewRedirectService(cacheClient, q)
 	redirectH := handler.NewRedirectHandler(redirectSvc)
 
+	authSvc := service.NewAuthService(q, cacheClient, cfg.JWTSecret)
+	authH := handler.NewAuthHandler(authSvc)
+
+	linkSvc := service.NewLinkService(q, cacheClient)
+	linksH := handler.NewLinksHandler(linkSvc)
+
 	app := fiber.New(fiber.Config{
 		AppName:      "Meshalive API",
 		ErrorHandler: errorHandler,
@@ -46,15 +53,21 @@ func main() {
 	app.Use(recover.New())
 	app.Use(logger.New())
 	app.Use(cors.New(cors.Config{
-		AllowOrigins: "https://app.meshalive.com,https://meshalive.com,http://localhost:3000",
-		AllowHeaders: "Origin, Content-Type, Authorization, X-Workspace-ID",
-		AllowMethods: "GET,POST,PUT,PATCH,DELETE,OPTIONS",
+		AllowOrigins:     "https://app.meshalive.com,https://meshalive.com,http://localhost:3000",
+		AllowHeaders:     "Origin, Content-Type, Authorization, X-Workspace-ID",
+		AllowMethods:     "GET,POST,PUT,PATCH,DELETE,OPTIONS",
+		AllowCredentials: true,
 	}))
 
 	app.Get("/health", func(c *fiber.Ctx) error {
 		return c.JSON(fiber.Map{"status": "ok", "env": cfg.AppEnv})
 	})
+
 	redirectH.Register(app)
+	authH.Register(app)
+
+	protected := app.Group("/v1", middleware.Auth(cfg.JWTSecret, q))
+	linksH.RegisterProtected(protected)
 
 	log.Printf("Starting Meshalive API on :%s (env=%s)", cfg.Port, cfg.AppEnv)
 	log.Fatal(app.Listen(":" + cfg.Port))
