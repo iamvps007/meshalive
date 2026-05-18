@@ -1,23 +1,48 @@
 package main
 
 import (
+	"context"
 	"log"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
 	"github.com/gofiber/fiber/v2/middleware/logger"
 	"github.com/gofiber/fiber/v2/middleware/recover"
+	"github.com/meshalive/api/internal/cache"
 	"github.com/meshalive/api/internal/config"
+	internaldb "github.com/meshalive/api/internal/db"
+	"github.com/meshalive/api/internal/handler"
+	"github.com/meshalive/api/internal/service"
+	"github.com/meshalive/api/repository"
 )
 
 func main() {
 	cfg := config.Load()
 
+	db, err := internaldb.New(cfg.DatabaseURL)
+	if err != nil {
+		log.Fatalf("db: %v", err)
+	}
+	defer db.Close()
+
+	cacheClient, err := cache.New(cfg.RedisURL)
+	if err != nil {
+		log.Fatalf("redis: %v", err)
+	}
+
+	q := repository.New(db)
+
+	if err := warmDomains(context.Background(), cacheClient, q); err != nil {
+		log.Printf("domain warmup: %v", err)
+	}
+
+	redirectSvc := service.NewRedirectService(cacheClient, q)
+	redirectH := handler.NewRedirectHandler(redirectSvc)
+
 	app := fiber.New(fiber.Config{
 		AppName:      "Meshalive API",
 		ErrorHandler: errorHandler,
 	})
-
 	app.Use(recover.New())
 	app.Use(logger.New())
 	app.Use(cors.New(cors.Config{
@@ -29,9 +54,24 @@ func main() {
 	app.Get("/health", func(c *fiber.Ctx) error {
 		return c.JSON(fiber.Map{"status": "ok", "env": cfg.AppEnv})
 	})
+	redirectH.Register(app)
 
 	log.Printf("Starting Meshalive API on :%s (env=%s)", cfg.Port, cfg.AppEnv)
 	log.Fatal(app.Listen(":" + cfg.Port))
+}
+
+func warmDomains(ctx context.Context, c *cache.Client, q *repository.Queries) error {
+	domains, err := q.ListActiveDomains(ctx)
+	if err != nil {
+		return err
+	}
+	for _, d := range domains {
+		if err := c.SetDomainID(ctx, d.Hostname, d.ID); err != nil {
+			log.Printf("warmDomains %s: %v", d.Hostname, err)
+		}
+	}
+	log.Printf("Warmed %d domain(s) into Redis", len(domains))
+	return nil
 }
 
 func errorHandler(c *fiber.Ctx, err error) error {
@@ -40,9 +80,6 @@ func errorHandler(c *fiber.Ctx, err error) error {
 		code = e.Code
 	}
 	return c.Status(code).JSON(fiber.Map{
-		"error": fiber.Map{
-			"code":    "INTERNAL_ERROR",
-			"message": err.Error(),
-		},
+		"error": fiber.Map{"code": "INTERNAL_ERROR", "message": err.Error()},
 	})
 }
