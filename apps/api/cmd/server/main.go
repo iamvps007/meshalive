@@ -57,6 +57,7 @@ func main() {
 
 	tokenSvc := service.NewTokenService(q)
 	tokensH := handler.NewTokensHandler(tokenSvc)
+	billingH := handler.NewBillingHandler()
 
 	app := fiber.New(fiber.Config{
 		AppName:      "Meshalive API",
@@ -84,6 +85,7 @@ func main() {
 	domainsH.RegisterProtected(protected)
 	workspaceH.RegisterProtected(protected)
 	tokensH.RegisterProtected(protected)
+	billingH.RegisterProtected(protected)
 
 	log.Printf("Starting Meshalive API on :%s (env=%s)", cfg.Port, cfg.AppEnv)
 	log.Fatal(app.Listen(":" + cfg.Port))

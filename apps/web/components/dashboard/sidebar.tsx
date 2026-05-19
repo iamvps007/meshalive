@@ -11,6 +11,7 @@ const NAV = [
   { id: 'analytics', href: '/dashboard/analytics', icon: 'chart', label: 'Analytics' },
   { id: 'qr', href: '/dashboard/qr', icon: 'qr', label: 'QR codes' },
   { id: 'domains', href: '/dashboard/domains', icon: 'globe', label: 'Domains' },
+  { id: 'billing', href: '/dashboard/billing', icon: 'credit-card', label: 'Billing' },
 ];
 
 export function Sidebar() {
@@ -27,6 +28,29 @@ export function Sidebar() {
     <aside style={{ width: 240, borderRight: '1px solid var(--line-c)', background: 'var(--bg)', display: 'flex', flexDirection: 'column', position: 'sticky', top: 0, height: '100vh' }}>
       <div style={{ padding: '16px 16px 12px' }}>
         <Logo size={16} />
+      </div>
+      {/* Plan badge */}
+      <div style={{ padding: '0 16px 12px', borderBottom: '1px solid var(--line-c)' }}>
+        <Link
+          href="/dashboard/billing"
+          style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 6 }}
+        >
+          <div style={{
+            background: 'var(--pulse-soft)',
+            border: '1px solid rgba(0,229,168,0.35)',
+            borderRadius: 6,
+            padding: '4px 10px',
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: 6,
+            fontSize: 12,
+            fontWeight: 600,
+            color: 'var(--pulse)',
+          }}>
+            <Icon name="zap" size={11} />
+            Free plan
+          </div>
+        </Link>
       </div>
       <nav style={{ flex: 1, padding: '8px', display: 'flex', flexDirection: 'column', gap: 2 }}>
         {NAV.map(n => (

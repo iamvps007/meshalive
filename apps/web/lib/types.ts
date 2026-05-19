@@ -89,3 +89,8 @@ export interface APIToken {
   created_at: string;
   raw_token?: string;
 }
+
+export interface BillingCheckoutResponse {
+  checkout_url: string;
+  message?: string;
+}
