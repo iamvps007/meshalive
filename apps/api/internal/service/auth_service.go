@@ -41,6 +41,7 @@ type authQuerier interface {
 	CreateWorkspace(ctx context.Context, arg repository.CreateWorkspaceParams) (repository.CreateWorkspaceRow, error)
 	AddWorkspaceMember(ctx context.Context, arg repository.AddWorkspaceMemberParams) error
 	GetUserByID(ctx context.Context, id uuid.UUID) (repository.GetUserByIDRow, error)
+	GetUserFirstWorkspace(ctx context.Context, userID uuid.UUID) (repository.GetUserFirstWorkspaceRow, error)
 }
 
 type authCacheOps interface {
@@ -112,9 +113,11 @@ func (s *AuthService) Login(ctx context.Context, email, password string) (*AuthR
 	if err := bcrypt.CompareHashAndPassword([]byte(row.PasswordHash.String), []byte(password)); err != nil {
 		return nil, ErrInvalidCreds
 	}
-	// For login we return user info but no workspace yet — frontend will call /v1/workspaces to pick one.
-	// For simplicity at MVP, we return zero workspace info and let the frontend handle workspace selection.
-	return s.issueTokens(ctx, row.ID, row.Email, row.Name, uuid.Nil, "", "", "")
+	ws, err := s.querier.GetUserFirstWorkspace(ctx, row.ID)
+	if err != nil {
+		return nil, err
+	}
+	return s.issueTokens(ctx, row.ID, row.Email, row.Name, ws.ID, ws.Name, ws.Slug, ws.Plan)
 }
 
 func (s *AuthService) Refresh(ctx context.Context, rawToken string) (*AuthResult, error) {

@@ -21,3 +21,11 @@ VALUES ($1, $2, $3);
 -- name: GetWorkspaceMember :one
 SELECT role FROM workspace_members
 WHERE workspace_id = $1 AND user_id = $2;
+
+-- name: GetUserFirstWorkspace :one
+SELECT w.id, w.name, w.slug, w.plan
+FROM workspaces w
+JOIN workspace_members wm ON wm.workspace_id = w.id
+WHERE wm.user_id = $1
+ORDER BY wm.joined_at
+LIMIT 1;
