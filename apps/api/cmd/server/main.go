@@ -53,7 +53,7 @@ func main() {
 	app.Use(recover.New())
 	app.Use(logger.New())
 	app.Use(cors.New(cors.Config{
-		AllowOrigins:     "https://app.meshalive.com,https://meshalive.com,http://localhost:3000",
+		AllowOrigins:     "https://app.meshalive.com,https://meshalive.com,http://localhost:3000,http://72.61.233.21:3000",
 		AllowHeaders:     "Origin, Content-Type, Authorization, X-Workspace-ID",
 		AllowMethods:     "GET,POST,PUT,PATCH,DELETE,OPTIONS",
 		AllowCredentials: true,
