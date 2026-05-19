@@ -5,10 +5,10 @@ import (
 	"github.com/meshalive/api/internal/service"
 )
 
-type AuthHandler struct{ svc *service.AuthService }
+type AuthHandler struct{ svc *service.AuthService; secureCookie bool }
 
-func NewAuthHandler(svc *service.AuthService) *AuthHandler {
-	return &AuthHandler{svc: svc}
+func NewAuthHandler(svc *service.AuthService, secureCookie bool) *AuthHandler {
+	return &AuthHandler{svc: svc, secureCookie: secureCookie}
 }
 
 func (h *AuthHandler) Register(app *fiber.App) {
@@ -45,7 +45,7 @@ func (h *AuthHandler) register(c *fiber.Ctx) error {
 	if err != nil {
 		return fiber.ErrInternalServerError
 	}
-	setRefreshCookie(c, result.RefreshToken)
+	h.setRefreshCookie(c, result.RefreshToken)
 	return c.Status(fiber.StatusCreated).JSON(authResponse(result))
 }
 
@@ -61,7 +61,7 @@ func (h *AuthHandler) login(c *fiber.Ctx) error {
 	if err != nil {
 		return fiber.ErrInternalServerError
 	}
-	setRefreshCookie(c, result.RefreshToken)
+	h.setRefreshCookie(c, result.RefreshToken)
 	return c.JSON(authResponse(result))
 }
 
@@ -77,7 +77,7 @@ func (h *AuthHandler) refresh(c *fiber.Ctx) error {
 	if err != nil {
 		return fiber.ErrInternalServerError
 	}
-	setRefreshCookie(c, result.RefreshToken)
+	h.setRefreshCookie(c, result.RefreshToken)
 	return c.JSON(fiber.Map{"access_token": result.AccessToken})
 }
 
@@ -90,14 +90,14 @@ func (h *AuthHandler) logout(c *fiber.Ctx) error {
 	return c.SendStatus(fiber.StatusNoContent)
 }
 
-func setRefreshCookie(c *fiber.Ctx, token string) {
+func (h *AuthHandler) setRefreshCookie(c *fiber.Ctx, token string) {
 	c.Cookie(&fiber.Cookie{
 		Name:     "refresh_token",
 		Value:    token,
 		MaxAge:   30 * 24 * 3600,
 		HTTPOnly: true,
-		SameSite: "Strict",
-		Secure:   true,
+		SameSite: "Lax",
+		Secure:   h.secureCookie,
 	})
 }
 

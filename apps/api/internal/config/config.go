@@ -9,7 +9,8 @@ type Config struct {
 	DatabaseURL string
 	RedisURL    string
 	JWTSecret   string
-	AppEnv      string
+	AppEnv       string
+	CookieSecure bool
 }
 
 func Load() *Config {
@@ -18,7 +19,8 @@ func Load() *Config {
 		DatabaseURL: getEnv("DATABASE_URL", "postgres://meshalive:meshalive@postgres:5432/meshalive?sslmode=disable"),
 		RedisURL:    getEnv("REDIS_URL", "redis://redis:6379"),
 		JWTSecret:   getEnv("JWT_SECRET", "change-me-in-production"),
-		AppEnv:      getEnv("APP_ENV", "development"),
+		AppEnv:       getEnv("APP_ENV", "development"),
+		CookieSecure: getEnv("COOKIE_SECURE", "false") == "true",
 	}
 }
 

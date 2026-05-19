@@ -41,7 +41,7 @@ func main() {
 	redirectH := handler.NewRedirectHandler(redirectSvc)
 
 	authSvc := service.NewAuthService(q, cacheClient, cfg.JWTSecret)
-	authH := handler.NewAuthHandler(authSvc)
+	authH := handler.NewAuthHandler(authSvc, cfg.CookieSecure)
 
 	linkSvc := service.NewLinkService(q, cacheClient)
 	linksH := handler.NewLinksHandler(linkSvc)
