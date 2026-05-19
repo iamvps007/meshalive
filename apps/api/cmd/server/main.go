@@ -46,6 +46,18 @@ func main() {
 	linkSvc := service.NewLinkService(q, cacheClient)
 	linksH := handler.NewLinksHandler(linkSvc)
 
+	analyticsSvc := service.NewAnalyticsService(q)
+	analyticsH := handler.NewAnalyticsHandler(analyticsSvc)
+
+	domainSvc := service.NewDomainService(q, cacheClient)
+	domainsH := handler.NewDomainsHandler(domainSvc)
+
+	workspaceSvc := service.NewWorkspaceService(q)
+	workspaceH := handler.NewWorkspaceHandler(workspaceSvc)
+
+	tokenSvc := service.NewTokenService(q)
+	tokensH := handler.NewTokensHandler(tokenSvc)
+
 	app := fiber.New(fiber.Config{
 		AppName:      "Meshalive API",
 		ErrorHandler: errorHandler,
@@ -68,6 +80,10 @@ func main() {
 
 	protected := app.Group("/v1", middleware.Auth(cfg.JWTSecret, q))
 	linksH.RegisterProtected(protected)
+	analyticsH.RegisterProtected(protected)
+	domainsH.RegisterProtected(protected)
+	workspaceH.RegisterProtected(protected)
+	tokensH.RegisterProtected(protected)
 
 	log.Printf("Starting Meshalive API on :%s (env=%s)", cfg.Port, cfg.AppEnv)
 	log.Fatal(app.Listen(":" + cfg.Port))
