@@ -42,7 +42,7 @@ services:
       context: ../apps/web
       dockerfile: Dockerfile
     ports:
-      - "3000:3000"
+      - "3000:8080"
     env_file: ../.env
     restart: unless-stopped
 
