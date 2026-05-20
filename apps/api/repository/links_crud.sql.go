@@ -100,8 +100,9 @@ func (q *Queries) CreateLink(ctx context.Context, arg CreateLinkParams) (CreateL
 
 const getDomainByWorkspace = `-- name: GetDomainByWorkspace :one
 SELECT id, hostname FROM domains
-WHERE workspace_id = $1 AND status = 'active'
-ORDER BY is_primary DESC
+WHERE (workspace_id = $1 AND status = 'active')
+   OR (hostname = 'mshl.in' AND status = 'active')
+ORDER BY CASE WHEN workspace_id = $1 THEN 0 ELSE 1 END, is_primary DESC
 LIMIT 1
 `
 

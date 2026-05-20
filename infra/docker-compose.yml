@@ -42,9 +42,12 @@ services:
       context: ../apps/web
       dockerfile: Dockerfile
       args:
-        - NEXT_PUBLIC_API_URL=http://72.61.233.21:8080
+        - NEXT_PUBLIC_API_URL=https://api.meshalive.in
     ports:
-      - "3000:8080"
+      - "3000:3000"
+    environment:
+      NODE_ENV: production
+      PORT: "3000"
     env_file: ../.env
     restart: unless-stopped
 
@@ -52,8 +55,11 @@ services:
     image: nginx:alpine
     ports:
       - "80:80"
+      - "443:443"
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - /etc/letsencrypt:/etc/letsencrypt:ro
+      - /var/www/certbot:/var/www/certbot:ro
     depends_on:
       - api
       - web

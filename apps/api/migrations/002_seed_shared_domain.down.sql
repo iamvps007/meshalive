@@ -1,0 +1,2 @@
+DELETE FROM domains WHERE hostname = 'mshl.in';
+DELETE FROM workspaces WHERE id = '00000000-0000-0000-0000-000000000001';

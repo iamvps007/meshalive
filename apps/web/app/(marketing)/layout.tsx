@@ -1,59 +1,81 @@
+'use client';
 import Link from 'next/link';
 import { Logo } from '@/components/ui/logo';
 
 export default function MarketingLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
-      {/* Navbar */}
+    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', background: 'var(--bg)' }}>
       <nav style={{
-        borderBottom: '1px solid var(--line-c)',
-        background: 'rgba(11,15,23,0.92)',
-        backdropFilter: 'blur(12px)',
-        WebkitBackdropFilter: 'blur(12px)',
-        position: 'sticky',
-        top: 0,
-        zIndex: 50,
+        position: 'sticky', top: 0, zIndex: 100,
+        borderBottom: '1px solid rgba(255,255,255,0.06)',
+        background: 'rgba(7,8,14,0.85)',
+        backdropFilter: 'blur(20px)',
+        WebkitBackdropFilter: 'blur(20px)',
       }}>
-        <div style={{
-          maxWidth: 1160,
-          margin: '0 auto',
-          padding: '0 24px',
-          height: 60,
-          display: 'flex',
-          alignItems: 'center',
-          gap: 32,
-        }}>
-          <Link href="/" style={{ textDecoration: 'none' }}><Logo size={16} /></Link>
-          <div style={{ flex: 1, display: 'flex', gap: 28, marginLeft: 8 }}>
-            <Link href="/#features" style={{ fontSize: 14, color: 'var(--fg-muted)', textDecoration: 'none', transition: 'color 120ms' }}
-              onMouseEnter={undefined}>Features</Link>
-            <Link href="/pricing" style={{ fontSize: 14, color: 'var(--fg-muted)', textDecoration: 'none' }}>Pricing</Link>
+        <div style={{ maxWidth: 1160, margin: '0 auto', padding: '0 32px', height: 62, display: 'flex', alignItems: 'center', gap: 40 }}>
+          <Link href="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center' }}>
+            <Logo size={16} />
+          </Link>
+          <div style={{ flex: 1, display: 'flex', gap: 32 }}>
+            <Link href="/#features" style={{ fontSize: 14, fontWeight: 500, color: 'rgba(238,240,255,0.55)', textDecoration: 'none' }}>Features</Link>
+            <Link href="/pricing" style={{ fontSize: 14, fontWeight: 500, color: 'rgba(238,240,255,0.55)', textDecoration: 'none' }}>Pricing</Link>
+            <Link href="/pricing#api" style={{ fontSize: 14, fontWeight: 500, color: 'rgba(238,240,255,0.55)', textDecoration: 'none' }}>API docs</Link>
           </div>
-          <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
-            <Link href="/login" className="btn btn-ghost btn-sm">Sign in</Link>
-            <Link href="/register" className="btn btn-primary btn-sm">Get started free</Link>
+          <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
+            <Link href="/login" style={{
+              fontSize: 14, fontWeight: 500,
+              color: 'rgba(238,240,255,0.6)',
+              textDecoration: 'none',
+              padding: '7px 14px',
+              borderRadius: 8,
+            }}>
+              Sign in
+            </Link>
+            <Link href="/register" className="btn btn-primary btn-sm">
+              Get started free →
+            </Link>
           </div>
         </div>
       </nav>
+
       <main style={{ flex: 1 }}>{children}</main>
-      {/* Footer */}
-      <footer style={{ borderTop: '1px solid var(--line-c)', padding: '40px 24px' }}>
-        <div style={{
-          maxWidth: 1160,
-          margin: '0 auto',
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          flexWrap: 'wrap',
-          gap: 16,
-        }}>
-          <Logo size={14} />
-          <div style={{ display: 'flex', gap: 24, fontSize: 13, color: 'var(--fg-muted)' }}>
-            <Link href="/pricing" style={{ textDecoration: 'none', color: 'var(--fg-muted)' }}>Pricing</Link>
-            <Link href="/login" style={{ textDecoration: 'none', color: 'var(--fg-muted)' }}>Sign in</Link>
-            <Link href="/register" style={{ textDecoration: 'none', color: 'var(--fg-muted)' }}>Sign up</Link>
+
+      <footer style={{
+        borderTop: '1px solid rgba(255,255,255,0.06)',
+        background: 'var(--ink-2)',
+        padding: '56px 32px 40px',
+      }}>
+        <div style={{ maxWidth: 1160, margin: '0 auto' }}>
+          <div style={{ display: 'flex', gap: 48, flexWrap: 'wrap', marginBottom: 48 }}>
+            <div style={{ flex: '0 0 240px' }}>
+              <Logo size={16} />
+              <p style={{ marginTop: 16, fontSize: 14, color: 'var(--fg-muted)', lineHeight: 1.65, maxWidth: 220 }}>
+                Link management for Indian SMBs. Branded short links, analytics, and API — 60% cheaper than the rest.
+              </p>
+            </div>
+            {[
+              { heading: 'Product', links: [{ l: 'Features', h: '/#features' }, { l: 'Pricing', h: '/pricing' }, { l: 'API', h: '/pricing#api' }] },
+              { heading: 'Company', links: [{ l: 'About', h: '/' }, { l: 'Blog', h: '/' }, { l: 'Careers', h: '/' }] },
+              { heading: 'Support', links: [{ l: 'Docs', h: '/' }, { l: 'Status', h: '/' }, { l: 'Contact', h: '/' }] },
+            ].map(col => (
+              <div key={col.heading}>
+                <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--fg-muted)', marginBottom: 16 }}>{col.heading}</div>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+                  {col.links.map(l => (
+                    <Link key={l.l} href={l.h} style={{ fontSize: 14, color: 'rgba(238,240,255,0.5)', textDecoration: 'none' }}>{l.l}</Link>
+                  ))}
+                </div>
+              </div>
+            ))}
           </div>
-          <div style={{ fontSize: 12, color: 'var(--fg-muted)' }}>© 2026 Meshalive · Built for Indian SMBs</div>
+          <div style={{ borderTop: '1px solid rgba(255,255,255,0.06)', paddingTop: 24, display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 12 }}>
+            <div style={{ fontSize: 13, color: 'var(--fg-muted)' }}>© 2026 Meshalive Technologies Pvt. Ltd. · CIN: U74999MH2026</div>
+            <div style={{ display: 'flex', gap: 20, fontSize: 13, color: 'var(--fg-muted)' }}>
+              <Link href="/" style={{ textDecoration: 'none', color: 'inherit' }}>Privacy</Link>
+              <Link href="/" style={{ textDecoration: 'none', color: 'inherit' }}>Terms</Link>
+              <Link href="/" style={{ textDecoration: 'none', color: 'inherit' }}>Refund Policy</Link>
+            </div>
+          </div>
         </div>
       </footer>
     </div>

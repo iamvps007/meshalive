@@ -7,11 +7,10 @@ import { api } from '@/lib/api';
 import { clearSession } from '@/lib/auth';
 
 const NAV = [
-  { id: 'links', href: '/dashboard/links', icon: 'link', label: 'Links' },
-  { id: 'analytics', href: '/dashboard/analytics', icon: 'chart', label: 'Analytics' },
-  { id: 'qr', href: '/dashboard/qr', icon: 'qr', label: 'QR codes' },
-  { id: 'domains', href: '/dashboard/domains', icon: 'globe', label: 'Domains' },
-  { id: 'billing', href: '/dashboard/billing', icon: 'credit-card', label: 'Billing' },
+  { id: 'links',     href: '/dashboard/links',     icon: 'link',        label: 'Links' },
+  { id: 'analytics', href: '/dashboard/analytics', icon: 'chart',       label: 'Analytics' },
+  { id: 'qr',        href: '/dashboard/qr',        icon: 'qr',          label: 'QR codes' },
+  { id: 'domains',   href: '/dashboard/domains',   icon: 'globe',       label: 'Domains' },
 ];
 
 export function Sidebar() {
@@ -25,46 +24,64 @@ export function Sidebar() {
   };
 
   return (
-    <aside style={{ width: 240, borderRight: '1px solid var(--line-c)', background: 'var(--bg)', display: 'flex', flexDirection: 'column', position: 'sticky', top: 0, height: '100vh' }}>
-      <div style={{ padding: '16px 16px 12px' }}>
-        <Logo size={16} />
+    <aside style={{
+      width: 228,
+      borderRight: '1px solid rgba(255,255,255,0.06)',
+      background: 'rgba(7,8,14,0.95)',
+      backdropFilter: 'blur(12px)',
+      WebkitBackdropFilter: 'blur(12px)',
+      display: 'flex',
+      flexDirection: 'column',
+      position: 'sticky',
+      top: 0,
+      height: '100vh',
+      flexShrink: 0,
+    }}>
+      {/* Logo + plan badge */}
+      <div style={{ padding: '18px 16px 0' }}>
+        <Logo size={15} />
       </div>
-      {/* Plan badge */}
-      <div style={{ padding: '0 16px 12px', borderBottom: '1px solid var(--line-c)' }}>
-        <Link
-          href="/dashboard/billing"
-          style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 6 }}
+      <div style={{ padding: '12px 16px 14px', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
+        <Link href="/dashboard/billing" style={{
+          display: 'inline-flex', alignItems: 'center', gap: 6,
+          background: 'rgba(108,92,231,0.1)', border: '1px solid rgba(108,92,231,0.22)',
+          borderRadius: 6, padding: '4px 10px',
+          fontSize: 12, fontWeight: 600, color: '#8B7CFF',
+          textDecoration: 'none',
+          transition: 'all 150ms',
+        }}
+        onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.background = 'rgba(108,92,231,0.18)'; }}
+        onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.background = 'rgba(108,92,231,0.1)'; }}
         >
-          <div style={{
-            background: 'var(--pulse-soft)',
-            border: '1px solid rgba(0,229,168,0.35)',
-            borderRadius: 6,
-            padding: '4px 10px',
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: 6,
-            fontSize: 12,
-            fontWeight: 600,
-            color: 'var(--pulse)',
-          }}>
-            <Icon name="zap" size={11} />
-            Free plan
-          </div>
+          <Icon name="zap" size={11} />
+          Free plan
+          <span style={{ color: 'rgba(139,124,255,0.5)', fontWeight: 400 }}>· Upgrade</span>
         </Link>
       </div>
-      <nav style={{ flex: 1, padding: '8px', display: 'flex', flexDirection: 'column', gap: 2 }}>
+
+      {/* Main nav */}
+      <nav style={{ flex: 1, padding: '10px 10px', display: 'flex', flexDirection: 'column', gap: 2, overflowY: 'auto' }}>
+        <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.22)', padding: '8px 12px 4px' }}>Workspace</div>
         {NAV.map(n => (
           <Link key={n.id} href={n.href} className={`nav-item${pathname.startsWith(n.href) ? ' active' : ''}`} style={{ textDecoration: 'none' }}>
-            <Icon name={n.icon} size={16} /> <span>{n.label}</span>
+            <Icon name={n.icon} size={15} />
+            <span>{n.label}</span>
           </Link>
         ))}
-      </nav>
-      <div style={{ padding: 8, borderTop: '1px solid var(--line-c)' }}>
-        <Link href="/dashboard/settings" className={`nav-item${pathname.startsWith('/dashboard/settings') ? ' active' : ''}`} style={{ textDecoration: 'none' }}>
-          <Icon name="gear" size={16} /> Settings
+        <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.22)', padding: '16px 12px 4px' }}>Account</div>
+        <Link href="/dashboard/billing" className={`nav-item${pathname.startsWith('/dashboard/billing') ? ' active' : ''}`} style={{ textDecoration: 'none' }}>
+          <Icon name="credit-card" size={15} /> <span>Billing</span>
         </Link>
-        <button className="nav-item" onClick={logout} style={{ width: '100%', background: 'none', border: 'none', textAlign: 'left', color: 'var(--fg-muted)', cursor: 'pointer' }}>
-          <Icon name="arrow-left" size={16} /> Sign out
+        <Link href="/dashboard/settings" className={`nav-item${pathname.startsWith('/dashboard/settings') ? ' active' : ''}`} style={{ textDecoration: 'none' }}>
+          <Icon name="gear" size={15} /> <span>Settings</span>
+        </Link>
+      </nav>
+
+      {/* Bottom sign out */}
+      <div style={{ padding: '10px', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
+        <button className="nav-item" onClick={logout} style={{ width: '100%', background: 'none', border: 'none', textAlign: 'left', cursor: 'pointer' }}>
+          <Icon name="arrow-left" size={15} />
+          <span>Sign out</span>
         </button>
       </div>
     </aside>
