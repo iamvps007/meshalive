@@ -1,15 +1,25 @@
 package handler
 
 import (
+	"context"
+
 	"github.com/gofiber/fiber/v2"
 	"github.com/google/uuid"
 	"github.com/meshalive/api/internal/service"
+	"github.com/meshalive/api/repository"
 )
 
-type AnalyticsHandler struct{ svc *service.AnalyticsService }
+type linkOwnerChecker interface {
+	GetLinkByID(ctx context.Context, arg repository.GetLinkByIDParams) (repository.GetLinkByIDRow, error)
+}
 
-func NewAnalyticsHandler(svc *service.AnalyticsService) *AnalyticsHandler {
-	return &AnalyticsHandler{svc: svc}
+type AnalyticsHandler struct {
+	svc   *service.AnalyticsService
+	links linkOwnerChecker
+}
+
+func NewAnalyticsHandler(svc *service.AnalyticsService, links linkOwnerChecker) *AnalyticsHandler {
+	return &AnalyticsHandler{svc: svc, links: links}
 }
 
 func (h *AnalyticsHandler) RegisterProtected(r fiber.Router) {
@@ -31,8 +41,13 @@ func (h *AnalyticsHandler) summary(c *fiber.Ctx) error {
 }
 
 func (h *AnalyticsHandler) linkAnalytics(c *fiber.Ctx) error {
+	wsID, err := workspaceID(c)
+	if err != nil { return err }
 	linkID, err := uuid.Parse(c.Params("id"))
 	if err != nil { return fiber.NewError(fiber.StatusBadRequest, "invalid link id") }
+	// Verify link belongs to this workspace
+	_, err = h.links.GetLinkByID(c.Context(), repository.GetLinkByIDParams{ID: linkID, WorkspaceID: wsID})
+	if err != nil { return fiber.NewError(fiber.StatusNotFound, "NOT_FOUND") }
 	days := int32(30)
 	switch c.Query("period", "30d") {
 	case "7d":  days = 7

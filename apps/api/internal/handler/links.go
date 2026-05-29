@@ -2,6 +2,7 @@ package handler
 
 import (
 	"errors"
+	"strings"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/google/uuid"
@@ -72,12 +73,17 @@ func (h *LinksHandler) create(c *fiber.Ctx) error {
 		Destination string   `json:"destination"`
 		Title       string   `json:"title"`
 		Tags        []string `json:"tags"`
+		ClickLimit  *int32   `json:"click_limit"`
 	}
 	if err := c.BodyParser(&body); err != nil {
 		return apiErr(c, fiber.StatusBadRequest, "INVALID_BODY", "invalid request body")
 	}
 	if body.Destination == "" {
 		return apiErr(c, fiber.StatusBadRequest, "MISSING_DESTINATION", "destination is required")
+	}
+	dl := strings.ToLower(body.Destination)
+	if !strings.HasPrefix(dl, "http://") && !strings.HasPrefix(dl, "https://") {
+		return apiErr(c, fiber.StatusBadRequest, "INVALID_DESTINATION", "destination must be an http or https URL")
 	}
 
 	result, err := h.svc.Create(c.Context(), service.CreateLinkInput{
@@ -86,13 +92,20 @@ func (h *LinksHandler) create(c *fiber.Ctx) error {
 		Destination: body.Destination,
 		Title:       body.Title,
 		Tags:        body.Tags,
+		ClickLimit:  body.ClickLimit,
 	})
 	if err != nil {
+		if errors.Is(err, service.ErrInvalidDestination) {
+			return apiErr(c, fiber.StatusUnprocessableEntity, "INVALID_URL", "url is not allowed — only public http/https destinations are accepted")
+		}
 		if errors.Is(err, service.ErrSlugTaken) {
 			return apiErr(c, fiber.StatusConflict, "SLUG_TAKEN", "slug is already in use")
 		}
 		if errors.Is(err, service.ErrDomainNotFound) {
 			return apiErr(c, fiber.StatusBadRequest, "NO_DOMAIN", "workspace has no active domain")
+		}
+		if errors.Is(err, service.ErrPlanLimitReached) {
+			return apiErr(c, fiber.StatusPaymentRequired, "PLAN_LIMIT_REACHED", "link limit for your plan has been reached — upgrade to create more links")
 		}
 		return fiber.ErrInternalServerError
 	}
@@ -115,6 +128,7 @@ func (h *LinksHandler) update(c *fiber.Ctx) error {
 		Title       string   `json:"title"`
 		Tags        []string `json:"tags"`
 		Archived    bool     `json:"archived"`
+		ClickLimit  *int32   `json:"click_limit"`
 	}
 	if err := c.BodyParser(&body); err != nil {
 		return apiErr(c, fiber.StatusBadRequest, "INVALID_BODY", "invalid request body")
@@ -127,6 +141,7 @@ func (h *LinksHandler) update(c *fiber.Ctx) error {
 		Title:       body.Title,
 		Tags:        body.Tags,
 		Archived:    body.Archived,
+		ClickLimit:  body.ClickLimit,
 	})
 	if err != nil {
 		if errors.Is(err, service.ErrLinkNotFound) {

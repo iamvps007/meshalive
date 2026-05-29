@@ -85,6 +85,16 @@ func (s *DomainService) Create(ctx context.Context, workspaceID uuid.UUID, hostn
 }
 
 func (s *DomainService) Delete(ctx context.Context, workspaceID, domainID uuid.UUID, hostname string) error {
+	if hostname == "" {
+		if rows, err := s.querier.ListDomains(ctx, workspaceID); err == nil {
+			for _, r := range rows {
+				if r.ID == domainID {
+					hostname = r.Hostname
+					break
+				}
+			}
+		}
+	}
 	if err := s.querier.DeleteDomain(ctx, repository.DeleteDomainParams{ID: domainID, WorkspaceID: workspaceID}); err != nil {
 		return err
 	}

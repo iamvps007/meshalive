@@ -7,6 +7,7 @@ package repository
 
 import (
 	"context"
+	"database/sql"
 
 	"github.com/google/uuid"
 )
@@ -24,7 +25,7 @@ func (q *Queries) GetDomainByHostname(ctx context.Context, hostname string) (uui
 }
 
 const getLinkForRedirect = `-- name: GetLinkForRedirect :one
-SELECT id, destination FROM links
+SELECT id, destination, click_limit FROM links
 WHERE domain_id = $1
   AND slug = $2
   AND archived = false
@@ -42,12 +43,13 @@ type GetLinkForRedirectParams struct {
 type GetLinkForRedirectRow struct {
 	ID          uuid.UUID
 	Destination string
+	ClickLimit  sql.NullInt32
 }
 
 func (q *Queries) GetLinkForRedirect(ctx context.Context, arg GetLinkForRedirectParams) (GetLinkForRedirectRow, error) {
 	row := q.db.QueryRowContext(ctx, getLinkForRedirect, arg.DomainID, arg.Slug)
 	var i GetLinkForRedirectRow
-	err := row.Scan(&i.ID, &i.Destination)
+	err := row.Scan(&i.ID, &i.Destination, &i.ClickLimit)
 	return i, err
 }
 
@@ -81,4 +83,12 @@ func (q *Queries) ListActiveDomains(ctx context.Context) ([]ListActiveDomainsRow
 		return nil, err
 	}
 	return items, nil
+}
+
+const countLinkClicks = `SELECT COUNT(*) FROM clicks WHERE link_id = $1`
+
+func (q *Queries) CountLinkClicks(ctx context.Context, linkID uuid.UUID) (int64, error) {
+	row := q.db.QueryRowContext(ctx, countLinkClicks, linkID)
+	var n int64
+	return n, row.Scan(&n)
 }

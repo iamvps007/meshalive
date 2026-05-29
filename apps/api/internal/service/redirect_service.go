@@ -13,6 +13,7 @@ import (
 type redirectCache interface {
 	GetRedirect(ctx context.Context, host, slug string) (*cache.RedirectEntry, error)
 	SetRedirect(ctx context.Context, host, slug string, e cache.RedirectEntry) error
+	DelRedirect(ctx context.Context, host, slug string) error
 	GetDomainID(ctx context.Context, hostname string) (uuid.UUID, bool, error)
 	SetDomainID(ctx context.Context, hostname string, id uuid.UUID) error
 }
@@ -21,6 +22,7 @@ type redirectQuerier interface {
 	GetDomainByHostname(ctx context.Context, hostname string) (uuid.UUID, error)
 	GetLinkForRedirect(ctx context.Context, arg repository.GetLinkForRedirectParams) (repository.GetLinkForRedirectRow, error)
 	InsertClick(ctx context.Context, arg repository.InsertClickParams) error
+	CountLinkClicks(ctx context.Context, linkID uuid.UUID) (int64, error)
 }
 
 type RedirectService struct {
@@ -69,16 +71,19 @@ func (s *RedirectService) Resolve(ctx context.Context, host, slug string) (*cach
 		return nil, err
 	}
 
-	result := &cache.RedirectEntry{Dest: row.Destination, LinkID: row.ID}
+	var cl *int32
+	if row.ClickLimit.Valid { cl = &row.ClickLimit.Int32 }
+	result := &cache.RedirectEntry{Dest: row.Destination, LinkID: row.ID, ClickLimit: cl, Slug: slug, Host: host}
 	if e := s.cache.SetRedirect(ctx, host, slug, *result); e != nil {
 		log.Printf("cache.SetRedirect: %v", e)
 	}
 	return result, nil
 }
 
-func (s *RedirectService) WriteClick(linkID uuid.UUID, country, ua, referrer string) {
+func (s *RedirectService) WriteClick(linkID uuid.UUID, country, ua, referrer, slug, host string, clickLimit *int32) {
+	ctx := context.Background()
 	device, browser := parseUA(ua)
-	if err := s.querier.InsertClick(context.Background(), repository.InsertClickParams{
+	if err := s.querier.InsertClick(ctx, repository.InsertClickParams{
 		LinkID:   linkID,
 		Country:  sql.NullString{String: country, Valid: country != ""},
 		Device:   sql.NullString{String: device, Valid: device != ""},
@@ -86,5 +91,14 @@ func (s *RedirectService) WriteClick(linkID uuid.UUID, country, ua, referrer str
 		Referrer: sql.NullString{String: referrer, Valid: referrer != ""},
 	}); err != nil {
 		log.Printf("WriteClick: %v", err)
+		return
+	}
+	if clickLimit != nil {
+		count, err := s.querier.CountLinkClicks(ctx, linkID)
+		if err == nil && count >= int64(*clickLimit) {
+			if e := s.cache.DelRedirect(ctx, host, slug); e != nil {
+				log.Printf("evict click-limit cache: %v", e)
+			}
+		}
 	}
 }

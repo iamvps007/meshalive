@@ -5,36 +5,42 @@ services:
       POSTGRES_USER: meshalive
       POSTGRES_PASSWORD: meshalive
       POSTGRES_DB: meshalive
-    ports:
-      - "5432:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U meshalive"]
-      interval: 5s
+      interval: 10s
+      timeout: 5s
       retries: 5
+    restart: unless-stopped
 
   redis:
     image: redis:7-alpine
-    ports:
-      - "6379:6379"
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
-      interval: 5s
+      interval: 10s
+      timeout: 5s
       retries: 5
+    restart: unless-stopped
 
   api:
     build:
       context: ../apps/api
       dockerfile: Dockerfile
-    ports:
-      - "8080:8080"
     env_file: ../.env
     depends_on:
       postgres:
         condition: service_healthy
       redis:
         condition: service_healthy
+    healthcheck:
+      # wget returns 8 for 4xx/5xx (server up) and 4 for connection refused (server down).
+      # grep for any HTTP response — passes as long as the Go server is accepting connections.
+      test: ["CMD-SHELL", "wget -q -S --spider http://127.0.0.1:8080/ 2>&1 | grep -q 'HTTP/'"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 15s
     restart: unless-stopped
 
   web:
@@ -42,13 +48,22 @@ services:
       context: ../apps/web
       dockerfile: Dockerfile
       args:
-        - NEXT_PUBLIC_API_URL=https://api.meshalive.in
+        - NEXT_PUBLIC_API_URL=https://api.meshalive.com
     ports:
       - "3000:3000"
     environment:
       NODE_ENV: production
       PORT: "3000"
     env_file: ../.env
+    healthcheck:
+      # Uses Node.js (always available) to make an HTTP request.
+      # Fails if the socket is frozen (Recv-Q saturated) — triggers auto-restart.
+      test: ["CMD", "node", "-e",
+        "require('http').get({hostname:'127.0.0.1',port:3000,path:'/',timeout:8000},(r)=>{process.exit(r.statusCode<500?0:1)}).on('error',()=>process.exit(1))"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 20s
     restart: unless-stopped
 
   nginx:
@@ -58,11 +73,18 @@ services:
       - "443:443"
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
-      - /etc/letsencrypt:/etc/letsencrypt:ro
-      - /var/www/certbot:/var/www/certbot:ro
+      - /etc/ssl/meshalive:/etc/ssl/meshalive:ro
     depends_on:
-      - api
-      - web
+      web:
+        condition: service_healthy
+      api:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q -O /dev/null http://127.0.0.1:80/ 2>&1; test $? -ne 4"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
     restart: unless-stopped
 
 volumes:

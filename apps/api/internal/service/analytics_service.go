@@ -2,6 +2,7 @@ package service
 
 import (
 	"context"
+	"log"
 	"time"
 
 	"github.com/google/uuid"
@@ -79,10 +80,14 @@ func (s *AnalyticsService) GetWorkspaceSummary(ctx context.Context, workspaceID 
 		return nil, err
 	}
 
-	clickRows, _ := s.querier.GetClicksByDay(ctx, repository.GetClicksByDayParams{WorkspaceID: workspaceID, Column2: days})
-	countryRows, _ := s.querier.GetTopCountries(ctx, repository.GetTopCountriesParams{WorkspaceID: workspaceID, Column2: days})
-	deviceRows, _ := s.querier.GetTopDevices(ctx, repository.GetTopDevicesParams{WorkspaceID: workspaceID, Column2: days})
-	topLinkRows, _ := s.querier.GetTopLinks(ctx, workspaceID)
+	clickRows, err := s.querier.GetClicksByDay(ctx, repository.GetClicksByDayParams{WorkspaceID: workspaceID, Column2: days})
+	if err != nil { log.Printf("GetClicksByDay: %v", err); clickRows = nil }
+	countryRows, err := s.querier.GetTopCountries(ctx, repository.GetTopCountriesParams{WorkspaceID: workspaceID, Column2: days})
+	if err != nil { log.Printf("GetTopCountries: %v", err); countryRows = nil }
+	deviceRows, err := s.querier.GetTopDevices(ctx, repository.GetTopDevicesParams{WorkspaceID: workspaceID, Column2: days})
+	if err != nil { log.Printf("GetTopDevices: %v", err); deviceRows = nil }
+	topLinkRows, err := s.querier.GetTopLinks(ctx, workspaceID)
+	if err != nil { log.Printf("GetTopLinks: %v", err); topLinkRows = nil }
 
 	clicksByDay := make([]ClicksByDay, 0, len(clickRows))
 	for _, r := range clickRows {
@@ -111,10 +116,14 @@ func (s *AnalyticsService) GetWorkspaceSummary(ctx context.Context, workspaceID 
 }
 
 func (s *AnalyticsService) GetLinkAnalytics(ctx context.Context, linkID uuid.UUID, days int32) (*LinkAnalytics, error) {
-	total, _ := s.querier.GetLinkTotalClicks(ctx, linkID)
-	clickRows, _ := s.querier.GetLinkClicksByDay(ctx, repository.GetLinkClicksByDayParams{LinkID: linkID, Column2: days})
-	countryRows, _ := s.querier.GetLinkTopCountries(ctx, repository.GetLinkTopCountriesParams{LinkID: linkID, Column2: days})
-	deviceRows, _ := s.querier.GetLinkTopDevices(ctx, repository.GetLinkTopDevicesParams{LinkID: linkID, Column2: days})
+	total, err := s.querier.GetLinkTotalClicks(ctx, linkID)
+	if err != nil { log.Printf("GetLinkTotalClicks: %v", err) }
+	clickRows, err := s.querier.GetLinkClicksByDay(ctx, repository.GetLinkClicksByDayParams{LinkID: linkID, Column2: days})
+	if err != nil { log.Printf("GetLinkClicksByDay: %v", err); clickRows = nil }
+	countryRows, err := s.querier.GetLinkTopCountries(ctx, repository.GetLinkTopCountriesParams{LinkID: linkID, Column2: days})
+	if err != nil { log.Printf("GetLinkTopCountries: %v", err); countryRows = nil }
+	deviceRows, err := s.querier.GetLinkTopDevices(ctx, repository.GetLinkTopDevicesParams{LinkID: linkID, Column2: days})
+	if err != nil { log.Printf("GetLinkTopDevices: %v", err); deviceRows = nil }
 
 	clicksByDay := make([]ClicksByDay, 0, len(clickRows))
 	for _, r := range clickRows {

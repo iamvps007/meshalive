@@ -58,6 +58,7 @@ export function Icon({ name, size = 18, ...rest }: IconProps) {
     case 'mail': return wrap(<><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></>);
     case 'mobile': return wrap(<><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M11 18h2"/></>);
     case 'desktop': return wrap(<><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></>);
+    case 'split': return wrap(<><path d="M3 12h5M16 6l2 2-2 2M16 18l2-2-2-2M21 6h-5M21 18h-5M8 9l-3 3 3 3"/></>);
     default: return wrap(<circle cx="12" cy="12" r="3"/>);
   }
 }

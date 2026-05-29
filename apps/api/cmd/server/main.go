@@ -45,9 +45,10 @@ func main() {
 
 	linkSvc := service.NewLinkService(q, cacheClient)
 	linksH := handler.NewLinksHandler(linkSvc)
+	publicH := handler.NewPublicHandler(linkSvc)
 
 	analyticsSvc := service.NewAnalyticsService(q)
-	analyticsH := handler.NewAnalyticsHandler(analyticsSvc)
+	analyticsH := handler.NewAnalyticsHandler(analyticsSvc, q)
 
 	domainSvc := service.NewDomainService(q, cacheClient)
 	domainsH := handler.NewDomainsHandler(domainSvc)
@@ -59,6 +60,9 @@ func main() {
 	tokensH := handler.NewTokensHandler(tokenSvc)
 	billingH := handler.NewBillingHandler()
 
+	bioSvc := service.NewBioService(q)
+	bioH := handler.NewBioHandler(bioSvc)
+
 	app := fiber.New(fiber.Config{
 		AppName:      "Meshalive API",
 		ErrorHandler: errorHandler,
@@ -66,7 +70,7 @@ func main() {
 	app.Use(recover.New())
 	app.Use(logger.New())
 	app.Use(cors.New(cors.Config{
-		AllowOrigins:     "https://meshalive.in,https://app.meshalive.in,https://api.meshalive.in,https://www.meshalive.in,https://app.meshalive.com,https://meshalive.com,http://localhost:3000,http://72.61.233.21:3000",
+		AllowOrigins:     "https://meshalive.com,https://www.meshalive.com,https://api.meshalive.com",
 		AllowHeaders:     "Origin, Content-Type, Authorization, X-Workspace-ID",
 		AllowMethods:     "GET,POST,PUT,PATCH,DELETE,OPTIONS",
 		AllowCredentials: true,
@@ -78,6 +82,7 @@ func main() {
 
 	redirectH.Register(app)
 	authH.Register(app)
+	publicH.Register(app)
 
 	protected := app.Group("/v1", middleware.Auth(cfg.JWTSecret, q))
 	linksH.RegisterProtected(protected)
@@ -86,6 +91,8 @@ func main() {
 	workspaceH.RegisterProtected(protected)
 	tokensH.RegisterProtected(protected)
 	billingH.RegisterProtected(protected)
+	bioH.RegisterProtected(protected)
+	bioH.Register(app)
 
 	log.Printf("Starting Meshalive API on :%s (env=%s)", cfg.Port, cfg.AppEnv)
 	log.Fatal(app.Listen(":" + cfg.Port))
@@ -107,10 +114,51 @@ func warmDomains(ctx context.Context, c *cache.Client, q *repository.Queries) er
 
 func errorHandler(c *fiber.Ctx, err error) error {
 	code := fiber.StatusInternalServerError
+	errCode := "INTERNAL_ERROR"
+	message := err.Error()
 	if e, ok := err.(*fiber.Error); ok {
 		code = e.Code
+		message = e.Message
+		if isUpperSnakeCase(e.Message) {
+			errCode = e.Message
+		} else {
+			errCode = httpCodeName(code)
+		}
 	}
 	return c.Status(code).JSON(fiber.Map{
-		"error": fiber.Map{"code": "INTERNAL_ERROR", "message": err.Error()},
+		"error": fiber.Map{"code": errCode, "message": message},
 	})
+}
+
+func isUpperSnakeCase(s string) bool {
+	if s == "" {
+		return false
+	}
+	for _, r := range s {
+		if !((r >= 'A' && r <= 'Z') || r == '_') {
+			return false
+		}
+	}
+	return true
+}
+
+func httpCodeName(code int) string {
+	switch code {
+	case 400:
+		return "BAD_REQUEST"
+	case 401:
+		return "UNAUTHORIZED"
+	case 403:
+		return "FORBIDDEN"
+	case 404:
+		return "NOT_FOUND"
+	case 409:
+		return "CONFLICT"
+	case 422:
+		return "UNPROCESSABLE"
+	case 429:
+		return "RATE_LIMITED"
+	default:
+		return "INTERNAL_ERROR"
+	}
 }

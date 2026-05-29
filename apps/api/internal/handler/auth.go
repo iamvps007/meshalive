@@ -1,7 +1,10 @@
 package handler
 
 import (
+	"time"
+
 	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/limiter"
 	"github.com/meshalive/api/internal/service"
 )
 
@@ -12,9 +15,17 @@ func NewAuthHandler(svc *service.AuthService, secureCookie bool) *AuthHandler {
 }
 
 func (h *AuthHandler) Register(app *fiber.App) {
+	authRL := limiter.New(limiter.Config{
+		Max:        10,
+		Expiration: time.Minute,
+		KeyGenerator: func(c *fiber.Ctx) string { return c.IP() },
+		LimitReached: func(c *fiber.Ctx) error {
+			return fiber.NewError(fiber.StatusTooManyRequests, "RATE_LIMITED")
+		},
+	})
 	v1 := app.Group("/v1/auth")
-	v1.Post("/register", h.register)
-	v1.Post("/login", h.login)
+	v1.Post("/register", authRL, h.register)
+	v1.Post("/login", authRL, h.login)
 	v1.Post("/refresh", h.refresh)
 	v1.Post("/logout", h.logout)
 }
@@ -37,6 +48,12 @@ func (h *AuthHandler) register(c *fiber.Ctx) error {
 	}
 	if req.Email == "" || req.Password == "" {
 		return fiber.NewError(fiber.StatusBadRequest, "email and password required")
+	}
+	if len(req.Password) > 100 {
+		return fiber.NewError(fiber.StatusBadRequest, "password too long")
+	}
+	if len(req.Password) > 100 {
+		return fiber.NewError(fiber.StatusBadRequest, "password too long")
 	}
 	result, err := h.svc.Register(c.Context(), req.Email, req.Password, req.Name)
 	if err == service.ErrEmailTaken {
@@ -86,7 +103,7 @@ func (h *AuthHandler) logout(c *fiber.Ctx) error {
 	if raw != "" {
 		h.svc.Logout(c.Context(), raw)
 	}
-	c.Cookie(&fiber.Cookie{Name: "refresh_token", Value: "", MaxAge: -1, HTTPOnly: true, SameSite: "Strict"})
+	c.Cookie(&fiber.Cookie{Name: "refresh_token", Value: "", MaxAge: -1, HTTPOnly: true, SameSite: "Strict", Domain: ".meshalive.com"})
 	return c.SendStatus(fiber.StatusNoContent)
 }
 
@@ -96,8 +113,9 @@ func (h *AuthHandler) setRefreshCookie(c *fiber.Ctx, token string) {
 		Value:    token,
 		MaxAge:   30 * 24 * 3600,
 		HTTPOnly: true,
-		SameSite: "Lax",
+		SameSite: "Strict",
 		Secure:   h.secureCookie,
+		Domain:   ".meshalive.com",
 	})
 }
 

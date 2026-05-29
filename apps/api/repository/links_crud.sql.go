@@ -42,8 +42,8 @@ func (q *Queries) CountLinks(ctx context.Context, arg CountLinksParams) (int64, 
 }
 
 const createLink = `-- name: CreateLink :one
-INSERT INTO links (workspace_id, domain_id, slug, destination, title, tags, created_by)
-VALUES ($1, $2, $3, $4, $5, $6, $7)
+INSERT INTO links (workspace_id, domain_id, slug, destination, title, tags, created_by, click_limit)
+VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
 RETURNING id, workspace_id, domain_id, slug, destination, title, tags, archived, expires_at, click_limit, created_at
 `
 
@@ -55,6 +55,8 @@ type CreateLinkParams struct {
 	Title       string
 	Tags        []string
 	CreatedBy   uuid.NullUUID
+	ClickLimit  sql.NullInt32
+	ExpiresAt   sql.NullTime
 }
 
 type CreateLinkRow struct {
@@ -80,6 +82,8 @@ func (q *Queries) CreateLink(ctx context.Context, arg CreateLinkParams) (CreateL
 		arg.Title,
 		pq.Array(arg.Tags),
 		arg.CreatedBy,
+		arg.ClickLimit,
+		arg.ExpiresAt,
 	)
 	var i CreateLinkRow
 	err := row.Scan(
@@ -101,7 +105,7 @@ func (q *Queries) CreateLink(ctx context.Context, arg CreateLinkParams) (CreateL
 const getDomainByWorkspace = `-- name: GetDomainByWorkspace :one
 SELECT id, hostname FROM domains
 WHERE (workspace_id = $1 AND status = 'active')
-   OR (hostname = 'mshl.in' AND status = 'active')
+   OR (hostname = 'meshalive.com' AND status = 'active')
 ORDER BY CASE WHEN workspace_id = $1 THEN 0 ELSE 1 END, is_primary DESC
 LIMIT 1
 `

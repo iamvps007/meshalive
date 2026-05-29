@@ -7,6 +7,9 @@ import (
 	"encoding/hex"
 	"errors"
 	"fmt"
+	"net"
+	"net/url"
+	"strings"
 	"time"
 
 	"github.com/google/uuid"
@@ -14,13 +17,31 @@ import (
 )
 
 var (
-	ErrLinkNotFound   = errors.New("link not found")
-	ErrSlugTaken      = errors.New("slug already taken")
-	ErrDomainNotFound = errors.New("domain not found")
+	ErrLinkNotFound       = errors.New("link not found")
+	ErrSlugTaken          = errors.New("slug already taken")
+	ErrDomainNotFound     = errors.New("domain not found")
+	ErrPlanLimitReached   = errors.New("plan link limit reached")
+	ErrInvalidDestination = errors.New("invalid destination url")
 )
+
+// planLinkLimits maps plan name → max active links. -1 = unlimited.
+var planLinkLimits = map[string]int64{
+	"free":     100,
+	"starter":  1000,
+	"growth":   10000,
+	"business": -1,
+}
+
+func planLinkLimit(plan string) int64 {
+	if limit, ok := planLinkLimits[plan]; ok {
+		return limit
+	}
+	return 100 // safe default for unknown plans
+}
 
 type linkQuerier interface {
 	GetDomainByWorkspace(ctx context.Context, workspaceID uuid.UUID) (repository.GetDomainByWorkspaceRow, error)
+	GetWorkspace(ctx context.Context, id uuid.UUID) (repository.GetWorkspaceRow, error)
 	CreateLink(ctx context.Context, arg repository.CreateLinkParams) (repository.CreateLinkRow, error)
 	ListLinks(ctx context.Context, arg repository.ListLinksParams) ([]repository.ListLinksRow, error)
 	CountLinks(ctx context.Context, arg repository.CountLinksParams) (int64, error)
@@ -48,6 +69,8 @@ type CreateLinkInput struct {
 	Destination string
 	Title       string
 	Tags        []string
+	ClickLimit  *int32
+	ExpiresAt   *time.Time
 }
 
 type UpdateLinkInput struct {
@@ -91,9 +114,29 @@ type ListLinksResult struct {
 }
 
 func (s *LinkService) Create(ctx context.Context, input CreateLinkInput) (*LinkResult, error) {
+	if err := validateDestination(input.Destination); err != nil {
+		return nil, err
+	}
 	domain, err := s.querier.GetDomainByWorkspace(ctx, input.WorkspaceID)
 	if err != nil {
 		return nil, ErrDomainNotFound
+	}
+
+	// Enforce plan link limit
+	ws, err := s.querier.GetWorkspace(ctx, input.WorkspaceID)
+	if err == nil {
+		limit := planLinkLimit(ws.Plan)
+		if limit >= 0 {
+			count, err := s.querier.CountLinks(ctx, repository.CountLinksParams{
+				WorkspaceID: input.WorkspaceID,
+				Archived:    false,
+				Column3:     "",
+				Column4:     "",
+			})
+			if err == nil && count >= limit {
+				return nil, ErrPlanLimitReached
+			}
+		}
 	}
 
 	slug := input.Slug
@@ -109,6 +152,14 @@ func (s *LinkService) Create(ctx context.Context, input CreateLinkInput) (*LinkR
 		tags = []string{}
 	}
 
+	var clickLimit sql.NullInt32
+	if input.ClickLimit != nil {
+		clickLimit = sql.NullInt32{Int32: *input.ClickLimit, Valid: true}
+	}
+	var expiresAt sql.NullTime
+	if input.ExpiresAt != nil {
+		expiresAt = sql.NullTime{Time: *input.ExpiresAt, Valid: true}
+	}
 	row, err := s.querier.CreateLink(ctx, repository.CreateLinkParams{
 		WorkspaceID: input.WorkspaceID,
 		DomainID:    domain.ID,
@@ -116,6 +167,8 @@ func (s *LinkService) Create(ctx context.Context, input CreateLinkInput) (*LinkR
 		Destination: input.Destination,
 		Title:       input.Title,
 		Tags:        tags,
+		ClickLimit:  clickLimit,
+		ExpiresAt:   expiresAt,
 	})
 	if err != nil {
 		if isUniqueViolation(err) {
@@ -275,6 +328,79 @@ func (s *LinkService) Delete(ctx context.Context, id, workspaceID uuid.UUID) err
 
 	_ = s.cache.DelRedirect(ctx, domain.Hostname, existing.Slug)
 	return nil
+}
+
+// PlanLinkLimit returns the link limit for a workspace plan (exported for use in handlers).
+func PlanLinkLimit(plan string) int64 {
+	return planLinkLimit(plan)
+}
+
+// validateDestination blocks dangerous URL schemes and SSRF targets.
+func validateDestination(raw string) error {
+	lower := strings.ToLower(strings.TrimSpace(raw))
+
+	// Block dangerous schemes before parsing
+	for _, bad := range []string{"javascript:", "file:", "data:", "vbscript:", "ftp:", "about:"} {
+		if strings.HasPrefix(lower, bad) {
+			return ErrInvalidDestination
+		}
+	}
+
+	u, err := url.Parse(raw)
+	if err != nil {
+		return ErrInvalidDestination
+	}
+	if u.Scheme != "http" && u.Scheme != "https" {
+		return ErrInvalidDestination
+	}
+
+	host := u.Hostname()
+	if host == "" {
+		return ErrInvalidDestination
+	}
+
+	// Block localhost variants
+	lhost := strings.ToLower(host)
+	if lhost == "localhost" || lhost == "ip6-localhost" || lhost == "ip6-loopback" {
+		return ErrInvalidDestination
+	}
+	for _, suffix := range []string{".local", ".internal", ".localhost", ".corp", ".home"} {
+		if strings.HasSuffix(lhost, suffix) {
+			return ErrInvalidDestination
+		}
+	}
+
+	// Check if host is a bare IP
+	if ip := net.ParseIP(host); ip != nil {
+		if isPrivateIP(ip) {
+			return ErrInvalidDestination
+		}
+	}
+	return nil
+}
+
+func isPrivateIP(ip net.IP) bool {
+	private := []string{
+		"127.0.0.0/8",
+		"10.0.0.0/8",
+		"172.16.0.0/12",
+		"192.168.0.0/16",
+		"169.254.0.0/16",
+		"100.64.0.0/10",
+		"::1/128",
+		"fc00::/7",
+		"fe80::/10",
+	}
+	for _, cidr := range private {
+		_, network, err := net.ParseCIDR(cidr)
+		if err != nil {
+			continue
+		}
+		if network.Contains(ip) {
+			return true
+		}
+	}
+	return false
 }
 
 func randomSlug() (string, error) {

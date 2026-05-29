@@ -34,14 +34,14 @@ export function LinksList() {
     mutate(prev => prev ? { ...prev, links: prev.links.map(l => l.id === updated.id ? updated : l) } : prev, false);
   };
 
-  const cols = '28px 1fr 1.4fr auto 140px 36px';
+  const cols = '28px 1fr 1.4fr 110px 130px 36px';
 
   return (
-    <div style={{ padding: '24px 32px', maxWidth: 1400, margin: '0 auto' }}>
+    <div style={{ padding: '28px 32px', maxWidth: 1100, margin: '0 auto' }}>
       <div className="row between" style={{ marginBottom: 24 }}>
         <div>
-          <h1 className="display" style={{ fontSize: 28, margin: 0 }}>Links</h1>
-          <div className="muted" style={{ fontSize: 13, marginTop: 4 }}>
+          <h1 className="display" style={{ fontSize: 28, margin: 0, color: '#111111', fontWeight: 700 }}>Links</h1>
+          <div style={{ fontSize: 13, marginTop: 4, color: '#6b7280' }}>
             {data ? `${data.total_count} link${data.total_count !== 1 ? 's' : ''}` : '…'}
           </div>
         </div>
@@ -66,7 +66,7 @@ export function LinksList() {
         </div>
       </div>
 
-      <div className="card" style={{ padding: 0, overflow: 'hidden' }}>
+      <div className="card" style={{ padding: 0, overflow: 'visible', borderRadius: 12 }}>
         <div className="t-head" style={{ gridTemplateColumns: cols }}>
           <span />
           <span>Short link</span>

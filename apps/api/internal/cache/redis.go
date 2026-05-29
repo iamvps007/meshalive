@@ -13,8 +13,11 @@ import (
 const RedirectTTL = 24 * time.Hour
 
 type RedirectEntry struct {
-	Dest   string    `json:"dest"`
-	LinkID uuid.UUID `json:"link_id"`
+	Dest       string    `json:"dest"`
+	LinkID     uuid.UUID `json:"link_id"`
+	ClickLimit *int32    `json:"click_limit,omitempty"`
+	Slug       string    `json:"slug"`
+	Host       string    `json:"host"`
 }
 
 type Client struct {

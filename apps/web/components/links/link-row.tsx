@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Icon } from '@/components/ui/icon';
 import { Favicon } from '@/components/ui/favicon';
 import { Link } from '@/lib/types';
@@ -44,41 +44,83 @@ export function LinkRow({ link, onDeleted, onUpdated }: Props) {
     } catch { toast({ title: 'Failed to delete.', variant: 'bad' }); }
   };
 
-  const cols = '28px 1fr 1.4fr auto 140px 36px';
+  const btnRef = useRef<HTMLButtonElement>(null);
+  const [menuPos, setMenuPos] = useState({ top: 0, right: 0 });
+
+  const openMenu = () => {
+    if (btnRef.current) {
+      const r = btnRef.current.getBoundingClientRect();
+      setMenuPos({ top: r.bottom + 4, right: window.innerWidth - r.right });
+    }
+    setMenuOpen(true);
+  };
+
+  // Close on outside click
+  useEffect(() => {
+    if (!menuOpen) return;
+    const handler = () => setMenuOpen(false);
+    document.addEventListener('click', handler);
+    return () => document.removeEventListener('click', handler);
+  }, [menuOpen]);
+
+  const cols = '28px 1fr 1.4fr 110px 130px 36px';
   return (
     <div className="t-row" style={{ gridTemplateColumns: cols, opacity: link.archived ? 0.5 : 1 }}>
       <Favicon host={destHost} size={20} />
       <div>
         <div className="row gap-6 center">
-          <span className="mono" style={{ fontSize: 13, fontWeight: 600 }}>
-            {link.short_url ?? `/${link.slug}`}
-          </span>
-          <button className="btn btn-ghost btn-icon" style={{ width: 24, height: 24 }} onClick={copy}>
-            <Icon name={copied ? 'check' : 'copy'} size={13} style={{ color: copied ? 'var(--good)' : undefined }} />
+          <a
+            href={`https://msha.live/${link.slug}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mono"
+            style={{ fontSize: 13, fontWeight: 600, color: '#0057ff', textDecoration: 'none' }}
+          >
+            msha.live/{link.slug}
+          </a>
+          <button className="btn btn-ghost btn-icon" style={{ width: 24, height: 24, outline: 'none' }} onClick={copy}>
+            <Icon name={copied ? 'check' : 'copy'} size={13} style={{ color: copied ? 'var(--good)' : '#6b7280' }} />
           </button>
         </div>
-        {link.title && <div className="muted" style={{ fontSize: 12, marginTop: 1 }}>{link.title}</div>}
+        {link.title && <div style={{ fontSize: 12, marginTop: 1, color: '#6b7280' }}>{link.title}</div>}
       </div>
-      <div className="muted" style={{ fontSize: 12, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+      <div style={{ fontSize: 12, color: '#6b7280', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
         {link.destination}
       </div>
       <div className="row gap-4">
         {link.tags?.map(t => <span key={t} className="chip">{t}</span>)}
       </div>
-      <div className="muted" style={{ fontSize: 12 }}>
+      <div style={{ fontSize: 12, color: '#6b7280' }}>
         {new Date(link.created_at).toLocaleDateString()}
       </div>
-      <div style={{ position: 'relative' }}>
-        <button className="btn btn-ghost btn-icon btn-sm" onClick={() => setMenuOpen(v => !v)}>
+      <div>
+        <button
+          ref={btnRef}
+          className="btn btn-ghost btn-icon btn-sm"
+          style={{ outline: 'none', border: '1px solid transparent' }}
+          onClick={e => { e.stopPropagation(); openMenu(); }}
+        >
           <Icon name="more" size={16} />
         </button>
         {menuOpen && (
-          <div style={{ position: 'absolute', right: 0, top: '100%', background: 'var(--bg-2)', border: '1px solid var(--line-c)', borderRadius: 10, padding: 4, zIndex: 50, minWidth: 160, boxShadow: 'var(--shadow-pop)' }}
-               onMouseLeave={() => setMenuOpen(false)}>
-            <button className="nav-item" style={{ width: '100%', background: 'none', border: 'none', cursor: 'pointer', padding: '0 12px', gap: 10 }} onClick={() => { archive(); setMenuOpen(false); }}>
+          <div
+            onClick={e => e.stopPropagation()}
+            style={{
+              position: 'fixed',
+              top: menuPos.top,
+              right: menuPos.right,
+              background: '#ffffff',
+              border: '1px solid #e5e7eb',
+              borderRadius: 10,
+              padding: 4,
+              zIndex: 9999,
+              minWidth: 160,
+              boxShadow: '0 8px 24px rgba(0,0,0,0.10)',
+            }}>
+            <button className="nav-item" style={{ width: '100%', background: 'none', border: 'none', cursor: 'pointer', padding: '0 12px', gap: 10, color: '#374151' }} onClick={() => { archive(); setMenuOpen(false); }}>
               <Icon name="archive" size={14} /> {link.archived ? 'Restore' : 'Archive'}
             </button>
-            <button className="nav-item" style={{ width: '100%', background: 'none', border: 'none', cursor: 'pointer', padding: '0 12px', gap: 10, color: 'var(--bad)' }} onClick={() => { del(); setMenuOpen(false); }}>
+            <button className="nav-item" style={{ width: '100%', background: 'none', border: 'none', cursor: 'pointer', padding: '0 12px', gap: 10, color: '#ef4444' }} onClick={() => { del(); setMenuOpen(false); }}>
               <Icon name="trash" size={14} /> Delete
             </button>
           </div>

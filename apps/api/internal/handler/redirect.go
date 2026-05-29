@@ -21,10 +21,10 @@ func (h *RedirectHandler) handle(c *fiber.Ctx) error {
 		return fiber.ErrInternalServerError
 	}
 	if entry == nil {
-		return c.Redirect("https://meshalive.com/404", fiber.StatusMovedPermanently)
+		return c.Redirect("https://meshalive.com/not-found", fiber.StatusMovedPermanently)
 	}
 	linkID := entry.LinkID
 	country, ua, referrer := c.Get("CF-IPCountry"), c.Get("User-Agent"), c.Get("Referer")
-	go h.svc.WriteClick(linkID, country, ua, referrer)
+	go h.svc.WriteClick(linkID, country, ua, referrer, c.Params("slug"), c.Hostname(), entry.ClickLimit)
 	return c.Redirect(entry.Dest, fiber.StatusMovedPermanently)
 }

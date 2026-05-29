@@ -75,12 +75,12 @@ export default function SettingsPage() {
   };
 
   return (
-    <div style={{ padding: '24px 32px', maxWidth: 700, margin: '0 auto' }}>
-      <h1 className="display" style={{ fontSize: 28, marginBottom: 24 }}>Settings</h1>
+    <div style={{ padding: '28px 40px', maxWidth: 680, margin: '0 auto' }}>
+      <h1 style={{ fontSize: 26, fontWeight: 700, color: '#111111', letterSpacing: '-0.02em', margin: '0 0 24px' }}>Settings</h1>
 
       {/* Workspace */}
       <section className="card" style={{ padding: '24px', marginBottom: 24 }}>
-        <h2 style={{ fontSize: 16, fontWeight: 700, marginBottom: 16, marginTop: 0 }}>Workspace</h2>
+        <h2 style={{ fontSize: 16, fontWeight: 700, marginBottom: 16, marginTop: 0, color: '#111111' }}>Workspace</h2>
         <form onSubmit={saveWorkspace} style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
           <div>
             <label className="label">Workspace name</label>
@@ -101,7 +101,7 @@ export default function SettingsPage() {
 
       {/* API Tokens */}
       <section className="card" style={{ padding: '24px', marginBottom: 24 }}>
-        <h2 style={{ fontSize: 16, fontWeight: 700, marginBottom: 4, marginTop: 0 }}>API tokens</h2>
+        <h2 style={{ fontSize: 16, fontWeight: 700, marginBottom: 4, marginTop: 0, color: '#111111' }}>API tokens</h2>
         <p className="muted" style={{ fontSize: 13, marginBottom: 16 }}>Tokens give programmatic access to your workspace. They are shown once on creation.</p>
 
         {newToken && (

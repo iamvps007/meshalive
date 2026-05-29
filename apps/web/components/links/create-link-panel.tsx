@@ -28,7 +28,7 @@ export function CreateLinkPanel({ open, onClose, onCreate }: Props) {
         tags: tagsRaw ? tagsRaw.split(',').map(t => t.trim()).filter(Boolean) : [],
       });
       toast({ title: 'Short link created — copied to clipboard.' });
-      if (link.short_url) navigator.clipboard.writeText(link.short_url).catch(() => {});
+      navigator.clipboard.writeText(`https://msha.live/${link.slug}`).catch(() => {});
       onCreate(link);
       reset();
       onClose();
