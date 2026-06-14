@@ -43,9 +43,9 @@ const SECTIONS = [
     border: '#e9d5ff',
     links: [
       { label: 'For Marketing Teams', href: '/solutions/marketing', desc: 'UTM tracking, campaign analytics, team workspace' },
-      { label: 'For Agencies', href: '/solutions/agencies', desc: 'Manage links and analytics for multiple clients' },
+      { label: 'For Agencies', href: '/solutions/marketing', desc: 'Manage links and analytics for multiple clients' },
       { label: 'For Developers', href: '/solutions/developers', desc: 'REST API, webhooks, and programmatic link creation' },
-      { label: 'For E-commerce', href: '/solutions/ecommerce', desc: 'Track clicks from every campaign and channel' },
+      { label: 'For E-commerce', href: '/solutions/retail', desc: 'Track clicks from every campaign and channel' },
       { label: 'For Sales Teams', href: '/solutions/sales', desc: 'Track proposal links and follow up at the right time' },
       { label: 'For Support Teams', href: '/solutions/support', desc: 'Short links for help articles and onboarding guides' },
       { label: 'For Retail & QR', href: '/solutions/retail', desc: 'Dynamic QR codes for menus, packaging, and displays' },

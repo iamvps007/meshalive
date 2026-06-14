@@ -2,5 +2,13 @@ User-agent: *
 Allow: /
 Disallow: /dashboard/
 Disallow: /api/
+Disallow: /login
+Disallow: /register
+Disallow: /onboarding
+Disallow: /not-found
+Disallow: /site-map
+Disallow: /status
+Disallow: /refund
+Disallow: /cookies
 
 Sitemap: https://meshalive.com/sitemap.xml

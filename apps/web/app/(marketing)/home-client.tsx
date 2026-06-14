@@ -93,16 +93,16 @@ export default function HomePage() {
           {/* Product Hunt badge */}
           <div style={{ marginBottom: 32 }}>
             <a
-              href="https://www.producthunt.com/products/url-shortener-with-analytics-qr-codes?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-url-shortener-with-analytics-qr-codes"
+              href="https://www.producthunt.com/products/url-shortener-with-analytics-qr-codes/reviews/new?utm_source=badge-product_review&utm_medium=badge&utm_source=badge-url-shortener-with-analytics-qr-codes"
               target="_blank"
               rel="noopener noreferrer"
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                alt="URL Shortener with Analytics & QR Codes - Shorten links, track clicks & make QR codes — 100% free | Product Hunt"
+                alt="Meshalive - URL Shortener with Analytics - Shorten links, track clicks &amp; make QR codes — 100% free | Product Hunt"
                 width={250}
                 height={54}
-                src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1156121&theme=dark&t=1779796345056"
+                src="https://api.producthunt.com/widgets/embed-image/v1/product_review.svg?product_id=1233567&theme=dark"
                 style={{ display: 'inline-block' }}
               />
             </a>

@@ -189,6 +189,7 @@ const FOOTER_COLS = [
   { title: 'Solutions', items: [
     ['Marketing',      '/solutions/marketing'],
     ['Sales',          '/solutions/sales'],
+    ['Creators',       '/solutions/creators'],
     ['Support teams',  '/solutions/support'],
     ['Retail & QR',    '/solutions/retail'],
     ['Developers',     '/solutions/developers'],
@@ -197,7 +198,9 @@ const FOOTER_COLS = [
     ['About',     '/about'],
     ['Pricing',   '/pricing'],
     ['Blog',      '/blog'],
+    ['Contact',   '/contact'],
     ['Status',    '/status'],
+    ['Refund',    '/refund'],
   ]},
   { title: 'Resources', items: [
     ['Help centre', '/docs'],

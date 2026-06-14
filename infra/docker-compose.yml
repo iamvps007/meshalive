@@ -34,9 +34,7 @@ services:
       redis:
         condition: service_healthy
     healthcheck:
-      # wget returns 8 for 4xx/5xx (server up) and 4 for connection refused (server down).
-      # grep for any HTTP response — passes as long as the Go server is accepting connections.
-      test: ["CMD-SHELL", "wget -q -S --spider http://127.0.0.1:8080/ 2>&1 | grep -q 'HTTP/'"]
+      test: ["CMD-SHELL", "wget -q -O /dev/null http://127.0.0.1:8080/health 2>&1; test $? -ne 4"]
       interval: 30s
       timeout: 10s
       retries: 3

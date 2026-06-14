@@ -15,10 +15,24 @@ export const metadata: Metadata = {
 const PUBLISHED = [
   {
     slug: 'how-to-shorten-a-url',
-    title: 'How to Shorten a URL in 3 Steps (Free)',
-    excerpt: 'Shortening a URL takes less than 10 seconds. No account needed. Here is the simplest way to create a short link and start tracking clicks instantly.',
+    title: 'How to Shorten a URL in 3 Steps (Free, No Sign-Up)',
+    excerpt: 'URL shortening takes under 10 seconds. No account required. Here is exactly how to do it, what the options mean, and when it matters which type of short link you use.',
     category: 'Guide',
-    read: '4 min read',
+    read: '5 min read',
+  },
+  {
+    slug: 'url-shortener-for-whatsapp',
+    title: 'Free URL Shortener for WhatsApp (Works in India)',
+    excerpt: 'Long product URLs kill WhatsApp messages. Here is how to shorten any link for WhatsApp in under a minute — free, no account required — and track how many contacts clicked.',
+    category: 'Social Media',
+    read: '5 min read',
+  },
+  {
+    slug: 'best-url-shortener-india',
+    title: 'Best Free URL Shortener for India in 2026 (UPI, GST, INR)',
+    excerpt: 'Compare the best URL shorteners for Indian businesses — INR pricing, UPI payments, GST invoicing, and WhatsApp analytics. One clear winner.',
+    category: 'Guide',
+    read: '7 min read',
   },
   {
     slug: 'bitly-alternatives',
@@ -79,8 +93,7 @@ const PUBLISHED = [
 ];
 
 const UPCOMING = [
-  { title: 'How to track WhatsApp campaign clicks with UTM parameters', category: 'Guide', read: '5 min read' },
-  { title: 'Custom domains vs shared short links — a decision guide for small businesses', category: 'Strategy', read: '7 min read' },
+{ title: 'Custom domains vs shared short links — a decision guide for small businesses', category: 'Strategy', read: '7 min read' },
   { title: 'UTM parameters: the complete guide for digital marketers in 2026', category: 'Guide', read: '9 min read' },
 ];
 
