@@ -42,8 +42,8 @@ func (q *Queries) CountLinks(ctx context.Context, arg CountLinksParams) (int64, 
 }
 
 const createLink = `-- name: CreateLink :one
-INSERT INTO links (workspace_id, domain_id, slug, destination, title, tags, created_by, click_limit)
-VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+INSERT INTO links (workspace_id, domain_id, slug, destination, title, tags, created_by, click_limit, expires_at)
+VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
 RETURNING id, workspace_id, domain_id, slug, destination, title, tags, archived, expires_at, click_limit, created_at
 `
 
