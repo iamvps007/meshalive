@@ -5,13 +5,18 @@ import (
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/limiter"
+	"github.com/meshalive/api/internal/firebase"
 	"github.com/meshalive/api/internal/service"
 )
 
-type AuthHandler struct{ svc *service.AuthService; secureCookie bool }
+type AuthHandler struct {
+	svc          *service.AuthService
+	secureCookie bool
+	fbVerifier   *firebase.Verifier
+}
 
-func NewAuthHandler(svc *service.AuthService, secureCookie bool) *AuthHandler {
-	return &AuthHandler{svc: svc, secureCookie: secureCookie}
+func NewAuthHandler(svc *service.AuthService, secureCookie bool, fbVerifier *firebase.Verifier) *AuthHandler {
+	return &AuthHandler{svc: svc, secureCookie: secureCookie, fbVerifier: fbVerifier}
 }
 
 func (h *AuthHandler) Register(app *fiber.App) {
@@ -26,6 +31,7 @@ func (h *AuthHandler) Register(app *fiber.App) {
 	v1 := app.Group("/v1/auth")
 	v1.Post("/register", authRL, h.register)
 	v1.Post("/login", authRL, h.login)
+	v1.Post("/firebase", authRL, h.firebaseLogin)
 	v1.Post("/refresh", h.refresh)
 	v1.Post("/logout", h.logout)
 }
@@ -41,6 +47,10 @@ type loginReq struct {
 	Password string `json:"password"`
 }
 
+type firebaseLoginReq struct {
+	IDToken string `json:"id_token"`
+}
+
 func (h *AuthHandler) register(c *fiber.Ctx) error {
 	var req registerReq
 	if err := c.BodyParser(&req); err != nil {
@@ -48,9 +58,6 @@ func (h *AuthHandler) register(c *fiber.Ctx) error {
 	}
 	if req.Email == "" || req.Password == "" {
 		return fiber.NewError(fiber.StatusBadRequest, "email and password required")
-	}
-	if len(req.Password) > 100 {
-		return fiber.NewError(fiber.StatusBadRequest, "password too long")
 	}
 	if len(req.Password) > 100 {
 		return fiber.NewError(fiber.StatusBadRequest, "password too long")
@@ -75,6 +82,29 @@ func (h *AuthHandler) login(c *fiber.Ctx) error {
 	if err == service.ErrInvalidCreds {
 		return fiber.NewError(fiber.StatusUnauthorized, "INVALID_CREDENTIALS")
 	}
+	if err != nil {
+		return fiber.ErrInternalServerError
+	}
+	h.setRefreshCookie(c, result.RefreshToken)
+	return c.JSON(authResponse(result))
+}
+
+func (h *AuthHandler) firebaseLogin(c *fiber.Ctx) error {
+	var req firebaseLoginReq
+	if err := c.BodyParser(&req); err != nil {
+		return fiber.NewError(fiber.StatusBadRequest, "invalid body")
+	}
+	if req.IDToken == "" {
+		return fiber.NewError(fiber.StatusBadRequest, "id_token required")
+	}
+	if h.fbVerifier == nil {
+		return fiber.NewError(fiber.StatusServiceUnavailable, "FIREBASE_NOT_CONFIGURED")
+	}
+	claims, err := h.fbVerifier.Verify(req.IDToken)
+	if err != nil {
+		return fiber.NewError(fiber.StatusUnauthorized, "INVALID_FIREBASE_TOKEN")
+	}
+	result, err := h.svc.OAuthLogin(c.Context(), claims.Email, claims.Name)
 	if err != nil {
 		return fiber.ErrInternalServerError
 	}

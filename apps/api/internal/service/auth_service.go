@@ -120,6 +120,50 @@ func (s *AuthService) Login(ctx context.Context, email, password string) (*AuthR
 	return s.issueTokens(ctx, row.ID, row.Email, row.Name, ws.ID, ws.Name, ws.Slug, ws.Plan)
 }
 
+
+// OAuthLogin finds or creates a user from a verified OAuth provider.
+// No password required — identity already verified by Firebase.
+func (s *AuthService) OAuthLogin(ctx context.Context, email, name string) (*AuthResult, error) {
+	email = strings.ToLower(strings.TrimSpace(email))
+	if name == "" {
+		name = strings.Split(email, "@")[0]
+	}
+	row, err := s.querier.GetUserByEmail(ctx, email)
+	if err == sql.ErrNoRows {
+		user, err2 := s.querier.CreateUser(ctx, repository.CreateUserParams{
+			Email:        email,
+			Name:         name,
+			PasswordHash: sql.NullString{Valid: false},
+		})
+		if err2 != nil {
+			return nil, err2
+		}
+		ws, err2 := s.querier.CreateWorkspace(ctx, repository.CreateWorkspaceParams{
+			Name:     name + "'s Workspace",
+			Slug:     makeWorkspaceSlug(email),
+			Currency: "USD",
+		})
+		if err2 != nil {
+			return nil, err2
+		}
+		if err2 = s.querier.AddWorkspaceMember(ctx, repository.AddWorkspaceMemberParams{
+			WorkspaceID: ws.ID,
+			UserID:      user.ID,
+			Role:        "owner",
+		}); err2 != nil {
+			return nil, err2
+		}
+		return s.issueTokens(ctx, user.ID, user.Email, user.Name, ws.ID, ws.Name, ws.Slug, ws.Plan)
+	}
+	if err != nil {
+		return nil, err
+	}
+	ws, err := s.querier.GetUserFirstWorkspace(ctx, row.ID)
+	if err != nil {
+		return nil, err
+	}
+	return s.issueTokens(ctx, row.ID, row.Email, row.Name, ws.ID, ws.Name, ws.Slug, ws.Plan)
+}
 func (s *AuthService) Refresh(ctx context.Context, rawToken string) (*AuthResult, error) {
 	hash := hashToken(rawToken)
 	userID, err := s.cache.GetRefreshToken(ctx, hash)

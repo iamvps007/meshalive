@@ -11,6 +11,7 @@ import (
 	"github.com/meshalive/api/internal/cache"
 	"github.com/meshalive/api/internal/config"
 	internaldb "github.com/meshalive/api/internal/db"
+	"github.com/meshalive/api/internal/firebase"
 	"github.com/meshalive/api/internal/handler"
 	"github.com/meshalive/api/internal/middleware"
 	"github.com/meshalive/api/internal/service"
@@ -40,8 +41,9 @@ func main() {
 	redirectSvc := service.NewRedirectService(cacheClient, q)
 	redirectH := handler.NewRedirectHandler(redirectSvc)
 
+	fbVerifier := firebase.NewVerifier(cfg.FirebaseProjectID)
 	authSvc := service.NewAuthService(q, cacheClient, cfg.JWTSecret)
-	authH := handler.NewAuthHandler(authSvc, cfg.CookieSecure)
+	authH := handler.NewAuthHandler(authSvc, cfg.CookieSecure, fbVerifier)
 
 	linkSvc := service.NewLinkService(q, cacheClient)
 	linksH := handler.NewLinksHandler(linkSvc)

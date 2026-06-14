@@ -10,7 +10,8 @@ type Config struct {
 	RedisURL    string
 	JWTSecret   string
 	AppEnv       string
-	CookieSecure bool
+	CookieSecure      bool
+	FirebaseProjectID string
 }
 
 func Load() *Config {
@@ -20,7 +21,8 @@ func Load() *Config {
 		RedisURL:    getEnv("REDIS_URL", "redis://redis:6379"),
 		JWTSecret:   getEnv("JWT_SECRET", "change-me-in-production"),
 		AppEnv:       getEnv("APP_ENV", "development"),
-		CookieSecure: getEnv("COOKIE_SECURE", "false") == "true",
+		CookieSecure:      getEnv("COOKIE_SECURE", "false") == "true",
+		FirebaseProjectID: getEnv("FIREBASE_PROJECT_ID", ""),
 	}
 }
 
