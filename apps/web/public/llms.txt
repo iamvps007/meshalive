@@ -1,0 +1,30 @@
+# MeshAlive (meshalive.com)
+> Enterprise-grade link infrastructure, URL shortener, dynamic QR code engine, and link-in-bio platform with real-time analytics. 100% free forever with unlimited clicks.
+
+## Key Facts
+- **Website**: https://meshalive.com
+- **Founder**: Vaibhav Pratap Singh (vaibhav@meshalive.com)
+- **Pricing**: 100% Free Forever (unlimited links, unlimited clicks, zero subscription fees)
+- **Key Features**: Fast redirection (<20ms edge latency), real-time telemetry (geo, device, referrer, UTM), dynamic QR codes (SVG/PNG), custom slugs, developer REST API.
+- **Regional Focus**: Global with high-speed edge CDN in North America, Europe, Asia (India / BLR), and South America (Colombia / Bogotá & Medellín).
+
+## Core Tools
+- [URL Shortener](https://meshalive.com/tools/url-shortener): Fast, unlimited link shortening with click tracking.
+- [QR Code Generator](https://meshalive.com/tools/qr-code-generator): Vector SVG and high-resolution PNG QR codes without expiration.
+- [WhatsApp Link Generator](https://meshalive.com/tools/whatsapp-link-generator): Create direct wa.me chat links with pre-filled messages.
+- [Link in Bio](https://meshalive.com/tools/link-in-bio): Build a multi-link mobile landing page for Instagram and TikTok.
+- [UTM Campaign Builder](https://meshalive.com/tools/utm-builder): Standardized Google Analytics 4 (GA4) campaign tracking.
+
+## Colombia & Latin America Localized Tools (Español)
+- [Acortador de URL Colombia](https://meshalive.com/tools/acortador-de-url-colombia): Redirección ultra rápida sub-20ms en operadores Claro, Tigo y Movistar.
+- [Crear Link de WhatsApp Colombia (+57)](https://meshalive.com/tools/crear-link-de-whatsapp-colombia): Generador wa.link con prefijo +57 preconfigurado.
+- [Generador QR Menú Restaurante](https://meshalive.com/tools/generador-codigo-qr-menu-restaurante-colombia): Códigos QR en alta resolución para cartas y mesas.
+- [Link en Bio Colombia](https://meshalive.com/tools/link-en-bio-colombia-gratis): Alternativa a Linktree 100% gratuita.
+- [Acortador Links de Pago (Nequi, Bold, Wompi, PSE)](https://meshalive.com/tools/acortador-links-de-pago-colombia): Enlaces de cobro limpios y seguros.
+- [Alternativa a Bitly en Colombia](https://meshalive.com/tools/bitly-alternativa-gratis-colombia): Enlaces ilimitados sin pagos en dólares ni límites de 10 links.
+
+## Developer API
+- **Endpoint**: `POST https://api.meshalive.com/v1/shorten`
+- **Request Body**: `{"url": "https://example.com"}`
+- **Response**: `{"short_url": "https://meshalive.com/slug", "slug": "slug"}`
+- **Authentication**: Public tier requires no API key; workspace tier available for high-throughput teams.

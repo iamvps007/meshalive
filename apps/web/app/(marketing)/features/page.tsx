@@ -40,13 +40,13 @@ const FEATURES = [
     icon: 'tag',
     title: 'UTM campaign tracking',
     desc: 'Build UTM-tagged URLs with a visual builder. Group links by campaign and see aggregated performance without leaving meshalive.',
-    tags: ['UTM builder', 'Campaign groups', 'Growth+'],
+    tags: ['UTM builder', 'Campaign groups', 'Free'],
   },
   {
     icon: 'key',
     title: 'REST API',
     desc: 'Full CRUD API for links, analytics, workspaces, and team members. JWT and API token auth. Free for all users — no enterprise tier required.',
-    tags: ['JWT', 'Token auth', 'OpenAPI spec', 'Starter+'],
+    tags: ['JWT', 'Token auth', 'OpenAPI spec', 'Free'],
   },
   {
     icon: 'users',
@@ -58,7 +58,7 @@ const FEATURES = [
     icon: 'webhook',
     title: 'Webhooks',
     desc: 'POST a JSON payload to your endpoint on every click, link create, or expiry event. Retry logic with exponential backoff included.',
-    tags: ['Real-time', 'JSON payload', 'Growth+'],
+    tags: ['Real-time', 'JSON payload', 'Free'],
   },
   {
     icon: 'mobile',

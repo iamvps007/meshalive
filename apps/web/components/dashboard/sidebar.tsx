@@ -18,6 +18,7 @@ const GOOD = '#2f7a55';
 
 const NAV = [
   { href: '/dashboard/links',     icon: 'link',        label: 'Links' },
+  { href: '/dashboard/pages',     icon: 'sparkle',     label: 'Bio & Mini Sites' },
   { href: '/dashboard/analytics', icon: 'chart',       label: 'Analytics' },
   { href: '/dashboard/qr',        icon: 'qr',          label: 'QR codes' },
 ];

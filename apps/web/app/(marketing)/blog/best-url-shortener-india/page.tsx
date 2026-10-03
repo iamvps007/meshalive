@@ -1,3 +1,4 @@
+import UrlShortenerTool from '../../tools/url-shortener/UrlShortenerTool';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -10,6 +11,9 @@ export const metadata: Metadata = {
     'free url shortener india',
     'url shortener for indian business',
     'link shortener india',
+    'whatsapp link shortener india',
+    'short url india',
+    'link shortener earn money india',
   ],
   alternates: { canonical: 'https://meshalive.com/blog/best-url-shortener-india' },
   openGraph: {
@@ -49,6 +53,32 @@ export default function BestUrlShortenerIndiaPage() {
         freelancers, and creators — and it names a clear winner.
       </p>
 
+      {/* ── Interactive In-Blog Tool ── */}
+      <div style={{
+        background: '#ffffff',
+        border: '1.5px solid #e2e8f0',
+        borderRadius: 16,
+        padding: '24px 20px',
+        margin: '36px 0 44px',
+        boxShadow: '0 8px 30px -6px rgba(0, 87, 255, 0.08), 0 0 0 1px rgba(0, 87, 255, 0.04)',
+      }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16, flexWrap: 'wrap', gap: 10 }}>
+          <div>
+            <span style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: '#0057ff' }}>
+              ⚡ Instant Free Tool
+            </span>
+            <h3 style={{ fontSize: 18, fontWeight: 800, margin: '2px 0 0', color: '#0f172a' }}>
+              Test India's Fastest Link Shortener
+            </h3>
+          </div>
+          <span style={{ fontSize: 12, background: '#eff6ff', color: '#0057ff', fontWeight: 600, padding: '4px 12px', borderRadius: 999 }}>
+            Sub-2ms Mumbai Edge · Free Forever
+          </span>
+        </div>
+        <UrlShortenerTool />
+      </div>
+
+
       {/* Section 1 */}
       <h2 style={{ fontSize: 24, fontWeight: 700, marginBottom: 12, marginTop: 40 }}>Why Indian Businesses Need a URL Shortener</h2>
       <p style={{ marginBottom: 16 }}>
@@ -73,8 +103,7 @@ export default function BestUrlShortenerIndiaPage() {
       <h3 style={{ fontSize: 18, fontWeight: 700, marginBottom: 8, marginTop: 24 }}>INR pricing</h3>
       <p style={{ marginBottom: 16 }}>
         USD-denominated tools fluctuate in real cost every month as the rupee moves. If you're a freelancer
-        or small business billing in INR, a tool priced in INR is predictable and VAT-correct. Look for plans
-        under ₹500/month for solo use and under ₹1,500/month for a team.
+        or small business billing in INR, a tool priced in INR is predictable and VAT-correct. Look for tools like Meshalive that provide unlimited short links and analytics completely free with zero monthly fees.
       </p>
 
       <h3 style={{ fontSize: 18, fontWeight: 700, marginBottom: 8, marginTop: 24 }}>UPI and RuPay payment support</h3>
@@ -102,8 +131,7 @@ export default function BestUrlShortenerIndiaPage() {
       <h3 style={{ fontSize: 18, fontWeight: 700, marginBottom: 8, marginTop: 24 }}>API on free and low-cost tiers</h3>
       <p style={{ marginBottom: 16 }}>
         Bitly gates API access behind its $35/month plan. For a developer freelancer or agency automating
-        link creation from a spreadsheet or Zapier, that's steep. Tools that offer API access at ₹249–₹499/month
-        are dramatically better value.
+        link creation from a spreadsheet or Zapier, that's steep. Tools that offer API access completely free (like Meshalive) are dramatically better value.
       </p>
 
       {/* Comparison table */}
@@ -139,7 +167,7 @@ export default function BestUrlShortenerIndiaPage() {
                 tool: 'Meshalive',
                 free: 'Unlimited',
                 analytics: 'Country, device, referrer, 90d',
-                india: '₹249/mo',
+                india: 'Free (₹0)',
                 upi: '✓',
                 gst: '✓',
                 highlight: true,
@@ -226,9 +254,9 @@ export default function BestUrlShortenerIndiaPage() {
         direct link clicks so you can measure offline-to-online conversion.
       </p>
 
-      <h3 style={{ fontSize: 18, fontWeight: 700, marginBottom: 8, marginTop: 24 }}>API on all paid tiers</h3>
+      <h3 style={{ fontSize: 18, fontWeight: 700, marginBottom: 8, marginTop: 24 }}>Full API access, free</h3>
       <p style={{ marginBottom: 16 }}>
-        API access is included from the Starter plan (₹249/month). You can programmatically create and manage
+        API access is included free — no paid plan required. You can programmatically create and manage
         short links from your CRM, order management system, or spreadsheet automation. Full REST API with
         token authentication, no per-call charges.
       </p>
@@ -239,7 +267,7 @@ export default function BestUrlShortenerIndiaPage() {
       <div style={{ borderTop: `1px solid ${HAIR}` }}>
         {[
           {
-            q: 'Can I pay for Meshalive using UPI or PhonePe?',
+            q: 'Is Meshalive really 100% free?',
             a: 'Yes. meshalive.in uses Razorpay for payment processing. You can pay via UPI (including PhonePe, GPay, Paytm UPI, and BHIM), RuPay credit or debit card, Visa/Mastercard, and NetBanking. UPI AutoPay is supported for recurring subscriptions so you don\'t need to remember to renew manually.',
           },
           {
@@ -247,16 +275,16 @@ export default function BestUrlShortenerIndiaPage() {
             a: 'Yes. Meshalive is GST-registered in India. When you add your GSTIN to your billing profile on meshalive.in, every invoice generated includes your GSTIN, the provider\'s GSTIN, the taxable amount, CGST/SGST or IGST breakdown, and invoice number. This is a valid tax invoice under Indian GST rules.',
           },
           {
-            q: 'Is there a free trial for paid plans?',
-            a: 'Paid plans do not have a time-limited trial, but the free plan is genuinely capable — unlimited links, click analytics, and QR codes. Most users start on the free plan and upgrade when they need a custom domain or deeper analytics. There is no credit card required to start.',
+            q: 'Is Meshalive really free?',
+            a: 'Meshalive is 100% free forever. There are no paid plans, no subscriptions, and no credit card required. You get unlimited links, custom slugs, QR codes, and click analytics from day one.',
           },
           {
             q: 'Does Meshalive support team workspaces?',
-            a: 'Team seats are included from the Growth plan (₹899/month, 5 seats). The Business plan (₹2,999/month) includes 15 seats. Shared workspaces, link ownership, and role-based access are part of team plans. Solo plans (Free and Starter) are single-user.',
+            a: 'Team workspaces with role-based access and shared link libraries are completely free. Invite your team without paying anything.',
           },
           {
             q: 'How does Meshalive compare to Bitly for Indian businesses?',
-            a: 'Bitly\'s comparable plan costs $8/month billed in USD, has no UPI support, no GST invoice, and limits the free plan to 10 links total. Meshalive\'s Starter plan costs ₹249/month in INR, includes UPI payment, issues proper GST invoices, and the free plan has unlimited links. For an Indian business with 5,000 monthly clicks and one custom domain, Meshalive is both cheaper and more locally compliant.',
+            a: 'Bitly charges $8+/month in USD, has no UPI support, no GST invoice, and limits the free plan to 10 links total. Meshalive is completely free in INR, includes UPI payment support, issues proper GST invoices, and has unlimited links. For any Indian business, Meshalive is both cheaper (free) and more locally compliant.',
           },
         ].map(({ q, a }) => (
           <div key={q} style={{ borderBottom: `1px solid ${HAIR}`, padding: '20px 0' }}>
@@ -291,7 +319,7 @@ export default function BestUrlShortenerIndiaPage() {
           Start free on meshalive.in →
         </a>
         <p style={{ color: '#6b7280', marginTop: 16, fontSize: 13 }}>
-          Starter plan from ₹249/month · Cancel anytime · No international card needed
+          100% Free Forever · No credit card required · Unlimited links & analytics
         </p>
       </div>
     </div>

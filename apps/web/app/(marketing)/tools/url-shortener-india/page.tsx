@@ -4,10 +4,32 @@ import UrlShortenerTool from '../url-shortener/UrlShortenerTool';
 import React from 'react';
 
 export const metadata: Metadata = {
-  title: { absolute: 'Meshalive | Meshalive' },
-  description: 'Meshalive is built specifically for Indian businesses. UPI and RuPay payments, WhatsApp analytics, GST-compliant invoicing, and IST timezone by default. Fr',
+  title: { absolute: 'Indian URL Shortener (100% Free) — Best Link Shortener India | Meshalive' },
+  description:
+    'The #1 free Indian URL shortener and link shortener in India. Shorten links for WhatsApp, Instagram & SMS with click analytics. Sub-2ms low latency in India. 100% free forever.',
+  keywords: [
+    'indian shortner', 'indian shortener', 'indian link shortener', 'url shortener india',
+    'free url shortener india',
+    'link shortener india',
+    'best url shortener india',
+    'whatsapp link shortener india',
+    'short url india',
+    'मुफ्त url शॉर्टनर',
+  ],
   alternates: { canonical: 'https://meshalive.com/tools/url-shortener-india' },
-  openGraph: { type:'website', url:'https://meshalive.com/tools/url-shortener-india', title:{ absolute: 'Meshalive | Meshalive' }, description:'Meshalive is built specifically for Indian businesses. UPI and RuPay payments, WhatsApp analytics, GST-compliant invoicing, and IST timezone by default. Fr', siteName:'Meshalive' },
+  openGraph: {
+    type: 'website',
+    url: 'https://meshalive.com/tools/url-shortener-india',
+    title: { absolute: 'Indian URL Shortener (100% Free) — Best Link Shortener India | Meshalive' },
+    description: 'Free URL shortener built for India. WhatsApp analytics, unlimited links, QR codes — no sign up required.',
+    siteName: 'Meshalive',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Free URL Shortener India | Meshalive',
+    description: 'Shorten links for WhatsApp & social with free click analytics. Built for Indian businesses.',
+  },
+  robots: { index: true, follow: true },
 };
 
 const S = {

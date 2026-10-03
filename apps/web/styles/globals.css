@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@500;600;700&family=Rubik:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
-
 /* Meshalive — design tokens */
 
 :root {
@@ -722,10 +720,10 @@ input, textarea, select { font-family: inherit; }
    ═══════════════════════════════════════════════════════════ */
 
 /* ── Marketing nav: hamburger menu ── */
-.nav-mobile-toggle { display: none; }
-.nav-mobile-menu   { display: none; }
+.nav-mobile-toggle { display: none !important; }
+.nav-mobile-menu   { display: none !important; }
 
-@media (max-width: 767px) {
+@media (max-width: 860px) {
   .nav-desktop-links  { display: none !important; }
   .nav-desktop-cta    { display: none !important; }
   .nav-mobile-toggle  { display: flex !important; }

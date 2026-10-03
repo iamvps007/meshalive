@@ -20,6 +20,10 @@ type authQuerier interface {
 // Auth validates Bearer token (JWT or mshl_ API token) and sets user_id + workspace_id in ctx locals.
 func Auth(jwtSecret string, q authQuerier) fiber.Handler {
 	return func(c *fiber.Ctx) error {
+		path := c.Path()
+		if strings.HasPrefix(path, "/v1/p/") || strings.HasPrefix(path, "/p/") || path == "/v1/shorten" {
+			return c.Next()
+		}
 		header := c.Get("Authorization")
 		if !strings.HasPrefix(header, "Bearer ") {
 			return fiber.ErrUnauthorized

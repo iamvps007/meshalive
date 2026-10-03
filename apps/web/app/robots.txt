@@ -1,14 +1,36 @@
+# https://www.robotstxt.org/robotstxt.html
 User-agent: *
 Allow: /
+Allow: /site-map
+Allow: /tools/
+Allow: /blog/
 Disallow: /dashboard/
 Disallow: /api/
 Disallow: /login
 Disallow: /register
 Disallow: /onboarding
 Disallow: /not-found
-Disallow: /site-map
 Disallow: /status
 Disallow: /refund
 Disallow: /cookies
+
+# Search Engine & AI Crawler Optimizations
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Applebot
+Allow: /
 
 Sitemap: https://meshalive.com/sitemap.xml

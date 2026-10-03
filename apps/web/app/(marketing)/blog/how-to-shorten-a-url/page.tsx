@@ -1,3 +1,4 @@
+import UrlShortenerTool from '../../tools/url-shortener/UrlShortenerTool';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -47,6 +48,32 @@ export default function HowToShortenUrlPage() {
         URL shortening takes under 10 seconds and makes any link shareable on any platform.
         Here's exactly how to do it, what the options mean, and when it matters which type of short link you use.
       </p>
+
+      {/* ── Interactive In-Blog Tool ── */}
+      <div style={{
+        background: '#ffffff',
+        border: '1.5px solid #e2e8f0',
+        borderRadius: 16,
+        padding: '24px 20px',
+        margin: '36px 0 44px',
+        boxShadow: '0 8px 30px -6px rgba(0, 87, 255, 0.08), 0 0 0 1px rgba(0, 87, 255, 0.04)',
+      }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16, flexWrap: 'wrap', gap: 10 }}>
+          <div>
+            <span style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: '#0057ff' }}>
+              ⚡ Instant Free Tool
+            </span>
+            <h3 style={{ fontSize: 18, fontWeight: 800, margin: '2px 0 0', color: '#0f172a' }}>
+              Shorten Your Link Right Now
+            </h3>
+          </div>
+          <span style={{ fontSize: 12, background: '#eff6ff', color: '#0057ff', fontWeight: 600, padding: '4px 12px', borderRadius: 999 }}>
+            100% Free · No Sign-Up
+          </span>
+        </div>
+        <UrlShortenerTool />
+      </div>
+
 
       {/* Steps */}
       <h2 style={{ fontSize: 24, fontWeight: 700, marginBottom: 20, marginTop: 40 }}>The 3 Steps</h2>
@@ -141,7 +168,7 @@ export default function HowToShortenUrlPage() {
         <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 14 }}>
           <thead>
             <tr style={{ background: '#f9fafb' }}>
-              {['Feature', 'Anonymous', 'Signed in (Free)', 'Signed in (Paid)'].map((h) => (
+              {['Feature', 'Anonymous (No login)', 'Meshalive Account (100% Free)'].map((h) => (
                 <th key={h} style={{ textAlign: 'left', padding: '10px 14px', borderBottom: `2px solid ${HAIR}`, fontWeight: 700, color: INK }}>
                   {h}
                 </th>
@@ -150,34 +177,33 @@ export default function HowToShortenUrlPage() {
           </thead>
           <tbody>
             {[
-              ['Link stays live', '✓', '✓', '✓'],
-              ['Click count', '✗', '✓', '✓'],
-              ['Country / device analytics', '✗', '✓', '✓'],
-              ['Edit the destination URL', '✗', '✓', '✓'],
-              ['Custom slug', '✗', '✗', '✓ Starter+'],
-              ['Custom domain', '✗', '✗', '✓ Starter+'],
-              ['QR code download', '✗', '✓', '✓'],
-              ['API access', '✗', '✗', '✓ Starter+'],
-            ].map(([feature, anon, free, paid], i) => (
+              ['Link stays live forever', '✓ Live forever', '✓ Live forever'],
+              ['Click count & traffic tracking', '✗', '✓ Included free'],
+              ['Country, device & referrer analytics', '✗', '✓ Included free'],
+              ['Edit destination URL anytime', '✗', '✓ Included free'],
+              ['Custom slug / branded alias', '✗', '✓ Included free'],
+              ['Custom branded domain', '✗', '✓ Included free'],
+              ['Dynamic QR code download', '✗', '✓ Included free'],
+              ['Full REST API access', '✗', '✓ Included free'],
+            ].map(([feature, anon, free], i) => (
               <tr key={feature} style={{ background: i % 2 === 0 ? '#fff' : '#fafafa' }}>
                 <td style={{ padding: '9px 14px', borderBottom: `1px solid ${HAIR}`, fontWeight: 500 }}>{feature}</td>
-                <td style={{ padding: '9px 14px', borderBottom: `1px solid ${HAIR}`, color: anon === '✓' ? '#16a34a' : anon === '✗' ? '#dc2626' : INK, fontWeight: 700 }}>{anon}</td>
-                <td style={{ padding: '9px 14px', borderBottom: `1px solid ${HAIR}`, color: free === '✓' ? '#16a34a' : free === '✗' ? '#dc2626' : INK, fontWeight: free === '✓' || free === '✗' ? 700 : 400 }}>{free}</td>
-                <td style={{ padding: '9px 14px', borderBottom: `1px solid ${HAIR}`, color: paid.startsWith('✓') ? '#16a34a' : paid === '✗' ? '#dc2626' : INK, fontWeight: paid === '✓' || paid === '✗' ? 700 : 400 }}>{paid}</td>
+                <td style={{ padding: '9px 14px', borderBottom: `1px solid ${HAIR}`, color: anon.startsWith('✓') ? '#16a34a' : anon === '✗' ? '#dc2626' : INK, fontWeight: 700 }}>{anon}</td>
+                <td style={{ padding: '9px 14px', borderBottom: `1px solid ${HAIR}`, color: '#16a34a', fontWeight: 700 }}>{free}</td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
       <p style={{ color: MUTED, fontSize: 14, marginBottom: 16 }}>
-        Starter plan is ₹249/month on meshalive.in or $4/month on meshalive.com.
+        Meshalive is 100% free with unlimited links, real-time click tracking, and QR codes for everyone.
       </p>
 
       {/* Section 4 */}
       <h2 style={{ fontSize: 24, fontWeight: 700, marginBottom: 12, marginTop: 48 }}>Custom Slugs Explained</h2>
       <p style={{ marginBottom: 16 }}>
         By default, Meshalive generates a random 8-character slug: <code>msha.live/a7bK9xQr</code>.
-        On paid plans, you can replace this with any word or phrase: <code>msha.live/diwali-sale</code>,
+        On Meshalive, you can choose any custom slug for free: <code>msha.live/diwali-sale</code>,
         <code>msha.live/menu</code>, or <code>msha.live/apply-now</code>.
       </p>
       <p style={{ marginBottom: 16 }}>
@@ -195,7 +221,7 @@ export default function HowToShortenUrlPage() {
         <code>msha.live/yourstore-sale</code>.
       </p>
       <p style={{ marginBottom: 16 }}>
-        On paid plans you can also add a custom domain — so the same slug logic applies to
+        You can also connect a custom branded domain completely free — so the same slug logic applies to
         <code>links.yourbrand.com/diwali-sale</code>. Custom domain slugs are only shared within your
         own domain namespace, so conflicts with other Meshalive users don't apply.
       </p>
@@ -209,7 +235,7 @@ export default function HowToShortenUrlPage() {
       </p>
       <p style={{ marginBottom: 16 }}>
         QR codes are available as PNG (for digital use, social media, email) and SVG (for print, signage,
-        and any size). Both formats are included on free and paid plans.
+        and any size). Both formats are included 100% free forever.
       </p>
       <p style={{ marginBottom: 16 }}>
         Clicks that arrive via QR scan are tracked separately from direct link clicks in the Meshalive analytics dashboard.
@@ -217,7 +243,7 @@ export default function HowToShortenUrlPage() {
         many typed the link from your ad.
       </p>
       <p style={{ marginBottom: 16 }}>
-        On paid plans, if you update the destination URL of a short link, the QR code updates automatically
+        If you update the destination URL of a dynamic short link, the QR code updates automatically
         because the QR points to the short link, not the final destination. This is called a "dynamic QR code"
         and is a major advantage over static QRs generated by other tools — you can reprint a QR campaign
         that now points to a new page without reprinting the physical material.
@@ -230,7 +256,7 @@ export default function HowToShortenUrlPage() {
         {[
           {
             q: 'How long does a shortened URL last?',
-            a: 'Links created by signed-in users (free and paid) are permanent and never expire. Anonymous links (no account) also remain active indefinitely. Meshalive does not delete links unless you explicitly delete them or your paid account lapses and the link was using a feature exclusive to that paid tier.',
+            a: 'Links created by signed-in users on Meshalive are permanent and never expire. Anonymous links (no account) also remain active indefinitely. Meshalive does not delete links unless you explicitly delete them or your paid account lapses and the link was using a feature exclusive to that paid tier.',
           },
           {
             q: 'Can I change where a short link points after I create it?',
@@ -246,7 +272,7 @@ export default function HowToShortenUrlPage() {
           },
           {
             q: 'Can I bulk-shorten many URLs at once?',
-            a: 'Bulk shortening via CSV upload is a planned V2 feature (expected Q3 2026). In the meantime, the API (available on Starter and above) can be used to programmatically shorten large batches via a script or Zapier automation.',
+            a: 'Bulk shortening via CSV upload is a planned V2 feature (expected Q3 2026). In the meantime, the API (included 100% free) can be used to programmatically shorten large batches via a script or Zapier automation.',
           },
           {
             q: 'What happens if I paste a URL that\'s already been shortened?',
@@ -304,7 +330,7 @@ export default function HowToShortenUrlPage() {
           </a>
         </div>
         <p style={{ color: '#6b7280', marginTop: 16, fontSize: 13 }}>
-          Paid plans from ₹249/mo (India) or $4/mo (global) · Cancel anytime
+          100% Free Forever · No credit card required · Unlimited links & analytics
         </p>
       </div>
     </div>

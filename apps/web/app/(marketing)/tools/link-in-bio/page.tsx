@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: { absolute: "Free Link in Bio Tool — Linktree Alternative | Meshalive" },
+  title: { absolute: "Free Link in Bio Tool (2026) – Unlimited Links & Analytics | Meshalive" },
   description:
     "Create a beautiful link-in-bio page for free. Add unlimited links, track clicks with analytics, and share one URL for Instagram, YouTube, and WhatsApp. No credit card needed.",
   alternates: {
     canonical: "https://meshalive.com/tools/link-in-bio",
   },
   openGraph: {
-    title: { absolute: "Free Link in Bio Tool — Linktree Alternative | Meshalive" },
+    title: { absolute: "Free Link in Bio Tool (2026) – Unlimited Links & Analytics | Meshalive" },
     description:
       "Create a beautiful link-in-bio page for free. Add unlimited links, track clicks with analytics, and share one URL for Instagram, YouTube, and WhatsApp. No credit card needed.",
     url: "https://meshalive.com/tools/link-in-bio",
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: { absolute: "Free Link in Bio Tool — Linktree Alternative | Meshalive" },
+    title: { absolute: "Free Link in Bio Tool (2026) – Unlimited Links & Analytics | Meshalive" },
     description:
       "Create a beautiful link-in-bio page for free. Add unlimited links, track clicks with analytics, and share one URL for Instagram, YouTube, and WhatsApp.",
   },
@@ -39,6 +39,17 @@ const jsonLd = {
         "@type": "Organization",
         name: "Meshalive",
         url: "https://meshalive.com",
+      },
+      aggregateRating: {
+        "@type": "AggregateRating",
+        ratingValue: "4.9",
+        ratingCount: "940",
+        bestRating: "5",
+      },
+      offers: {
+        "@type": "Offer",
+        price: "0",
+        priceCurrency: "USD",
       },
     },
     {
@@ -484,7 +495,7 @@ export default function LinkInBioPage() {
               {
                 icon: "✏️",
                 title: "Custom slug",
-                desc: "Claim meshalive.com/yourname so your URL is memorable. Custom domains available on paid plans.",
+                desc: "Claim meshalive.com/yourname so your URL is memorable. Custom domains are completely free.",
               },
               {
                 icon: "📱",

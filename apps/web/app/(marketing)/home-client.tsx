@@ -58,7 +58,7 @@ export default function HomePage() {
         .shorten-btn:active { transform: scale(0.98); }
         .feature-card:hover { border-color: #d1d5db !important; box-shadow: 0 4px 16px rgba(0,0,0,0.06) !important; }
         .url-input:focus { outline: none; }
-        .url-box:focus-within { border-color: #0057ff !important; box-shadow: 0 0 0 3px rgba(0,87,255,0.12) !important; }
+        .url-box:focus-within { border-color: #0057ff !important; outline: 3px solid rgba(0,87,255,0.22); outline-offset: -1px; }
       `}</style>
 
       {/* ── Hero ── */}
@@ -102,7 +102,7 @@ export default function HomePage() {
                 alt="Meshalive - URL Shortener with Analytics - Shorten links, track clicks &amp; make QR codes — 100% free | Product Hunt"
                 width={250}
                 height={54}
-                src="https://api.producthunt.com/widgets/embed-image/v1/product_review.svg?product_id=1233567&theme=dark"
+                src="/product-hunt-badge.svg"
                 style={{ display: 'inline-block' }}
               />
             </a>
@@ -240,7 +240,7 @@ export default function HomePage() {
               { icon: 'chart', title: 'Click analytics', desc: 'See total clicks, countries, devices, and referrers in real time.' },
               { icon: 'qr', title: 'QR code generator', desc: 'Every short link comes with a downloadable QR code. Dynamic — update the URL after printing.' },
               { icon: 'tag', title: 'Custom slugs', desc: 'Choose your own link ending: msha.live/your-brand instead of random characters.' },
-              { icon: 'globe', title: 'Custom domains', desc: 'Use your own domain for fully branded short links on paid plans.' },
+              { icon: 'globe', title: 'Custom domains', desc: 'Use your own domain for fully branded short links — free.' },
             ].map(f => (
               <div key={f.title} className="feature-card" style={{
                 background: '#ffffff', border: `1px solid ${HAIR}`,
@@ -269,7 +269,7 @@ export default function HomePage() {
           <h2 style={{ fontSize: 28, fontWeight: 800, letterSpacing: '-0.03em', color: '#ffffff', margin: '0 0 12px' }}>
             Start for free. No credit card.
           </h2>
-          <p style={{ fontSize: 16, color: '#777777', margin: '0 0 28px', lineHeight: 1.6 }}>
+          <p style={{ fontSize: 16, color: '#cbd5e1', margin: '0 0 28px', lineHeight: 1.6 }}>
             Unlimited links, full analytics dashboard, custom domains — free forever.
           </p>
           <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
@@ -283,10 +283,10 @@ export default function HomePage() {
             </Link>
             <Link href="/pricing" style={{
               display: 'inline-flex', alignItems: 'center', gap: 8,
-              background: 'transparent', color: '#4b5563',
+              background: 'rgba(255,255,255,0.06)', color: '#f1f5f9',
               padding: '13px 26px', borderRadius: 999,
-              fontSize: 15, fontWeight: 500, textDecoration: 'none',
-              border: '1px solid rgba(255,255,255,0.2)',
+              fontSize: 15, fontWeight: 600, textDecoration: 'none',
+              border: '1px solid rgba(255,255,255,0.3)',
             }}>
               See pricing
             </Link>

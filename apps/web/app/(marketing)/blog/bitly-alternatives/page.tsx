@@ -1,3 +1,4 @@
+import UrlShortenerTool from '../../tools/url-shortener/UrlShortenerTool';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -33,10 +34,10 @@ const TOOLS = [
     free: 'Unlimited',
     analytics: 'Real-time (country, device, referrer)',
     customSlug: '✓ Paid',
-    customDomain: '✓ from $4/mo',
+    customDomain: '✓ 100% Free',
     qr: '✓ Free',
-    api: '✓ from $4/mo',
-    price: 'Free / $4/mo',
+    api: '✓ 100% Free',
+    price: 'Free ($0)',
     highlight: true,
   },
   {
@@ -146,9 +147,35 @@ export default function BitlyAlternativesPage() {
               <li><strong>Best free overall:</strong> Meshalive — unlimited links, real analytics, QR codes, no card</li>
               <li><strong>Best for branded domains:</strong> Rebrandly (budget) or Short.io (developer)</li>
               <li><strong>Simplest no-frills option:</strong> TinyURL</li>
-              <li><strong>Best API access on a budget:</strong> Meshalive Starter at $4/mo</li>
+              <li><strong>Best free API access:</strong> Meshalive (100% Free Forever)</li>
             </ul>
           </div>
+
+      {/* ── Interactive In-Blog Tool ── */}
+      <div style={{
+        background: '#ffffff',
+        border: '1.5px solid #e2e8f0',
+        borderRadius: 16,
+        padding: '24px 20px',
+        margin: '36px 0 44px',
+        boxShadow: '0 8px 30px -6px rgba(0, 87, 255, 0.08), 0 0 0 1px rgba(0, 87, 255, 0.04)',
+      }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16, flexWrap: 'wrap', gap: 10 }}>
+          <div>
+            <span style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: '#0057ff' }}>
+              ⚡ Instant Free Tool
+            </span>
+            <h3 style={{ fontSize: 18, fontWeight: 800, margin: '2px 0 0', color: '#0f172a' }}>
+              Try the Free Bitly Alternative Instantly
+            </h3>
+          </div>
+          <span style={{ fontSize: 12, background: '#eff6ff', color: '#0057ff', fontWeight: 600, padding: '4px 12px', borderRadius: 999 }}>
+            Unlimited Links · No $35/mo Fee
+          </span>
+        </div>
+        <UrlShortenerTool />
+      </div>
+
 
           {/* Why switch */}
           <h2 style={{ fontSize: 26, fontWeight: 700, color: INK, letterSpacing: '-0.02em', margin: '0 0 16px' }}>Why people are leaving Bitly</h2>
@@ -163,7 +190,7 @@ export default function BitlyAlternativesPage() {
 
           {/* Full comparison table */}
           <h2 style={{ fontSize: 26, fontWeight: 700, color: INK, letterSpacing: '-0.02em', margin: '48px 0 16px' }}>Full comparison: 6 Bitly alternatives</h2>
-          <p style={{ marginBottom: 20, color: MUTED, fontSize: 14 }}>Prices as of June 2026. Free tier features only — paid tiers vary significantly.</p>
+          <p style={{ marginBottom: 20, color: MUTED, fontSize: 14 }}>Features as of July 2026. Meshalive is 100% free — no paid tiers.</p>
           <div style={{ overflowX: 'auto', marginBottom: 8 }}>
             <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 13 }}>
               <thead>
@@ -204,15 +231,15 @@ export default function BitlyAlternativesPage() {
               <span style={{ background: ACCENT, color: '#fff', fontSize: 11, fontWeight: 700, padding: '3px 10px', borderRadius: 4 }}>Best Bitly alternative</span>
             </div>
             <p style={{ margin: '0 0 14px', color: '#374151' }}>Meshalive gives you everything Bitly charges $35/month for — on the free plan. Unlimited short links, real-time click analytics broken down by country, device, browser, and referrer, plus a downloadable QR code for every link. No credit card required to start.</p>
-            <p style={{ margin: '0 0 14px', color: '#374151' }}>The Starter plan ($4/month or $40/year) adds custom slugs, one custom domain, and full API access. That is one-ninth the price of Bitly for equivalent functionality. There is no upsell wall — every paid tier includes the API, unlike Bitly which requires $199/month for API access.</p>
+            <p style={{ margin: '0 0 14px', color: '#374151' }}>Meshalive is completely free — custom slugs, custom domains, full API access, and unlimited links are all included at no cost. There is no upsell wall — everything is free, unlike Bitly which requires $199/month for API access.</p>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8, fontSize: 14 }}>
               {[
                 ['Free links', 'Unlimited'],
                 ['Click analytics', 'Real-time, free'],
                 ['QR codes', 'Free on all plans'],
-                ['API', 'From $4/mo'],
-                ['Custom domain', 'From $4/mo'],
-                ['Paid from', '$4/mo · $40/yr'],
+                ['API', '100% Free'],
+                ['Custom domain', '100% Free'],
+                ['Pricing', '100% Free Forever ($0)'],
               ].map(([k, v]) => (
                 <div key={k} style={{ display: 'flex', gap: 8 }}>
                   <span style={{ color: MUTED }}>{k}:</span>
@@ -235,7 +262,7 @@ export default function BitlyAlternativesPage() {
           <div style={{ border: `1px solid ${HAIR}`, borderRadius: 12, padding: '24px', marginBottom: 32 }}>
             <h3 style={{ fontSize: 20, fontWeight: 800, color: INK, margin: '0 0 12px' }}>3. Rebrandly</h3>
             <p style={{ margin: '0 0 14px', color: '#374151' }}>Rebrandly is purpose-built for branded short links — links that use your own domain rather than a shared short domain. The free plan gives you 5 branded links and basic analytics. The $13/month Starter plan unlocks more links and click data.</p>
-            <p style={{ margin: '0 0 14px', color: '#374151' }}>The downside: Rebrandly is expensive relative to what you get. The $29/month Professional plan is required for anything serious, and the API is not included until higher tiers. If you specifically need a branded domain and have the budget, Rebrandly is polished. If budget matters, Meshalive gives you custom domains from $4/month with more features included.</p>
+            <p style={{ margin: '0 0 14px', color: '#374151' }}>The downside: Rebrandly is expensive relative to what you get. The $29/month Professional plan is required for anything serious, and the API is not included until higher tiers. If you specifically need a branded domain and have the budget, Rebrandly is polished. If budget matters, Meshalive gives you custom domains completely free.</p>
             <p style={{ margin: 0, color: MUTED, fontSize: 14 }}><strong>Best for:</strong> Brand-first marketing teams where the visible domain in the short link matters more than price. Not the right call for budget-conscious users.</p>
           </div>
 
@@ -243,7 +270,7 @@ export default function BitlyAlternativesPage() {
           <div style={{ border: `1px solid ${HAIR}`, borderRadius: 12, padding: '24px', marginBottom: 32 }}>
             <h3 style={{ fontSize: 20, fontWeight: 800, color: INK, margin: '0 0 12px' }}>4. Short.io</h3>
             <p style={{ margin: '0 0 14px', color: '#374151' }}>Short.io is the most developer-friendly option on this list. The free plan includes custom domains and unlimited link creation — but analytics are capped at 1,000 tracked clicks per month. Once you hit the cap, click counting stops until the next month. The $20/month plan removes the cap.</p>
-            <p style={{ margin: '0 0 14px', color: '#374151' }}>The API is well-documented and available on paid plans. Short.io does not include QR code generation on any plan, which is a gap compared to Meshalive and Rebrandly.</p>
+            <p style={{ margin: '0 0 14px', color: '#374151' }}>The API is well-documented but requires a paid plan. Short.io does not include QR code generation on any plan, which is a gap compared to Meshalive and Rebrandly.</p>
             <p style={{ margin: 0, color: MUTED, fontSize: 14 }}><strong>Best for:</strong> Developers who need custom domains on the free plan and can live with capped analytics until they hit volume that justifies the paid plan.</p>
           </div>
 
@@ -290,7 +317,7 @@ export default function BitlyAlternativesPage() {
               </tbody>
             </table>
           </div>
-          <p>API access — something every developer tool competitor gives for $4–$20/month — costs $199/month on Bitly. That is not a typo.</p>
+          <p>API access — which Meshalive includes completely free — costs an unbelievable $199/month on Bitly. That is not a typo.</p>
 
           {/* Switching guide */}
           <h2 style={{ fontSize: 26, fontWeight: 700, color: INK, letterSpacing: '-0.02em', margin: '48px 0 16px' }}>How to switch from Bitly to Meshalive</h2>
@@ -298,7 +325,7 @@ export default function BitlyAlternativesPage() {
           <ol style={{ paddingLeft: 24, marginTop: 16, display: 'flex', flexDirection: 'column', gap: 12 }}>
             <li>Create a free account at <a href="/register" style={{ color: ACCENT }}>meshalive.com/register</a> — no credit card required.</li>
             <li>Use the shortener at <a href="/tools/url-shortener" style={{ color: ACCENT }}>meshalive.com/tools/url-shortener</a> for anonymous links, or log in to create tracked links.</li>
-            <li>If you had a custom domain on Bitly, add it to Meshalive via Settings → Custom Domains (available on the $4/mo Starter plan).</li>
+            <li>If you had a custom domain on Bitly, add it to Meshalive via Settings → Custom Domains — it is completely free.</li>
             <li>Export your Bitly link history from Bitly dashboard → Export. Keep it as a record; you do not need to import it anywhere.</li>
           </ol>
 
@@ -308,7 +335,7 @@ export default function BitlyAlternativesPage() {
             {[
               {
                 q: 'Is Meshalive really free?',
-                a: 'Yes. The free plan has no link cap, no click cap on analytics, and no time limit. You get unlimited short links with real-time click analytics (country, device, referrer breakdown) and QR code downloads. No credit card is required. The paid Starter plan ($4/month) adds custom slugs, one custom domain, and API access.',
+                a: 'Yes. Meshalive is completely free — unlimited links, unlimited click analytics, custom domains, QR codes, and full API access. No credit card required. No paid plans.',
               },
               {
                 q: 'Will my existing Bitly links break if I stop paying?',
@@ -316,11 +343,11 @@ export default function BitlyAlternativesPage() {
               },
               {
                 q: 'Can I use a custom domain instead of msha.live?',
-                a: 'Yes. The Meshalive Starter plan ($4/month) lets you connect one custom domain. Links you create will use that domain instead of msha.live. Setup takes about 5 minutes via a CNAME DNS record.',
+                a: 'Yes. Meshalive lets you connect your own custom domain completely free. Links you create will use that domain instead of msha.live. Setup takes about 5 minutes via a CNAME DNS record.',
               },
               {
                 q: 'Which Bitly alternative has the best API?',
-                a: 'Meshalive gives you full REST API access on the Starter plan ($4/month). Short.io also has a well-documented API from its paid tier. Bitly only offers API access at $199/month. For any developer automating link creation from a CRM, e-commerce system, or script, Meshalive or Short.io are the practical choices.',
+                a: 'Meshalive gives you full REST API access completely free. Short.io also has a well-documented API from its paid tier. Bitly only offers API access at $199/month. For any developer automating link creation from a CRM, e-commerce system, or script, Meshalive is the clear choice.',
               },
               {
                 q: 'What happened to Bitly free plan?',
@@ -328,7 +355,7 @@ export default function BitlyAlternativesPage() {
               },
               {
                 q: 'Does Meshalive work for teams?',
-                a: 'Yes. Team workspaces are available on the Growth plan ($14/month, 5 seats) and Business plan ($49/month, 15 seats). Shared link libraries, role-based access, and multi-workspace support are included. The free and Starter plans are single-user.',
+                a: 'Yes. Team workspaces with shared link libraries and role-based access are completely free. Invite your team and assign roles without any paid plan.',
               },
             ].map(({ q, a }) => (
               <div key={q} style={{ borderBottom: `1px solid ${HAIR}`, padding: '20px 0' }}>

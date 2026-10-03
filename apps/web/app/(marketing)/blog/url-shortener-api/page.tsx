@@ -1,3 +1,4 @@
+import UrlShortenerTool from '../../tools/url-shortener/UrlShortenerTool';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -47,6 +48,32 @@ export default function URLShortenerAPIPage() {
           </div>
         </div>
 
+      {/* ── Interactive In-Blog Tool ── */}
+      <div style={{
+        background: '#ffffff',
+        border: '1.5px solid #e2e8f0',
+        borderRadius: 16,
+        padding: '24px 20px',
+        margin: '36px 0 44px',
+        boxShadow: '0 8px 30px -6px rgba(0, 87, 255, 0.08), 0 0 0 1px rgba(0, 87, 255, 0.04)',
+      }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16, flexWrap: 'wrap', gap: 10 }}>
+          <div>
+            <span style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: '#0057ff' }}>
+              ⚡ Instant Free Tool
+            </span>
+            <h3 style={{ fontSize: 18, fontWeight: 800, margin: '2px 0 0', color: '#0f172a' }}>
+              Test the URL Shortener Engine Live
+            </h3>
+          </div>
+          <span style={{ fontSize: 12, background: '#eff6ff', color: '#0057ff', fontWeight: 600, padding: '4px 12px', borderRadius: 999 }}>
+            Powered by Meshalive v1 API
+          </span>
+        </div>
+        <UrlShortenerTool />
+      </div>
+
+
         <div style={{ fontSize: 16, lineHeight: 1.8, color: '#374151' }}>
 
           {/* Quick overview */}
@@ -61,7 +88,7 @@ export default function URLShortenerAPIPage() {
                 ['Public endpoint click limit', '20 clicks per link'],
                 ['Authenticated click limit', 'Unlimited'],
                 ['Response format', 'JSON'],
-                ['API access', 'Starter plan ($4/mo) and above'],
+                ['API access', '100% Free Forever'],
               ].map(([k, v]) => (
                 <div key={k} style={{ display: 'flex', gap: 8, alignItems: 'baseline' }}>
                   <span style={{ color: MUTED, minWidth: 160, fontSize: 13 }}>{k}:</span>
@@ -287,7 +314,7 @@ func main() {
 
           <div style={{ background: '#111111', borderRadius: 16, padding: '40px', textAlign: 'center' }}>
             <div style={{ fontSize: 22, fontWeight: 800, color: '#ffffff', letterSpacing: '-0.03em', marginBottom: 12 }}>Get your free API token</div>
-            <p style={{ color: '#6b7280', fontSize: 15, margin: '0 0 24px' }}>Free tier available · No credit card · Full REST API from $4/mo</p>
+            <p style={{ color: '#6b7280', fontSize: 15, margin: '0 0 24px' }}>100% Free Forever · No credit card · Full REST API included</p>
             <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
               <a href="/register" style={{ display: 'inline-block', background: ACCENT, color: '#fff', padding: '12px 28px', borderRadius: 8, fontWeight: 700, fontSize: 15, textDecoration: 'none' }}>
                 Create free account →

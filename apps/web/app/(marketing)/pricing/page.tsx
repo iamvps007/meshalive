@@ -3,11 +3,11 @@ import PricingCards from './pricing-cards';
 
 export const metadata: Metadata = {
   title: { absolute: 'URL Shortener Pricing, Plans & Feature Comparison | Meshalive' },
-  description: 'Compare Meshalive pricing plans for short links, analytics, QR codes, branded domains, and API access. Start free and upgrade when you need more.',
+  description: 'Meshalive is 100% free forever with unlimited links, analytics, dynamic QR codes, and API access. No credit card required.',
   alternates: { canonical: 'https://meshalive.com/pricing' },
   openGraph: {
     title: 'URL Shortener Pricing, Plans & Feature Comparison | Meshalive',
-    description: 'Meshalive pricing for branded short links, click analytics, QR codes, and API access.',
+    description: 'Meshalive is 100% free forever for branded short links, click analytics, QR codes, and API access.',
     url: 'https://meshalive.com/pricing',
   },
 };
@@ -17,8 +17,8 @@ const faqJsonLd = {
   '@type': 'FAQPage',
   mainEntity: [
     { '@type': 'Question', name: 'Can I start for free?', acceptedAnswer: { '@type': 'Answer', text: 'Yes — Meshalive is completely free — unlimited links, unlimited clicks with no credit card required.' } },
-    { '@type': 'Question', name: 'Is the REST API on all paid plans?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. The API is included from Free (unlimited links, full analytics) — not locked behind enterprise tiers like Bitly or Rebrandly.' } },
-    { '@type': 'Question', name: 'Can I cancel anytime?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. No lock-in. Cancel from your billing dashboard and your plan ends at the close of the billing period.' } },
+    { '@type': 'Question', name: 'Is the REST API included free?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. Full API access is included free — no paid plan required, unlike Bitly or Rebrandly which charge $35+/month.' } },
+    { '@type': 'Question', name: 'Can I cancel anytime?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. No lock-in. Meshalive is 100% free forever with no credit card, no subscription, and no cancellation needed.' } },
   ],
 };
 

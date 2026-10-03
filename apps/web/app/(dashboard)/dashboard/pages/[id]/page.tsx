@@ -3,6 +3,8 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
 import { useRouter } from 'next/navigation';
+import { getAccessToken, getWorkspaceId } from '@/lib/auth';
+import { api } from '@/lib/api';
 import BioBuilder from './BioBuilder';
 
 // ---------------------------------------------------------------------------
@@ -31,10 +33,10 @@ export default function BioBuilderPage() {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    const tk = localStorage.getItem('meshalive_token') ?? '';
-    const ws = localStorage.getItem('meshalive_workspace') ?? '';
+    const tk = getAccessToken() || (typeof window !== 'undefined' ? (localStorage.getItem('mshl_access_token') || localStorage.getItem('meshalive_token') || '') : '');
+    const ws = getWorkspaceId() || (typeof window !== 'undefined' ? (localStorage.getItem('mshl_workspace_id') || localStorage.getItem('meshalive_workspace') || '') : '');
 
-    if (!tk || !ws) {
+    if (!tk) {
       router.replace('/login');
       return;
     }
@@ -42,23 +44,21 @@ export default function BioBuilderPage() {
     setToken(tk);
     setWorkspaceId(ws);
 
-    fetch(`https://api.meshalive.com/v1/bio-pages/${params.id}`, {
-      headers: {
-        Authorization: `Bearer ${tk}`,
-        'X-Workspace-ID': ws,
-      },
-    })
-      .then(async (res) => {
-        if (!res.ok) {
-          const body = await res.json().catch(() => ({}));
-          throw new Error(body?.message ?? `Error ${res.status}`);
-        }
-        return res.json() as Promise<BioPage>;
+    api.get<any>(`/v1/bio-pages/${params.id}`)
+      .then((p: any) => {
+        return {
+          id: p.id || p.ID,
+          slug: p.slug || p.Slug,
+          title: p.title || p.Title,
+          published: p.published !== undefined ? p.published : p.Published,
+          config: p.config || p.Config,
+        } as BioPage;
       })
       .then(setPage)
-      .catch((err: unknown) =>
-        setError(err instanceof Error ? err.message : 'Failed to load page')
-      );
+      .catch((err: unknown) => {
+        const msg = err instanceof Error ? err.message : 'Failed to load page';
+        setError(typeof msg === 'string' && msg !== '[object Object]' ? msg : 'Failed to load page');
+      });
   }, [params.id, router]);
 
   // Loading state

@@ -1,3 +1,4 @@
+import UrlShortenerTool from '../../tools/url-shortener/UrlShortenerTool';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -43,6 +44,32 @@ export default function CustomShortURLPage() {
           </div>
         </div>
 
+      {/* ── Interactive In-Blog Tool ── */}
+      <div style={{
+        background: '#ffffff',
+        border: '1.5px solid #e2e8f0',
+        borderRadius: 16,
+        padding: '24px 20px',
+        margin: '36px 0 44px',
+        boxShadow: '0 8px 30px -6px rgba(0, 87, 255, 0.08), 0 0 0 1px rgba(0, 87, 255, 0.04)',
+      }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16, flexWrap: 'wrap', gap: 10 }}>
+          <div>
+            <span style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: '#0057ff' }}>
+              ⚡ Instant Free Tool
+            </span>
+            <h3 style={{ fontSize: 18, fontWeight: 800, margin: '2px 0 0', color: '#0f172a' }}>
+              Create Your Custom Short URL Right Now
+            </h3>
+          </div>
+          <span style={{ fontSize: 12, background: '#eff6ff', color: '#0057ff', fontWeight: 600, padding: '4px 12px', borderRadius: 999 }}>
+            Custom Slugs Included Free
+          </span>
+        </div>
+        <UrlShortenerTool />
+      </div>
+
+
         <div style={{ fontSize: 16, lineHeight: 1.8, color: '#374151' }}>
 
           <h2 style={{ fontSize: 26, fontWeight: 700, color: INK, letterSpacing: '-0.02em', margin: '0 0 16px' }}>What is a custom short URL?</h2>
@@ -71,7 +98,7 @@ export default function CustomShortURLPage() {
               {
                 num: '1',
                 title: 'Create a free Meshalive account',
-                body: 'Custom slugs require a Meshalive account (Starter plan, $4/month). Go to meshalive.com/register — no credit card required to start. The free plan creates links with random slugs; the Starter plan unlocks custom slugs.',
+                body: 'Custom slugs are 100% free with a Meshalive account. Go to meshalive.com/register — no credit card required. Create custom branded short links with zero fees.',
               },
               {
                 num: '2',
@@ -128,13 +155,13 @@ export default function CustomShortURLPage() {
 
           {/* Custom domain section */}
           <h2 style={{ fontSize: 26, fontWeight: 700, color: INK, letterSpacing: '-0.02em', margin: '48px 0 16px' }}>Custom slug vs custom domain</h2>
-          <p>A custom slug changes the path: <code style={{ background: '#f3f4f6', padding: '2px 5px', borderRadius: 4, fontSize: 14 }}>msha.live/your-slug</code>. A custom domain changes the entire domain: <code style={{ background: '#f3f4f6', padding: '2px 5px', borderRadius: 4, fontSize: 14 }}>links.yourbrand.com/slug</code>. Both are available on the Meshalive Starter plan ($4/month).</p>
+          <p>A custom slug changes the path: <code style={{ background: '#f3f4f6', padding: '2px 5px', borderRadius: 4, fontSize: 14 }}>msha.live/your-slug</code>. A custom domain changes the entire domain: <code style={{ background: '#f3f4f6', padding: '2px 5px', borderRadius: 4, fontSize: 14 }}>links.yourbrand.com/slug</code>. Both are available on Meshalive completely free.</p>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, margin: '20px 0 32px' }}>
             <div style={{ border: `1px solid ${HAIR}`, borderRadius: 10, padding: '20px' }}>
               <div style={{ fontWeight: 700, fontSize: 15, color: INK, marginBottom: 8 }}>Custom slug</div>
               <code style={{ display: 'block', fontSize: 13, color: ACCENT, marginBottom: 12, background: '#eff6ff', padding: '4px 8px', borderRadius: 4 }}>msha.live/your-brand</code>
               <ul style={{ paddingLeft: 16, margin: 0, display: 'flex', flexDirection: 'column', gap: 4, fontSize: 13, color: MUTED }}>
-                <li>Free with Starter plan</li>
+                <li>100% Free Forever</li>
                 <li>Instant setup</li>
                 <li>Shared msha.live domain</li>
                 <li>Good for personal and small business use</li>
@@ -144,7 +171,7 @@ export default function CustomShortURLPage() {
               <div style={{ fontWeight: 700, fontSize: 15, color: INK, marginBottom: 8 }}>Custom domain</div>
               <code style={{ display: 'block', fontSize: 13, color: ACCENT, marginBottom: 12, background: '#dbeafe', padding: '4px 8px', borderRadius: 4 }}>links.yourbrand.com/slug</code>
               <ul style={{ paddingLeft: 16, margin: 0, display: 'flex', flexDirection: 'column', gap: 4, fontSize: 13, color: MUTED }}>
-                <li>Included in Starter plan ($4/mo)</li>
+                <li>Included 100% Free</li>
                 <li>5-minute setup via DNS CNAME</li>
                 <li>Your brand in every link</li>
                 <li>Higher trust and click-through rates</li>
@@ -169,7 +196,7 @@ export default function CustomShortURLPage() {
             {[
               {
                 q: 'Can I create a custom short URL for free?',
-                a: 'Custom slugs on Meshalive require the Starter plan at $4/month. The free plan creates links with random 8-character slugs. If you need just one custom link (e.g. for a bio), the Starter plan at $4/month is the most affordable option available — comparable tools charge $10–$35/month for the same feature.',
+                a: 'Custom slugs on Meshalive are 100% free forever. Unlike other tools that charge $10–$35/month, Meshalive lets you choose your own custom slug at zero cost.',
               },
               {
                 q: 'What if the slug I want is already taken?',
@@ -185,11 +212,11 @@ export default function CustomShortURLPage() {
               },
               {
                 q: 'Can I use a custom domain instead of msha.live?',
-                a: 'Yes. The Starter plan ($4/month) includes one custom domain. Go to Dashboard → Settings → Custom Domains → Add domain. Add a CNAME DNS record pointing to msha.live, and all your links will use your domain. Setup takes about 5 minutes. DNS propagation is usually instant with Cloudflare.',
+                a: 'Yes. Meshalive includes custom branded domain support completely free. Go to Dashboard → Settings → Custom Domains → Add domain. Add a CNAME DNS record pointing to msha.live, and all your links will use your domain. Setup takes about 5 minutes. DNS propagation is usually instant with Cloudflare.',
               },
               {
                 q: 'Is there a limit on how many custom slugs I can create?',
-                a: 'No. The Starter plan allows unlimited links with custom slugs. The only constraint is slug uniqueness — each slug within a domain namespace must be unique. There is no cap on the total number of custom links.',
+                a: 'No. Meshalive allows unlimited links with custom slugs for free. The only constraint is slug uniqueness — each slug within a domain namespace must be unique. There is no cap on the total number of custom links.',
               },
             ].map(({ q, a }) => (
               <div key={q} style={{ borderBottom: `1px solid ${HAIR}`, padding: '20px 0' }}>
@@ -210,7 +237,7 @@ export default function CustomShortURLPage() {
 
           <div style={{ background: '#111111', borderRadius: 16, padding: '40px', textAlign: 'center' }}>
             <div style={{ fontSize: 22, fontWeight: 800, color: '#ffffff', letterSpacing: '-0.03em', marginBottom: 12 }}>Create your custom short URL</div>
-            <p style={{ color: '#6b7280', fontSize: 15, margin: '0 0 24px' }}>Custom slugs · Custom domains · Click analytics · From $4/mo</p>
+            <p style={{ color: '#6b7280', fontSize: 15, margin: '0 0 24px' }}>Custom slugs · Custom domains · Click analytics · 100% Free Forever</p>
             <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
               <a href="/register" style={{ display: 'inline-block', background: ACCENT, color: '#fff', padding: '12px 28px', borderRadius: 8, fontWeight: 700, fontSize: 15, textDecoration: 'none' }}>
                 Get started free →

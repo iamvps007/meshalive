@@ -171,7 +171,7 @@ const SOLUTIONS: Record<string, Solution> = {
       { icon: 'link', title: 'Trial + activation links', desc: 'Create named links for each activation flow — /trial-team, /trial-solo. Track which converts better without changing your app code.' },
       { icon: 'globe', title: 'Deep link routing', desc: 'Route mobile users to your app and desktop users to your web app — one link, automatic detection, zero redirects wasted.' },
       { icon: 'calendar', title: 'Time-boxed feature links', desc: 'Link to a beta feature with an expiry date. After launch, it auto-redirects to the GA docs. Clean deprecation.' },
-      { icon: 'key', title: 'Full REST API', desc: 'Create and manage links from your CI/CD pipeline. Auto-generate docs links for every release. Available from Starter plan.' },
+      { icon: 'key', title: 'Full REST API', desc: 'Create and manage links from your CI/CD pipeline. Auto-generate docs links for every release. Included 100% free with unlimited API requests.' },
       { icon: 'webhook', title: 'Webhooks on click events', desc: 'Fire a webhook when a user clicks an onboarding link. Update your CRM, trigger a Slack message, start a Zapier flow.' },
       { icon: 'chart', title: 'Funnel analytics', desc: 'Compare click-through rates across activation emails, in-app tooltips, and docs links. Find the drop-off points.' },
     ],
@@ -197,7 +197,7 @@ const SOLUTIONS: Record<string, Solution> = {
     stats: [
       { v: '3.1×', l: 'More clicks on a branded /yourname link vs a raw URL' },
       { v: '∞', l: 'Links on your bio page — no tier restrictions' },
-      { v: '$4/mo', l: 'Starter plan — cheaper than one sponsored post boost' },
+      { v: '100% Free', l: 'Free forever — zero monthly fees or hidden costs' },
     ],
     features: [
       { icon: 'mobile', title: 'Link-in-bio page', desc: 'A full landing page behind one URL — profile photo, social links, CTAs, affiliate links. Customise the design to match your brand.' },
@@ -254,11 +254,11 @@ const SOLUTIONS: Record<string, Solution> = {
     slug: 'developers',
     title: 'meshalive for Developers',
     headline: 'The link API that doesn\'t gate you.',
-    sub: 'Full REST API from $4/mo. JWT and token auth, OpenAPI 3.0 spec, webhooks, TypeScript SDK. No enterprise negotiation.',
-    body: 'Bitly charges $300+/mo to get API access. Rebrandly gates webhooks behind enterprise. meshalive includes the full API from the first paid tier — $4/mo — and publishes the OpenAPI spec so your types are always in sync.',
+    sub: 'Full REST API included 100% free. JWT and token auth, OpenAPI 3.0 spec, webhooks, TypeScript SDK. No enterprise negotiation.',
+    body: 'Bitly charges $300+/mo to get API access. Rebrandly gates webhooks behind enterprise. Meshalive includes the full API completely free forever — $0/mo — and publishes the OpenAPI spec so your types are always in sync.',
     heroIcon: 'key',
     stats: [
-      { v: '$4/mo', l: 'Full API access starts at Starter — not $300 enterprise' },
+      { v: '$0 / mo', l: 'Full API access 100% free — not $300 enterprise' },
       { v: '< 2 ms', l: 'P99 redirect latency on all plans' },
       { v: '100%', l: 'REST coverage — create, read, update, delete, analytics, workspaces' },
     ],

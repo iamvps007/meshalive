@@ -34,13 +34,30 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" data-theme="dark">
       <head>
         <meta name="google-adsense-account" content="ca-pub-3670526912258735" />
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3670526912258735" crossOrigin="anonymous"></script>
+        <Script
+          id="adsense-deferred"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              function loadAds() {
+                if (window.__adsLoaded) return;
+                window.__adsLoaded = true;
+                var s = document.createElement('script');
+                s.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3670526912258735';
+                s.crossOrigin = 'anonymous';
+                s.async = true;
+                document.head.appendChild(s);
+              }
+              ['scroll', 'mousemove', 'touchstart', 'click'].forEach(function(e) {
+                window.addEventListener(e, loadAds, { once: true, passive: true });
+              });
+              setTimeout(loadAds, 5000);
+            `,
+          }}
+        />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
-          rel="stylesheet"
-        />
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
         <link rel="icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
@@ -79,9 +96,32 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             "@context": "https://schema.org",
             "@type": "Organization",
             "name": "Meshalive Labs",
+            "alternateName": "Meshalive",
             "url": "https://meshalive.com",
             "logo": "https://meshalive.com/logo.png",
-            "sameAs": []
+            "founder": {
+              "@type": "Person",
+              "name": "Vaibhav Pratap Singh",
+              "jobTitle": "Founder & Software Architect",
+              "email": "vaibhav@meshalive.com",
+              "url": "https://meshalive.com/about",
+              "sameAs": [
+                "https://www.linkedin.com/in/vaibhavpratapsingh",
+                "https://twitter.com/meshalive",
+                "https://github.com/vaibhav"
+              ]
+            },
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "email": "support@meshalive.com",
+              "contactType": "Customer Support",
+              "availableLanguage": ["English", "Spanish"]
+            },
+            "sameAs": [
+              "https://twitter.com/meshalive",
+              "https://www.linkedin.com/company/meshalive",
+              "https://github.com/meshalive"
+            ]
           }) }}
         />
         <script
@@ -91,7 +131,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             "@type": "WebSite",
             "name": "Meshalive",
             "alternateName": "Meshalive — Free URL Shortener",
-            "url": "https://meshalive.com"
+            "url": "https://meshalive.com",
+            "potentialAction": {
+              "@type": "SearchAction",
+              "target": "https://meshalive.com/tools/url-shortener?q={search_term_string}",
+              "query-input": "required name=search_term_string"
+            }
           }) }}
         />
       </head>

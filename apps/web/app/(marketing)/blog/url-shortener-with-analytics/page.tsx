@@ -1,3 +1,4 @@
+import UrlShortenerTool from '../../tools/url-shortener/UrlShortenerTool';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -43,6 +44,32 @@ export default function URLShortenerAnalyticsPage() {
           </div>
         </div>
 
+      {/* ── Interactive In-Blog Tool ── */}
+      <div style={{
+        background: '#ffffff',
+        border: '1.5px solid #e2e8f0',
+        borderRadius: 16,
+        padding: '24px 20px',
+        margin: '36px 0 44px',
+        boxShadow: '0 8px 30px -6px rgba(0, 87, 255, 0.08), 0 0 0 1px rgba(0, 87, 255, 0.04)',
+      }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16, flexWrap: 'wrap', gap: 10 }}>
+          <div>
+            <span style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: '#0057ff' }}>
+              ⚡ Instant Free Tool
+            </span>
+            <h3 style={{ fontSize: 18, fontWeight: 800, margin: '2px 0 0', color: '#0f172a' }}>
+              Shorten Any URL & Start Tracking Clicks
+            </h3>
+          </div>
+          <span style={{ fontSize: 12, background: '#eff6ff', color: '#0057ff', fontWeight: 600, padding: '4px 12px', borderRadius: 999 }}>
+            Real-Time Geo & Device Telemetry
+          </span>
+        </div>
+        <UrlShortenerTool />
+      </div>
+
+
         <div style={{ fontSize: 16, lineHeight: 1.8, color: '#374151' }}>
 
           <h2 style={{ fontSize: 26, fontWeight: 700, color: INK, letterSpacing: '-0.02em', margin: '0 0 16px' }}>What analytics should a URL shortener include?</h2>
@@ -79,7 +106,7 @@ export default function URLShortenerAnalyticsPage() {
               <li>Browser breakdown: Chrome, Safari, Firefox, etc.</li>
               <li>Referrer sources: which sites sent traffic</li>
             </ul>
-            <p style={{ margin: 0, color: MUTED, fontSize: 14 }}>Analytics are available from the first click with no delay. The free plan retains 90 days of history; paid plans retain data indefinitely.</p>
+            <p style={{ margin: 0, color: MUTED, fontSize: 14 }}>Analytics are available from the first click with no delay. Analytics history is retained indefinitely — no time limits, completely free.</p>
           </div>
 
           {/* 2 */}

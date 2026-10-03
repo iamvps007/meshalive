@@ -35,7 +35,7 @@ const faqSchema = {
     {
       '@type': 'Question',
       name: 'Does Meshalive support custom domains?',
-      acceptedAnswer: { '@type': 'Answer', text: 'Yes. You can use your own branded domain for short links — for example, go.yourcompany.com instead of msha.live. Custom domains are available on paid plans starting at $4 per month.' },
+      acceptedAnswer: { '@type': 'Answer', text: 'Yes. You can use your own branded domain for short links — for example, go.yourcompany.com instead of msha.live. Custom branded domains are available completely free with no subscription required.' },
     },
     {
       '@type': 'Question',
@@ -86,11 +86,11 @@ export default function Page() {
               },
               {
                 title: 'Custom slugs & branded domains',
-                body: 'Choose your own link ending — msha.live/your-brand — instead of a random string. On paid plans, use your own domain like go.yourcompany.com for fully branded short links that build trust with your audience.',
+                body: 'Choose your own link ending — msha.live/your-brand — instead of a random string. Use your own custom domain like go.yourcompany.com for fully branded short links that build trust with your audience — completely free.',
               },
               {
                 title: 'REST API for developers',
-                body: 'Create short links, pull analytics, and manage domains programmatically using the Meshalive REST API. Unlike competitors who lock API access behind $199/month enterprise plans, Meshalive includes full API access on every plan.',
+                body: 'Create short links, pull analytics, and manage domains programmatically using the Meshalive REST API. Unlike competitors who lock API access behind $199/month enterprise plans, Meshalive includes full API access completely free for all users.',
               },
             ].map(item => (
               <div key={item.title} style={{ background: '#ffffff', border: `1px solid ${HAIR}`, borderRadius: 14, padding: '24px 26px' }}>

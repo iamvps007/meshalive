@@ -1,3 +1,4 @@
+import WhatsappLinkTool from '../../tools/whatsapp-link-generator/WhatsappLinkTool';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -52,6 +53,32 @@ export default function WhatsAppUrlShortenerPage() {
         Long product URLs kill WhatsApp messages. A 180-character link shoved into a broadcast looks spammy,
         wraps onto three lines, and almost never gets tapped. Here's how to fix that in under a minute — free, no account required.
       </p>
+
+      {/* ── Interactive In-Blog Tool ── */}
+      <div style={{
+        background: '#ffffff',
+        border: '1.5px solid #e2e8f0',
+        borderRadius: 16,
+        padding: '24px 20px',
+        margin: '36px 0 44px',
+        boxShadow: '0 8px 30px -6px rgba(0, 87, 255, 0.08), 0 0 0 1px rgba(0, 87, 255, 0.04)',
+      }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16, flexWrap: 'wrap', gap: 10 }}>
+          <div>
+            <span style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: '#0057ff' }}>
+              ⚡ Instant Free Tool
+            </span>
+            <h3 style={{ fontSize: 18, fontWeight: 800, margin: '2px 0 0', color: '#0f172a' }}>
+              WhatsApp Link & Chat Generator
+            </h3>
+          </div>
+          <span style={{ fontSize: 12, background: '#eff6ff', color: '#0057ff', fontWeight: 600, padding: '4px 12px', borderRadius: 999 }}>
+            Instant wa.me Link with Pre-filled Text
+          </span>
+        </div>
+        <WhatsappLinkTool />
+      </div>
+
       <p style={{ fontSize: 16, color: MUTED, marginBottom: 40, lineHeight: 1.65 }}>
         Whether you run a kirana store on WhatsApp Business, send campaign links via Interakt or Wati, or share product
         catalog links in groups — this guide covers everything you need to know about shortening URLs for WhatsApp in India.
@@ -183,12 +210,12 @@ export default function WhatsAppUrlShortenerPage() {
             {[
               ['Free tier', '✅ Unlimited links', '✅ 10 links/mo', '✅ Unlimited', '⚠️ Limited'],
               ['India city analytics', '✅ Yes', '✅ Paid only', '❌ No', '❌ No'],
-              ['INR pricing', '✅ ₹249/mo', '❌ USD only', '❌ USD only', '❌ USD only'],
-              ['Custom domain', '✅ ₹249/mo', '✅ $8/mo', '✅ $9/mo', '✅ $29/mo'],
+              ['INR pricing', '✅ Free Forever (₹0)', '❌ USD only', '❌ USD only', '❌ USD only'],
+              ['Custom domain', '✅ Free (₹0)', '✅ $8/mo', '✅ $9/mo', '✅ $29/mo'],
               ['WhatsApp safe domain', '✅ msha.live', '✅ bit.ly', '✅ tinyurl.com', '✅ bit.ly'],
               ['Click-to-chat tool', '✅ Built-in', '❌ No', '❌ No', '❌ No'],
               ['QR code included', '✅ Free', '✅ Paid only', '✅ Paid only', '❌ No'],
-              ['API access', '✅ All paid plans', '⚠️ Paid only', '✅ Paid only', '⚠️ Paid only'],
+              ['API access', '✅ 100% Free', '⚠️ Paid only', '✅ Paid only', '⚠️ Paid only'],
             ].map(([feat, ...vals]) => (
               <tr key={feat as string} style={{ borderBottom: `1px solid ${HAIR}` }}>
                 <td style={{ padding: '11px 14px', fontWeight: 600, whiteSpace: 'nowrap' }}>{feat}</td>
@@ -402,7 +429,7 @@ export default function WhatsAppUrlShortenerPage() {
           },
           {
             q: 'Will WhatsApp block msha.live links?',
-            a: 'No. Meshalive short links point to clean destinations and use standard HTTP redirects. WhatsApp may show a brief "you\'re leaving WhatsApp" prompt for any unfamiliar short domain on first click, but msha.live is not on any block list. If you use your own custom domain on a paid plan (e.g. links.yourbrand.com), there is no prompt at all.',
+            a: 'No. Meshalive short links point to clean destinations and use standard HTTP redirects. WhatsApp may show a brief "you\'re leaving WhatsApp" prompt for any unfamiliar short domain on first click, but msha.live is not on any block list. If you use your own custom branded domain (e.g. links.yourbrand.com), there is no prompt at all.',
           },
           {
             q: 'Can I track how many WhatsApp contacts clicked my link?',
@@ -410,7 +437,7 @@ export default function WhatsAppUrlShortenerPage() {
           },
           {
             q: 'What is the best URL shortener for WhatsApp Business in India?',
-            a: 'Meshalive is built specifically for Indian businesses — INR pricing (₹249/mo for the Starter plan), city-level analytics for Indian metros, and a free WhatsApp link generator tool. Bitly and TinyURL work but charge in USD, have limited free tiers, and don\'t show Indian city breakdowns on analytics.',
+            a: 'Meshalive is 100% free forever — built specifically for Indian businesses with zero monthly fees, city-level analytics for Indian metros, and a free WhatsApp link generator tool. Bitly and TinyURL work but charge in USD, have limited free tiers, and don\'t show Indian city breakdowns on analytics.',
           },
           {
             q: 'How do I create a WhatsApp click-to-chat link with a pre-filled message?',
@@ -418,11 +445,11 @@ export default function WhatsAppUrlShortenerPage() {
           },
           {
             q: 'Is there a limit on how many links I can shorten for free?',
-            a: 'The free plan has unlimited links. You can shorten as many URLs as you need without paying. Paid plans add features like custom domains, team seats, and API access — not more link capacity.',
+            a: 'The free plan has unlimited links. You can shorten as many URLs as you need without paying. Meshalive is 100% free forever with custom domains, team seats, dynamic QR codes, and full API access included at zero cost.',
           },
           {
             q: 'Can I use a custom domain so my links show my brand instead of msha.live?',
-            a: 'Yes. The Starter plan (₹249/mo or $4/mo) includes one custom domain. You connect your domain via a CNAME record, and all links use that domain. Custom domains work on all WhatsApp clients and devices including JioPhone and older Android.',
+            a: 'Yes. Meshalive includes custom domain support completely free. You connect your domain via a CNAME record, and all links use that domain. Custom domains work on all WhatsApp clients and devices including JioPhone and older Android.',
           },
           {
             q: 'Do short links work on WhatsApp for JioPhone users?',

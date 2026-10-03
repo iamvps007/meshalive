@@ -1,3 +1,4 @@
+import UtmBuilderTool from '../../tools/utm-builder/UtmBuilderTool';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -32,6 +33,32 @@ export default function Page() {
           <p>UTM stands for Urchin Tracking Module (Urchin was the analytics company Google acquired to build Google Analytics). UTM parameters are query string tags added to the end of a URL, like this:</p>
           <pre style={{ background: '#f3f4f6', color: '#111', padding: '16px 20px', borderRadius: 10, fontSize: 13, overflowX: 'auto', margin: '16px 0' }}>{`https://yoursite.com/sale?utm_source=instagram&utm_medium=social&utm_campaign=summer-sale`}</pre>
           <p>When someone clicks this link, Google Analytics records all three values and shows you exactly how much traffic came from that campaign.</p>
+
+      {/* ── Interactive In-Blog Tool ── */}
+      <div style={{
+        background: '#ffffff',
+        border: '1.5px solid #e2e8f0',
+        borderRadius: 16,
+        padding: '24px 20px',
+        margin: '36px 0 44px',
+        boxShadow: '0 8px 30px -6px rgba(0, 87, 255, 0.08), 0 0 0 1px rgba(0, 87, 255, 0.04)',
+      }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16, flexWrap: 'wrap', gap: 10 }}>
+          <div>
+            <span style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: '#0057ff' }}>
+              ⚡ Instant Free Tool
+            </span>
+            <h3 style={{ fontSize: 18, fontWeight: 800, margin: '2px 0 0', color: '#0f172a' }}>
+              Interactive UTM Campaign URL Builder
+            </h3>
+          </div>
+          <span style={{ fontSize: 12, background: '#eff6ff', color: '#0057ff', fontWeight: 600, padding: '4px 12px', borderRadius: 999 }}>
+            Add Source, Medium, Campaign Free
+          </span>
+        </div>
+        <UtmBuilderTool />
+      </div>
+
           <h2 style={{ fontSize: 22, fontWeight: 700, color: INK, letterSpacing: '-0.02em', margin: '40px 0 14px' }}>The 5 UTM parameters explained</h2>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 12, margin: '16px 0 24px' }}>
             {[
@@ -60,7 +87,7 @@ export default function Page() {
           </ul>
           <div style={{ background: '#111111', borderRadius: 14, padding: '36px', marginTop: 40, textAlign: 'center' }}>
             <div style={{ fontSize: 20, fontWeight: 800, color: '#fff', letterSpacing: '-0.03em', marginBottom: 10 }}>Shorten your UTM links for free</div>
-            <p style={{ color: '#777777', fontSize: 14, margin: '0 0 20px' }}>Clean short links that preserve all your UTM tracking parameters.</p>
+            <p style={{ color: '#cbd5e1', fontSize: 14, margin: '0 0 20px' }}>Clean short links that preserve all your UTM tracking parameters.</p>
             <a href="/tools/url-shortener" style={{ display: 'inline-block', background: '#0057ff', color: '#fff', padding: '11px 26px', borderRadius: 999, fontWeight: 700, fontSize: 14, textDecoration: 'none' }}>Shorten a UTM link →</a>
           </div>
         </div>

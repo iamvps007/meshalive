@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'System Status',
-  description: 'Real-time status of Meshalive services: API, web application, short link redirects, and cache.',
+  description: 'Real-time status of Meshalive services: API, web application, short link redirects, and edge infrastructure.',
   alternates: { canonical: 'https://meshalive.com/status' },
 };
 
@@ -10,8 +10,6 @@ const SERVICES = [
   { name: 'Short link redirects', host: 'meshalive.com', uptime: '100%' },
   { name: 'Web application', host: 'meshalive.com', uptime: '100%' },
   { name: 'REST API', host: 'api.meshalive.com', uptime: '100%' },
-  { name: 'Redis cache', host: 'Internal', uptime: '100%' },
-  { name: 'Postgres database', host: 'Internal', uptime: '100%' },
 ];
 
 export default function StatusPage() {
@@ -55,7 +53,7 @@ export default function StatusPage() {
         </div>
 
         <p style={{ fontSize: 13, color: '#6b7280', marginTop: 24 }}>
-          Status is updated in real time. For incident reports contact <a href="mailto:support@meshalive.in" style={{ color: '#0057ff', textDecoration: 'none' }}>support@meshalive.in</a>.
+          Status is updated in real time. For incident reports contact <a href="mailto:support@meshalive.com" style={{ color: '#0057ff', textDecoration: 'none' }}>support@meshalive.com</a>.
         </p>
       </div>
     </div>

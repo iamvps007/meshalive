@@ -11,14 +11,14 @@ import (
 
 // BioPage mirrors the bio_pages table row.
 type BioPage struct {
-	ID          uuid.UUID
-	WorkspaceID uuid.UUID
-	Slug        string
-	Title       string
-	Config      json.RawMessage // raw JSONB column
-	Published   bool
-	CreatedAt   time.Time
-	UpdatedAt   time.Time
+	ID          uuid.UUID       `json:"id"`
+	WorkspaceID uuid.UUID       `json:"workspace_id"`
+	Slug        string          `json:"slug"`
+	Title       string          `json:"title"`
+	Config      json.RawMessage `json:"config"`
+	Published   bool            `json:"published"`
+	CreatedAt   time.Time       `json:"created_at"`
+	UpdatedAt   time.Time       `json:"updated_at"`
 }
 
 // CreateBioPageParams holds the fields required to insert a new bio page.
@@ -40,8 +40,8 @@ type UpdateBioPageParams struct {
 }
 
 const createBioPage = `
-INSERT INTO bio_pages (workspace_id, slug, title, config)
-VALUES ($1, $2, $3, $4)
+INSERT INTO bio_pages (workspace_id, slug, title, config, published)
+VALUES ($1, $2, $3, $4, true)
 RETURNING id, workspace_id, slug, title, config, published, created_at, updated_at
 `
 

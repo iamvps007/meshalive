@@ -11,7 +11,7 @@ export function Icon({ name, size = 18, ...rest }: IconProps) {
   const wrap = (children: React.ReactNode) => (
     <svg width={size} height={size} viewBox="0 0 24 24" {...s} {...rest}>{children}</svg>
   );
-  switch (name) {
+  switch (name.toLowerCase()) {
     case 'link': return wrap(<><path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></>);
     case 'chart': return wrap(<><path d="M3 3v18h18"/><path d="M7 14l3-3 4 4 6-7"/></>);
     case 'qr': return wrap(<><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3zM20 14v3M14 20h3M20 17v4"/></>);
@@ -39,7 +39,8 @@ export function Icon({ name, size = 18, ...rest }: IconProps) {
     case 'chevron-down': return wrap(<path d="m6 9 6 6 6-6"/>);
     case 'chevron-right': return wrap(<path d="m9 6 6 6-6 6"/>);
     case 'chevron-up': return wrap(<path d="m6 15 6-6 6 6"/>);
-    case 'sparkle': return wrap(<><path d="M12 3v6M12 15v6M3 12h6M15 12h6M5 5l3 3M16 16l3 3M5 19l3-3M16 8l3-3"/></>);
+    case 'sparkle':
+    case 'sparkles': return wrap(<><path d="M12 3v6M12 15v6M3 12h6M15 12h6M5 5l3 3M16 16l3 3M5 19l3-3M16 8l3-3"/></>);
     case 'zap': return wrap(<path d="M13 2 4 14h7l-1 8 9-12h-7z"/>);
     case 'shield': return wrap(<><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"/><path d="m9 12 2 2 4-4"/></>);
     case 'users': return wrap(<><circle cx="9" cy="8" r="3"/><path d="M3 21a6 6 0 0 1 12 0"/><circle cx="17" cy="9" r="2.5"/><path d="M15 21a4 4 0 0 1 6-3.5"/></>);
@@ -55,10 +56,50 @@ export function Icon({ name, size = 18, ...rest }: IconProps) {
     case 'filter': return wrap(<path d="M3 5h18l-7 9v6l-4-2v-4z"/>);
     case 'menu': return wrap(<path d="M4 6h16M4 12h16M4 18h16"/>);
     case 'send': return wrap(<><path d="M22 2 11 13M22 2l-7 20-4-9-9-4z"/></>);
-    case 'mail': return wrap(<><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></>);
-    case 'mobile': return wrap(<><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M11 18h2"/></>);
-    case 'desktop': return wrap(<><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></>);
+    case 'mail':
+    case 'email': return wrap(<><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></>);
+    case 'mobile':
+    case 'smartphone':
+    case 'phone': return wrap(<><rect x="6" y="2" width="12" height="20" rx="2.5"/><path d="M11 18h2"/></>);
+    case 'desktop':
+    case 'monitor': return wrap(<><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></>);
     case 'split': return wrap(<><path d="M3 12h5M16 6l2 2-2 2M16 18l2-2-2-2M21 6h-5M21 18h-5M8 9l-3 3 3 3"/></>);
+    case 'user':
+    case 'avatar': return wrap(<><circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 0 0-16 0"/></>);
+    case 'grip': return wrap(<><circle cx="9" cy="5" r="1" fill="currentColor"/><circle cx="9" cy="12" r="1" fill="currentColor"/><circle cx="9" cy="19" r="1" fill="currentColor"/><circle cx="15" cy="5" r="1" fill="currentColor"/><circle cx="15" cy="12" r="1" fill="currentColor"/><circle cx="15" cy="19" r="1" fill="currentColor"/></>);
+    case 'layers': return wrap(<><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></>);
+    case 'palette': return wrap(<><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.9 0 1.6-.7 1.6-1.6 0-.4-.2-.8-.4-1.1-.3-.3-.4-.7-.4-1.1 0-.9.7-1.6 1.6-1.6H16c3.3 0 6-2.7 6-6 0-5.5-4.5-10-10-10z"/></>);
+    case 'sliders': return wrap(<><line x1="4" x2="4" y1="21" y2="14"/><line x1="4" x2="4" y1="10" y2="3"/><line x1="12" x2="12" y1="21" y2="12"/><line x1="12" x2="12" y1="8" y2="3"/><line x1="20" x2="20" y1="21" y2="16"/><line x1="20" x2="20" y1="12" y2="3"/><line x1="1" x2="7" y1="14" y2="14"/><line x1="9" x2="15" y1="8" y2="8"/><line x1="17" x2="23" y1="16" y2="16"/></>);
+    case 'cloud-check': return wrap(<><path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"/><path d="m9 15 2 2 4-4"/></>);
+    
+    // Official World-Class Verified Badge (Twitter / Google / Microsoft Verified Rosette with pure white checkmark)
+    case 'verified':
+    case 'badge-check': return (
+      <svg width={size} height={size} viewBox="0 0 24 24" fill="none" {...rest} style={{ display: 'inline-block', verticalAlign: 'middle', flexShrink: 0, ...rest.style }}>
+        <path d="M22.5 12.5c0-1.58-.875-2.95-2.148-3.6.154-.435.238-.905.238-1.4 0-2.21-1.79-4-4-4-.495 0-.965.084-1.4.238C14.55 2.475 13.18 1.6 11.6 1.6s-2.95.875-3.6 2.148c-.435-.154-.905-.238-1.4-.238-2.21 0-4 1.79-4 4 0 .495.084.965.238 1.4C1.575 9.55.7 10.92.7 12.5s.875 2.95 2.148 3.6c-.154.435-.238.905-.238 1.4 0 2.21 1.79 4 4 4 .495 0 .965-.084 1.4-.238.65 1.273 2.02 2.148 3.6 2.148s2.95-.875 3.6-2.148c.435.154.905.238 1.4.238 2.21 0 4-1.79 4-4 0-.495-.084-.965-.238-1.4 1.273-.65 2.148-2.02 2.148-3.6z" fill="currentColor"/>
+        <path d="M10 15.5l-3.5-3.5 1.41-1.41L10 12.67l6.09-6.09L17.5 8l-7.5 7.5z" fill="#ffffff"/>
+      </svg>
+    );
+
+    case 'video':
+    case 'play': return wrap(<polygon points="6 4 20 12 6 20 6 4"/>);
+    case 'shopping-bag':
+    case 'bag':
+    case 'store': return wrap(<><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></>);
+    case 'briefcase': return wrap(<><rect width="20" height="14" x="2" y="7" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></>);
+    case 'file-text':
+    case 'document': return wrap(<><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" x2="8" y1="13" y2="13"/><line x1="16" x2="8" y1="17" y2="17"/><line x1="10" x2="8" y1="9" y2="9"/></>);
+    case 'map-pin':
+    case 'location': return wrap(<><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></>);
+    case 'code': return wrap(<><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></>);
+    case 'message-circle': return wrap(<path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/>);
+    case 'instagram': return wrap(<><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></>);
+    case 'twitter':
+    case 'twitter/x':
+    case 'x-social': return wrap(<path d="M4 4l16 16M4 20 20 4"/>);
+    case 'youtube': return wrap(<><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><polygon points="10 15 15 12 10 9 10 15" fill="currentColor"/></>);
+    case 'linkedin': return wrap(<><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></>);
+    case 'github': return wrap(<path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>);
     default: return wrap(<circle cx="12" cy="12" r="3"/>);
   }
 }

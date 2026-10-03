@@ -85,6 +85,7 @@ func main() {
 	redirectH.Register(app)
 	authH.Register(app)
 	publicH.Register(app)
+	bioH.Register(app)
 
 	protected := app.Group("/v1", middleware.Auth(cfg.JWTSecret, q))
 	linksH.RegisterProtected(protected)
@@ -94,7 +95,6 @@ func main() {
 	tokensH.RegisterProtected(protected)
 	billingH.RegisterProtected(protected)
 	bioH.RegisterProtected(protected)
-	bioH.Register(app)
 
 	log.Printf("Starting Meshalive API on :%s (env=%s)", cfg.Port, cfg.AppEnv)
 	log.Fatal(app.Listen(":" + cfg.Port))

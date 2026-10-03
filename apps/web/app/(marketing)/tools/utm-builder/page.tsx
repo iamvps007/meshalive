@@ -2,13 +2,17 @@ import type { Metadata } from 'next'
 import UtmBuilderTool from './UtmBuilderTool'
 
 export const metadata: Metadata = {
-  title: { absolute: 'Free UTM Builder — UTM Link Generator | Meshalive' },
+  title: { absolute: 'Free UTM Builder, Generator & Creator — Track Campaign URLs | Meshalive' },
   description:
-    'Build UTM-tagged URLs for free with a fast campaign URL builder. Add utm_source, utm_medium, utm_campaign, and more in seconds for Google Analytics and Meshalive.',
+    'Free UTM builder, generator, and link creator. Create Google Analytics (GA4) campaign tracking links instantly. Add utm_source, utm_medium, utm_campaign. 100% free with no signup.',
   keywords: [
     'utm builder',
+    'utm generator',
+    'utm creator',
     'utm link generator',
     'utm parameter generator',
+    'utm parameter builder',
+    'free utm generator',
     'utm url builder',
     'google analytics utm',
     'utm tags',
@@ -23,7 +27,7 @@ export const metadata: Metadata = {
     canonical: 'https://meshalive.com/tools/utm-builder',
   },
   openGraph: {
-    title: { absolute: 'Free UTM Builder — UTM Link Generator | Meshalive' },
+    title: { absolute: 'Free UTM Builder, Generator & Creator — Track Campaign URLs | Meshalive' },
     description: 'Build UTM-tagged URLs free and instantly. Track campaigns in Google Analytics.',
     url: 'https://meshalive.com/tools/utm-builder',
     siteName: 'Meshalive',
@@ -32,7 +36,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: { absolute: 'Free UTM Builder — UTM Link Generator | Meshalive' },
+    title: { absolute: 'Free UTM Builder, Generator & Creator — Track Campaign URLs | Meshalive' },
     description: 'Build UTM-tagged URLs free. Track campaigns in Google Analytics.',
     site: '@meshalive',
     images: ['https://meshalive.com/og/utm-builder.png'],
@@ -87,6 +91,22 @@ const jsonLd = {
             text: 'Yes — UTM URLs are long and ugly. Shortening them with a tool like Meshalive makes them shareable on social media and WhatsApp, and also adds click tracking on top of the UTM data.',
           },
         },
+        {
+          '@type': 'Question',
+          name: 'What is a UTM generator?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'A UTM generator (or UTM builder) automatically adds tracking parameters to your URLs. Meshalive free UTM generator creates campaign links with utm_source, utm_medium, and utm_campaign in seconds.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'Is this a free UTM parameter builder?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Yes. The Meshalive UTM parameter builder is 100% free with no account required. Build unlimited UTM links for Google Analytics, Facebook Ads, email campaigns, and WhatsApp.',
+          },
+        },
       ],
     },
   ],
@@ -127,7 +147,7 @@ export default function UtmBuilderPage() {
             Free Tool
           </div>
           <h1 style={{ fontSize: 'clamp(28px, 4vw, 44px)', fontWeight: 800, letterSpacing: '-0.03em', margin: '0 0 16px', lineHeight: 1.15 }}>
-            UTM Builder
+            Free UTM Builder & Generator
           </h1>
           <p style={{ fontSize: 17, color: MUTED, lineHeight: 1.75, margin: '0 0 8px', maxWidth: 600 }}>
             Add UTM parameters to any URL and track where your traffic really comes from. Works with Google Analytics, Meshalive, and any analytics platform.
@@ -191,6 +211,8 @@ export default function UtmBuilderPage() {
               { q: 'Should I shorten UTM URLs?', a: 'Yes. UTM URLs are often 150–200 characters long, which looks unprofessional and gets cut off on WhatsApp and SMS. Shortening them with Meshalive also adds a layer of click tracking on top of your GA data.' },
               { q: 'Do UTM parameters work with GA4?', a: 'Yes. GA4 reads all standard UTM parameters (source, medium, campaign, term, content) natively. No additional setup required.' },
               { q: 'What\'s the difference between utm_source and utm_medium?', a: 'Source is the specific platform (google, whatsapp, mailchimp), while medium is the category of channel (cpc, social, email). Think of source as "who sent them" and medium as "how they arrived."' },
+              { q: 'Is this a free UTM generator?', a: 'Yes — this UTM generator is completely free with no signup. It works as a UTM creator, UTM parameter builder, and campaign URL builder in one tool.' },
+              { q: 'How do I use UTM links with Google Analytics?', a: 'Paste the generated UTM URL in your ads, emails, or social posts. GA4 automatically reads utm_source, utm_medium, and utm_campaign and groups traffic in Acquisition reports.' },
             ].map((item, i, arr) => (
               <details key={i} style={{ borderBottom: i < arr.length - 1 ? `1px solid ${HAIR}` : 'none' }}>
                 <summary style={{ padding: '16px 20px', fontSize: 15, fontWeight: 600, color: INK, cursor: 'pointer', listStyle: 'none', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>

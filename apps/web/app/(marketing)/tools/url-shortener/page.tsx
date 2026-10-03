@@ -7,7 +7,7 @@ import UrlShortenerTool from './UrlShortenerTool';
 export const metadata: Metadata = {
   title: { absolute: 'Free URL Shortener — Shorten Links Instantly | Meshalive' },
   description:
-    'Shorten any URL for free in seconds. No account needed. Get short links with click tracking — or sign up free for unlimited links, full analytics, and custom slugs.',
+    'Shorten any URL for free in seconds — no sign up required. Get short links with click tracking, QR codes, and analytics. Unlimited links when you create a free account.',
   keywords: [
     'url shortener',
     'free url shortener',

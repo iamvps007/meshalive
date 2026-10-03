@@ -2,12 +2,12 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: { absolute: 'Free Online Tools for Marketers & Developers | Meshalive' },
-  description: 'Free online tools for marketers and growth teams: WhatsApp link generator, UTM builder, redirect checker, Bitly alternative, URL shortener, QR code generator, and more.',
-  keywords: ['free online tools', 'url shortener', 'utm builder', 'qr code generator', 'password generator', 'character counter', 'slug generator', 'url encoder', 'whatsapp link generator', 'bulk url shortener', 'redirect checker', 'bitly alternative'],
+  description: 'Free online tools for marketers and growth teams: UPI QR code generator, WhatsApp link generator, YouTube subscribe link, UTM builder, redirect checker, Bitly alternative, and more.',
+  keywords: ['free online tools', 'upi qr code generator', 'youtube subscribe link', 'url shortener', 'utm builder', 'qr code generator', 'password generator', 'character counter', 'slug generator', 'url encoder', 'whatsapp link generator', 'bulk url shortener', 'redirect checker', 'bitly alternative'],
   alternates: { canonical: 'https://meshalive.com/tools' },
   openGraph: {
     title: { absolute: 'Free Online Tools for Marketers & Developers | Meshalive' },
-    description: 'Free tools: WhatsApp link generator, UTM builder, redirect checker, Bitly alternative, QR codes, short links, and more.',
+    description: 'Free tools: UPI QR code maker, WhatsApp link generator, YouTube auto-subscribe links, UTM builder, redirect checker, Bitly alternative, and more.',
     url: 'https://meshalive.com/tools',
     siteName: 'Meshalive',
     type: 'website',
@@ -16,30 +16,46 @@ export const metadata: Metadata = {
 }
 
 const FEATURED_TOOLS = [
+  { href: '/tools/upi-qr-code-generator', icon: '⚡', name: 'UPI QR Code Generator', stat: 'India payments utility', desc: 'Create printable UPI payment QR codes with custom amount and name for PhonePe, GPay, Paytm & BHIM.' },
   { href: '/tools/whatsapp-link-generator', icon: '💬', name: 'WhatsApp Link Generator', stat: 'High-intent lead capture', desc: 'Create click-to-chat wa.me links with optional pre-filled messages for websites, Instagram bios, ads, and QR codes.' },
+  { href: '/tools/youtube-subscribe-link-generator', icon: '▶️', name: 'YouTube Subscribe Link', stat: 'Creator growth tool', desc: 'Generate auto-subscribe prompt confirmation links with custom short URLs and QR codes to boost subscribers.' },
   { href: '/tools/utm-builder', icon: '📊', name: 'UTM Builder', stat: 'Campaign tracking essential', desc: 'Build clean UTM URLs for Google Analytics, paid ads, social campaigns, WhatsApp outreach, and email marketing.' },
-  { href: '/tools/redirect-checker', icon: '↪️', name: 'Redirect Checker', stat: 'SEO and debugging utility', desc: 'Trace 301 and 302 redirect chains, inspect final destinations, and diagnose slow or broken short links.' },
-  { href: '/tools/bitly-alternative', icon: '🔁', name: 'Bitly Alternative', stat: 'Commercial comparison page', desc: 'Compare Meshalive against Bitly and switch to free short links, analytics, QR codes, and custom domains.' },
 ]
 
 const TOOLS = [
   {
-    category: 'URL Shortening',
+    category: 'India & Regional Growth',
     items: [
-      { href: '/tools/url-shortener',          icon: '🔗', name: 'URL Shortener',           desc: 'Shorten any URL instantly — no account needed.' },
-      { href: '/tools/url-shortener-with-analytics', icon: '📈', name: 'URL Shortener with Analytics', desc: 'Shorten URLs and track every click with real-time analytics.' },
-      { href: '/tools/url-shortener-for-whatsapp',   icon: '💬', name: 'URL Shortener for WhatsApp',    desc: 'Shorten links for sharing on WhatsApp with click tracking.' },
-      { href: '/tools/url-shortener-for-instagram',  icon: '📸', name: 'URL Shortener for Instagram',   desc: 'Shorten URLs for Instagram bio, stories, and DMs.' },
-      { href: '/tools/url-shortener-india',          icon: '🌐', name: 'URL Shortener India',           desc: 'Free URL shortener for Indian businesses and marketers.' },
-      { href: '/tools/custom-url-shortener',         icon: '✏',  name: 'Custom URL Shortener',          desc: 'Create custom branded short links with your own slug.' },
-      { href: '/tools/branded-url-shortener',        icon: '🏷',  name: 'Branded URL Shortener',         desc: 'Branded short links with custom domains and analytics.' },
-      { href: '/tools/link-management-tool',         icon: '🗂',  name: 'Link Management Tool',          desc: 'Manage, organize, and track all your short links in one place.' },
-      { href: '/tools/bulk-url-shortener',     icon: '📋', name: 'Bulk URL Shortener',      desc: 'Shorten hundreds of URLs at once.' },
+      { href: '/tools/upi-qr-code-generator',        icon: '⚡', name: 'UPI QR Code Generator',        desc: 'Generate printable scan-to-pay QR codes with custom amount.' },
+      { href: '/tools/wifi-qr-code-generator',       icon: '📶', name: 'Wi-Fi QR Code Generator',       desc: 'Generate scan-to-connect Wi-Fi QR cards for guest networks & cafes.' },
+      { href: '/tools/url-shortener-india',          icon: '🇮🇳', name: 'URL Shortener India',           desc: 'Free URL shortener for Indian businesses, WhatsApp, and SMS.' },
+      { href: '/tools/url-shortener-uae',            icon: '🇦🇪', name: 'URL Shortener UAE & Dubai',     desc: 'Free short links for Dubai real estate, WhatsApp, and retail.' },
+    ],
+  },
+  {
+    category: 'Social Media & Creators',
+    items: [
+      { href: '/tools/amazon-affiliate-link-shortener', icon: '🛒', name: 'Amazon Affiliate Shortener', desc: 'Clean Amazon tracking bloat, preserve Associate tag & shorten.' },
+      { href: '/tools/youtube-subscribe-link-generator', icon: '▶️', name: 'YouTube Subscribe Link', desc: 'Auto-confirmation subscription links for YouTube channels.' },
       { href: '/tools/whatsapp-link-generator',icon: '💬', name: 'WhatsApp Link Generator', desc: 'Create click-to-chat wa.me links for any number.' },
-      { href: '/tools/qr-code-generator',      icon: '⬛', name: 'QR Code Generator',       desc: 'Generate QR codes and download as PNG — free.' },
+      { href: '/tools/url-shortener-for-whatsapp',   icon: '📱', name: 'URL Shortener for WhatsApp',    desc: 'Shorten links for sharing on WhatsApp with click tracking.' },
+      { href: '/tools/url-shortener-for-instagram',  icon: '📸', name: 'URL Shortener for Instagram',   desc: 'Shorten URLs for Instagram bio, stories, and DMs.' },
+      { href: '/tools/url-shortener-for-youtube',    icon: '🎥', name: 'URL Shortener for YouTube',     desc: 'Short links for YouTube video descriptions and community posts.' },
       { href: '/tools/link-in-bio',            icon: '👤', name: 'Link in Bio',              desc: 'Create a link-in-bio page for Instagram and TikTok.' },
       { href: '/tools/whatsapp-landing-page',   icon: '💚', name: 'WhatsApp Landing Page',   desc: 'Create a WhatsApp click-to-chat link with pre-filled message.' },
-      { href: '/tools/temporary-link-generator',icon: '⏱', name: 'Temporary Link Generator', desc: 'Create expiring links that auto-delete after 1h to 7 days.' },
+    ],
+  },
+  {
+    category: 'URL Shortening & Management',
+    items: [
+      { href: '/tools/url-shortener',          icon: '🔗', name: 'URL Shortener',           desc: 'Shorten any URL instantly — no account needed.' },
+      { href: '/tools/url-shortener-no-login', icon: '⚡', name: 'URL Shortener (No Login)', desc: 'Instant URL shortening without registration or ads.' },
+      { href: '/tools/url-shortener-with-analytics', icon: '📈', name: 'URL Shortener with Analytics', desc: 'Shorten URLs and track every click with real-time analytics.' },
+      { href: '/tools/custom-url-shortener',         icon: '✏️',  name: 'Custom URL Shortener',          desc: 'Create custom branded short links with your own slug.' },
+      { href: '/tools/branded-url-shortener',        icon: '🏷️',  name: 'Branded URL Shortener',         desc: 'Branded short links with custom domains and analytics.' },
+      { href: '/tools/bulk-url-shortener',     icon: '📋', name: 'Bulk URL Shortener',      desc: 'Shorten hundreds of URLs at once.' },
+      { href: '/tools/qr-code-generator',      icon: '⬛', name: 'QR Code Generator',       desc: 'Generate QR codes and download as PNG — free.' },
+      { href: '/tools/temporary-link-generator',icon: '⏱️', name: 'Temporary Link Generator', desc: 'Create expiring links that auto-delete after 1h to 7 days.' },
       { href: '/tools/affiliate-link-cloaker',  icon: '🔒', name: 'Affiliate Link Cloaker',  desc: 'Clean short URLs for Amazon and Flipkart affiliate links.' },
       { href: '/tools/vcard-generator',         icon: '📇', name: 'vCard QR Generator',      desc: 'Create a digital business card QR code, exports as .vcf.' },
     ],
@@ -48,7 +64,7 @@ const TOOLS = [
     category: 'Marketing & Analytics',
     items: [
       { href: '/tools/utm-builder',            icon: '📊', name: 'UTM Builder',              desc: 'Add UTM parameters to URLs and track campaigns.' },
-      { href: '/tools/link-preview-checker',   icon: '👁', name: 'Link Preview Checker',    desc: 'See how your URL looks on WhatsApp, Twitter, and LinkedIn.' },
+      { href: '/tools/link-preview-checker',   icon: '👁️', name: 'Link Preview Checker',    desc: 'See how your URL looks on WhatsApp, Twitter, and LinkedIn.' },
       { href: '/tools/character-counter',      icon: '✍️', name: 'Character Counter',        desc: 'Count characters and check limits for Twitter, Instagram, LinkedIn.' },
       { href: '/tools/slug-generator',         icon: '🔤', name: 'Slug Generator',           desc: 'Convert titles into SEO-friendly URL slugs.' },
     ],
@@ -63,9 +79,10 @@ const TOOLS = [
     ],
   },
   {
-    category: 'Alternatives',
+    category: 'Competitor Alternatives',
     items: [
       { href: '/tools/bitly-alternative',      icon: '↔️', name: 'Bitly Alternative',        desc: 'Free Bitly alternative with more links and real analytics.' },
+      { href: '/tools/google-url-shortener-alternative', icon: '🔍', name: 'Google URL Shortener Alt', desc: 'Modern alternative to deprecated goo.gl shortener.' },
       { href: '/tools/rebrandly-alternative',  icon: '↔️', name: 'Rebrandly Alternative',    desc: 'Branded short links at a fraction of the Rebrandly price.' },
       { href: '/tools/tinyurl-alternative',    icon: '↔️', name: 'TinyURL Alternative',      desc: 'TinyURL alternative with click analytics and custom slugs.' },
     ],
@@ -139,13 +156,13 @@ export default function ToolsIndexPage() {
 
         <div style={{ marginTop: 8, marginBottom: 48, maxWidth: 760 }}>
           <h2 style={{ fontSize: 24, fontWeight: 800, color: INK, letterSpacing: '-0.02em', margin: '0 0 12px' }}>
-            Built for keyword-driven utility pages
+            Built for high-intent search queries
           </h2>
           <p style={{ fontSize: 15, color: MUTED, lineHeight: 1.8, margin: '0 0 14px' }}>
-            Meshalive tools are designed for the exact tasks people search for: building UTM links, generating WhatsApp chat URLs, checking redirects, shortening long campaign URLs, and comparing alternatives to Bitly and TinyURL.
+            Meshalive tools are designed for the exact tasks people search for: generating UPI payment QR codes, creating auto-subscribe YouTube links, building UTM campaign URLs, shortening long WhatsApp links, and comparing free alternatives to Bitly and TinyURL.
           </p>
           <p style={{ fontSize: 15, color: MUTED, lineHeight: 1.8, margin: 0 }}>
-            If you want the fastest pages to start with, open the <a href="/tools/whatsapp-link-generator" style={{ color: '#0057ff', textDecoration: 'none' }}>WhatsApp Link Generator</a>, <a href="/tools/utm-builder" style={{ color: '#0057ff', textDecoration: 'none' }}>UTM Builder</a>, <a href="/tools/redirect-checker" style={{ color: '#0057ff', textDecoration: 'none' }}>Redirect Checker</a>, or <a href="/tools/bitly-alternative" style={{ color: '#0057ff', textDecoration: 'none' }}>Bitly Alternative</a> page.
+            Start with our most popular utilities: <a href="/tools/upi-qr-code-generator" style={{ color: '#0057ff', textDecoration: 'none' }}>UPI QR Code Generator</a>, <a href="/tools/whatsapp-link-generator" style={{ color: '#0057ff', textDecoration: 'none' }}>WhatsApp Link Generator</a>, <a href="/tools/youtube-subscribe-link-generator" style={{ color: '#0057ff', textDecoration: 'none' }}>YouTube Subscribe Link</a>, or <a href="/tools/utm-builder" style={{ color: '#0057ff', textDecoration: 'none' }}>UTM Builder</a>.
           </p>
         </div>
 

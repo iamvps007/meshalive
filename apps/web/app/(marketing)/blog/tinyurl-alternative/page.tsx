@@ -1,3 +1,4 @@
+import UrlShortenerTool from '../../tools/url-shortener/UrlShortenerTool';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -52,9 +53,35 @@ export default function TinyURLAlternativePage() {
               <li><strong>Best free TinyURL alternative overall:</strong> Meshalive — analytics, QR codes, editable links, free</li>
               <li><strong>Best for branded domains:</strong> Short.io (free custom domain on free plan)</li>
               <li><strong>Best for simplicity:</strong> is.gd — clean, fast, no account needed</li>
-              <li><strong>Best for teams:</strong> Meshalive Growth plan ($14/mo, 5 seats)</li>
+              <li><strong>Best for teams:</strong> Meshalive — team workspaces free</li>
             </ul>
           </div>
+
+      {/* ── Interactive In-Blog Tool ── */}
+      <div style={{
+        background: '#ffffff',
+        border: '1.5px solid #e2e8f0',
+        borderRadius: 16,
+        padding: '24px 20px',
+        margin: '36px 0 44px',
+        boxShadow: '0 8px 30px -6px rgba(0, 87, 255, 0.08), 0 0 0 1px rgba(0, 87, 255, 0.04)',
+      }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16, flexWrap: 'wrap', gap: 10 }}>
+          <div>
+            <span style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: '#0057ff' }}>
+              ⚡ Instant Free Tool
+            </span>
+            <h3 style={{ fontSize: 18, fontWeight: 800, margin: '2px 0 0', color: '#0f172a' }}>
+              Create a Short Link with Free Analytics
+            </h3>
+          </div>
+          <span style={{ fontSize: 12, background: '#eff6ff', color: '#0057ff', fontWeight: 600, padding: '4px 12px', borderRadius: 999 }}>
+            Free TinyURL Alternative
+          </span>
+        </div>
+        <UrlShortenerTool />
+      </div>
+
 
           <h2 style={{ fontSize: 26, fontWeight: 700, color: INK, letterSpacing: '-0.02em', margin: '0 0 16px' }}>What TinyURL is missing</h2>
           <p>TinyURL is fine for a one-off link. But if you are using short links for any kind of marketing, sharing on social media, or running campaigns, these gaps matter:</p>
@@ -83,7 +110,7 @@ export default function TinyURLAlternativePage() {
               <span style={{ background: ACCENT, color: '#fff', fontSize: 11, fontWeight: 700, padding: '3px 10px', borderRadius: 4 }}>Best overall</span>
             </div>
             <p style={{ margin: '0 0 14px' }}>Meshalive fixes every weakness in TinyURL on the free plan: real-time click analytics (country, device, referrer), editable link destinations, downloadable QR codes, and no cap on the number of links you can create. The free plan is genuinely unlimited.</p>
-            <p style={{ margin: '0 0 14px' }}>Custom slugs — <code style={{ background: '#dbeafe', padding: '2px 6px', borderRadius: 4, fontSize: 14 }}>msha.live/your-name</code> — are available on the paid Starter plan ($4/month). For anonymous use, links get a random 8-character slug but can still be tracked if you are signed in.</p>
+            <p style={{ margin: '0 0 14px' }}>Custom slugs — <code style={{ background: '#dbeafe', padding: '2px 6px', borderRadius: 4, fontSize: 14 }}>msha.live/your-name</code> — are completely free on Meshalive. For anonymous use, links get a random 8-character slug but can still be tracked if you are signed in.</p>
             <p style={{ margin: 0, color: MUTED, fontSize: 14 }}><strong>Free plan:</strong> Unlimited links · Full analytics · QR codes · Link editing · No credit card</p>
           </div>
 
@@ -128,7 +155,7 @@ export default function TinyURLAlternativePage() {
               </thead>
               <tbody>
                 {[
-                  { name: 'Meshalive', free: 'Unlimited', analytics: 'Full (free)', slug: 'Paid ($4/mo)', edit: '✓', qr: '✓ Free', paid: '$4/mo', highlight: true },
+                  { name: 'Meshalive', free: 'Unlimited', analytics: 'Full (Free)', slug: '✓ Free', edit: '✓ Free', qr: '✓ Free', paid: 'Free ($0)', highlight: true },
                   { name: 'TinyURL', free: 'Unlimited', analytics: 'None on free', slug: 'Paid ($10/mo)', edit: '✗', qr: '✗', paid: '$10/mo', highlight: false },
                   { name: 'Short.io', free: 'Unlimited', analytics: '1K clicks/mo', slug: '✓', edit: '✓', qr: '✗', paid: '$20/mo', highlight: false },
                   { name: 'is.gd', free: 'Unlimited', analytics: 'None', slug: '✗', edit: '✗', qr: '✗', paid: 'Free only', highlight: false },
@@ -172,7 +199,7 @@ export default function TinyURLAlternativePage() {
               },
               {
                 q: 'Can I make a TinyURL with a custom name for free?',
-                a: 'No. Custom aliases on TinyURL require a paid plan ($10/month). Meshalive offers custom slugs on the Starter plan ($4/month) — which is cheaper for the same feature.',
+                a: 'No. Custom aliases on TinyURL require a paid plan ($10/month). Meshalive offers custom slugs completely free with zero monthly fees — no credit card needed.',
               },
               {
                 q: 'Which TinyURL alternative is best for tracking clicks?',

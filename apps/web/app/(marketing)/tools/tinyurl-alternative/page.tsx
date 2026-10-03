@@ -2,9 +2,9 @@ import type { Metadata } from 'next';
 import UrlShortenerTool from '../url-shortener/UrlShortenerTool';
 
 export const metadata: Metadata = {
-  title: { absolute: 'Best TinyURL Alternative with Analytics & Custom Domains | Meshalive' },
+  title: { absolute: 'Free TinyURL Alternative 2026 — Analytics, QR Codes, API | Meshalive' },
   description: 'Free TinyURL alternative with full click analytics, custom domains, QR codes, and API access. TinyURL shows zero analytics — Meshalive gives you everything, free.',
-  keywords: ['tinyurl alternative', 'tinyurl alternative free', 'better than tinyurl', 'tinyurl with analytics'],
+  keywords: ['tinyurl alternative', 'tinyurl alternative free', 'tinyurl alternatives', 'better than tinyurl', 'tinyurl with analytics', 'free tinyurl'],
   alternates: { canonical: 'https://meshalive.com/tools/tinyurl-alternative' },
   openGraph: {
     type: 'website', url: 'https://meshalive.com/tools/tinyurl-alternative',

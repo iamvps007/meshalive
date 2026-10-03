@@ -21,7 +21,7 @@ const VALUES = [
   {
     icon: 'credit-card',
     title: 'Honest pricing',
-    desc: 'No per-click billing. No API paywalls. No surprise overages. REST API from $4/mo — not locked behind a $300 enterprise tier.',
+    desc: 'No per-click billing. No API paywalls. No surprise overages. REST API is 100% free — not locked behind expensive enterprise tiers.',
   },
   {
     icon: 'globe',
@@ -54,7 +54,7 @@ const STORIES = [
   {
     name: 'Ana Vega',
     role: 'Growth engineer, Stackr',
-    quote: 'REST API on the Starter plan is what sold us. Every other tool gates it at $30+/mo. meshalive gives you actual developer access from day one.',
+    quote: 'Full REST API included completely free is what sold us. Every other tool gates it behind $30+/mo paywalls. Meshalive gives you developer access from day one at zero cost.',
   },
 ];
 

@@ -1,3 +1,4 @@
+import UrlShortenerTool from '../../tools/url-shortener/UrlShortenerTool';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -27,6 +28,32 @@ export default function Page() {
           <p style={{ fontSize: 16, color: MUTED, lineHeight: 1.75, margin: '0 0 20px' }}>Instagram only allows one clickable link in your bio. Here is how to make that link count — and how to know exactly how many people are clicking it.</p>
           <div style={{ fontSize: 13, color: MUTED, paddingTop: 20, borderTop: `1px solid ${HAIR}` }}>Updated May 2026 · By meshalive team</div>
         </div>
+
+      {/* ── Interactive In-Blog Tool ── */}
+      <div style={{
+        background: '#ffffff',
+        border: '1.5px solid #e2e8f0',
+        borderRadius: 16,
+        padding: '24px 20px',
+        margin: '36px 0 44px',
+        boxShadow: '0 8px 30px -6px rgba(0, 87, 255, 0.08), 0 0 0 1px rgba(0, 87, 255, 0.04)',
+      }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16, flexWrap: 'wrap', gap: 10 }}>
+          <div>
+            <span style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: '#0057ff' }}>
+              ⚡ Instant Free Tool
+            </span>
+            <h3 style={{ fontSize: 18, fontWeight: 800, margin: '2px 0 0', color: '#0f172a' }}>
+              Shorten Your Instagram Bio Link Right Now
+            </h3>
+          </div>
+          <span style={{ fontSize: 12, background: '#eff6ff', color: '#0057ff', fontWeight: 600, padding: '4px 12px', borderRadius: 999 }}>
+            Clean, Clickable & Trackable
+          </span>
+        </div>
+        <UrlShortenerTool />
+      </div>
+
         <div style={{ fontSize: 16, lineHeight: 1.8, color: '#374151' }}>
           <h2 style={{ fontSize: 22, fontWeight: 700, color: INK, letterSpacing: '-0.02em', margin: '40px 0 14px' }}>Why short links matter on Instagram</h2>
           <p>Instagram does not make links in captions clickable. The only place followers can click a link is your bio — and in Stories (via the link sticker). A clean, short link in your bio looks more professional and is easier to remember if someone screenshots your profile.</p>
@@ -45,7 +72,7 @@ export default function Page() {
           <p>If you run campaigns or change your offer regularly, keep the same short link in your bio forever (e.g. <code style={{ background: '#f3f4f6', padding: '2px 6px', borderRadius: 4, fontSize: 14 }}>msha.live/myshop</code>) and just update where it points in your Meshalive dashboard. No need to update your Instagram bio every time.</p>
           <div style={{ background: '#111111', borderRadius: 14, padding: '36px', marginTop: 40, textAlign: 'center' }}>
             <div style={{ fontSize: 20, fontWeight: 800, color: '#fff', letterSpacing: '-0.03em', marginBottom: 10 }}>Create your Instagram bio link</div>
-            <p style={{ color: '#777777', fontSize: 14, margin: '0 0 20px' }}>Free forever · Custom slugs · Real-time click tracking</p>
+            <p style={{ color: '#cbd5e1', fontSize: 14, margin: '0 0 20px' }}>Free forever · Custom slugs · Real-time click tracking</p>
             <a href="/register" style={{ display: 'inline-block', background: '#0057ff', color: '#fff', padding: '11px 26px', borderRadius: 999, fontWeight: 700, fontSize: 14, textDecoration: 'none' }}>Get started free →</a>
           </div>
         </div>

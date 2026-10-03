@@ -21,5 +21,13 @@
     "@types/qrcode": "^1.5.5",
     "@types/react": "^18",
     "typescript": "^5"
-  }
+  },
+  "browserslist": [
+    "defaults",
+    "chrome >= 92",
+    "edge >= 92",
+    "firefox >= 90",
+    "safari >= 15.4",
+    "not dead"
+  ]
 }

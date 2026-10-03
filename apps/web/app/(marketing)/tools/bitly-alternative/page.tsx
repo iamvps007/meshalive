@@ -2,13 +2,13 @@ import type { Metadata } from 'next';
 import UrlShortenerTool from '../url-shortener/UrlShortenerTool';
 
 export const metadata: Metadata = {
-  title: { absolute: 'Best Free Bitly Alternative — Unlimited Links | Meshalive' },
+  title: { absolute: 'Best Free Bitly Alternative 2026 — Unlimited Links + Analytics | Meshalive' },
   description: 'The best free Bitly alternative. Meshalive gives you unlimited short links, full click analytics, custom domains, QR codes, and API access — all completely free. No credit card required.',
   keywords: ['bitly alternative', 'free bitly alternative', 'bitly alternative free', 'bitly replacement', 'url shortener like bitly'],
   alternates: { canonical: 'https://meshalive.com/tools/bitly-alternative' },
   openGraph: {
     type: 'website', url: 'https://meshalive.com/tools/bitly-alternative',
-    title: { absolute: 'Best Free Bitly Alternative — Unlimited Links | Meshalive' },
+    title: { absolute: 'Best Free Bitly Alternative 2026 — Unlimited Links + Analytics | Meshalive' },
     description: 'Unlimited short links, full analytics, custom domains, QR codes, and API access — all free. The Bitly alternative that is actually free.',
     siteName: 'Meshalive',
   },
@@ -77,22 +77,24 @@ export default function BitlyAlternativePage() {
                 <th style={{ padding: '14px 18px', textAlign: 'center', color: '#0057ff', fontWeight: 700, fontSize: 12, letterSpacing: '0.05em', textTransform: 'uppercase', background: '#eff6ff' }}>Meshalive (Free)</th>
                 <th style={{ padding: '14px 18px', textAlign: 'center', color: '#6b7280', fontWeight: 600, fontSize: 12, letterSpacing: '0.05em', textTransform: 'uppercase', background: '#f9fafb' }}>Bitly (Free)</th>
                 <th style={{ padding: '14px 18px', textAlign: 'center', color: '#6b7280', fontWeight: 600, fontSize: 12, letterSpacing: '0.05em', textTransform: 'uppercase', background: '#f9fafb', whiteSpace: 'nowrap' }}>Bitly Starter ($8/mo)</th>
+                <th style={{ padding: '14px 18px', textAlign: 'center', color: '#6b7280', fontWeight: 600, fontSize: 12, letterSpacing: '0.05em', textTransform: 'uppercase', background: '#f9fafb' }}>TinyURL</th>
               </tr>
             </thead>
             <tbody>
               {[
-                { f: 'Short links', m: 'Unlimited', b: '10/month', bs: '500/month' },
-                { f: 'Click analytics', m: 'Full (geo, device, referrer)', b: 'None', bs: '30 days' },
-                                { f: 'QR codes', m: 'Free', b: 'None', bs: 'Paid add-on' },
-                { f: 'API access', m: 'Free', b: 'None', bs: 'Included' },
-                { f: 'Team seats', m: 'Free', b: '1', bs: '1' },
-                { f: 'Price', m: '$0 forever', b: '$0', bs: '$8/month' },
+                { f: 'Short links', m: 'Unlimited', b: '10/month', bs: '500/month', t: 'Unlimited' },
+                { f: 'Click analytics', m: 'Full (geo, device, referrer)', b: 'None', bs: '30 days', t: 'None on free' },
+                { f: 'Custom domains', m: 'Free', b: 'Paid', bs: '1 domain', t: 'Paid ($10/mo)' },
+                { f: 'QR codes', m: 'Free', b: 'None', bs: 'Paid add-on', t: 'None' },
+                { f: 'API access', m: 'Free', b: 'None', bs: 'Included', t: 'Paid' },
+                { f: 'Price', m: '$0 forever', b: '$0', bs: '$8/month', t: '$0 / $10/mo' },
               ].map((row, i) => (
                 <tr key={row.f} style={{ borderBottom: i < 6 ? '1px solid #e5e7eb' : 'none' }}>
                   <td style={{ padding: '12px 18px', color: '#111111', fontWeight: 500 }}>{row.f}</td>
                   <td style={{ padding: '12px 18px', textAlign: 'center', color: '#111111', fontWeight: 600, background: '#f8faff' }}>{row.m}</td>
                   <td style={{ padding: '12px 18px', textAlign: 'center', color: '#6b7280' }}>{row.b}</td>
                   <td style={{ padding: '12px 18px', textAlign: 'center', color: '#6b7280' }}>{row.bs}</td>
+                  <td style={{ padding: '12px 18px', textAlign: 'center', color: '#6b7280' }}>{row.t}</td>
                 </tr>
               ))}
             </tbody>
@@ -185,6 +187,8 @@ export default function BitlyAlternativePage() {
           {[
             ['URL Shortener', '/tools/url-shortener', 'Try Meshalive directly with the free short-link generator.'],
             ['UTM Builder', '/tools/utm-builder', 'Build campaign links, then shorten them as branded short URLs.'],
+            ['TinyURL Alternative', '/tools/tinyurl-alternative', 'Compare Meshalive vs TinyURL — analytics, QR codes, and API free.'],
+            ['Bitly Alternatives Guide', '/blog/bitly-alternatives', 'Full 2026 comparison of 6 Bitly alternatives.'],
             ['Redirect Checker', '/tools/redirect-checker', 'Inspect where short links resolve and keep redirect chains clean.'],
           ].map(([title, href, desc]) => (
             <a key={href} href={href} style={{ textDecoration: 'none', color: 'inherit', background: '#ffffff', border: '1px solid #e5e7eb', borderRadius: 14, padding: '16px 18px' }}>

@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: 'API Documentation',
-  description: 'Meshalive REST API reference. Create short links, retrieve click analytics, manage workspaces. Available from $2/mo.',
+  description: 'Meshalive REST API reference. Create short links, retrieve click analytics, manage workspaces. Free — no paid plan required.',
   alternates: { canonical: 'https://meshalive.com/docs' },
 };
 
@@ -40,7 +40,7 @@ export default function DocsPage() {
           <div style={{ display: 'inline-block', background: 'rgba(196,90,57,0.1)', border: '1px solid rgba(196,90,57,0.25)', borderRadius: 999, padding: '4px 14px', fontSize: 11, fontWeight: 700, color: '#0057ff', letterSpacing: '0.10em', textTransform: 'uppercase', marginBottom: 20 }}>API Reference</div>
           <h1 className="display" style={{ fontSize: 'clamp(30px,4vw,44px)', margin: '0 0 14px', letterSpacing: '-0.025em' }}>Meshalive REST API</h1>
           <p style={{ fontSize: 16, color: '#6b7280', margin: '0 0 16px', lineHeight: 1.7, maxWidth: 580 }}>
-            Full CRUD API for short links, analytics, and workspace management. Available on Starter ($2/mo) — not locked behind an enterprise tier.
+            Full CRUD API for short links, analytics, and workspace management. Completely free — no paid plan required, no rate limits by tier.
           </p>
           <div style={{ display: 'flex', gap: 12 }}>
             <div style={{ background: '#f9fafb', border: '1px solid #e5e7eb', borderRadius: 8, padding: '6px 14px', fontSize: 13, fontFamily: "'IBM Plex Mono', monospace" }}>
@@ -113,9 +113,9 @@ export default function DocsPage() {
         <h2 style={{ fontSize: 22, fontWeight: 700, margin: '0 0 12px', letterSpacing: '-0.01em' }}>Rate limits</h2>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 14, marginBottom: 40 }}>
           {[
-            { plan: 'Free', limit: 'No API access' },
-            { plan: 'Starter', limit: '1,000 requests / day' },
-            { plan: 'Pro', limit: 'Unlimited' },
+            { plan: 'All users', limit: 'Unlimited requests' },
+            { plan: 'Auth endpoints', limit: '10 req / min (anti-abuse)' },
+            { plan: 'Redirect', limit: 'No limit' },
           ].map(r => (
             <div key={r.plan} style={{ background: '#f9fafb', border: '1px solid rgba(255,255,255,0.07)', borderRadius: 10, padding: '16px 18px', textAlign: 'center' }}>
               <div style={{ fontSize: 14, fontWeight: 700, marginBottom: 6 }}>{r.plan}</div>
@@ -127,7 +127,7 @@ export default function DocsPage() {
         <div style={{ background: 'rgba(196,90,57,0.06)', border: '1px solid rgba(196,90,57,0.2)', borderRadius: 12, padding: '20px 24px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 16 }}>
           <div>
             <div style={{ fontSize: 15, fontWeight: 700, marginBottom: 4 }}>Ready to integrate?</div>
-            <div style={{ fontSize: 14, color: '#6b7280' }}>Get your API token on the Starter plan — starts at $2/mo.</div>
+            <div style={{ fontSize: 14, color: '#6b7280' }}>Get your API token free — no paid plan required.</div>
           </div>
           <Link href="/register" className="btn btn-primary" style={{ whiteSpace: 'nowrap', textDecoration: 'none' }}>Get started →</Link>
         </div>

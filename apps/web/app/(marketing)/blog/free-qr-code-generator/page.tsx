@@ -1,3 +1,4 @@
+import QrCodeTool from '../../tools/qr-code-generator/QrCodeTool';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -27,6 +28,32 @@ export default function Page() {
           <p style={{ fontSize: 16, color: MUTED, lineHeight: 1.75, margin: '0 0 20px' }}>Generate a free QR code for any link — menus, portfolios, products, events, or social profiles. Download and use anywhere, instantly.</p>
           <div style={{ fontSize: 13, color: MUTED, paddingTop: 20, borderTop: `1px solid ${HAIR}` }}>Updated May 2026 · By meshalive team</div>
         </div>
+
+      {/* ── Interactive In-Blog Tool ── */}
+      <div style={{
+        background: '#ffffff',
+        border: '1.5px solid #e2e8f0',
+        borderRadius: 16,
+        padding: '24px 20px',
+        margin: '36px 0 44px',
+        boxShadow: '0 8px 30px -6px rgba(0, 87, 255, 0.08), 0 0 0 1px rgba(0, 87, 255, 0.04)',
+      }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16, flexWrap: 'wrap', gap: 10 }}>
+          <div>
+            <span style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: '#0057ff' }}>
+              ⚡ Instant Free Tool
+            </span>
+            <h3 style={{ fontSize: 18, fontWeight: 800, margin: '2px 0 0', color: '#0f172a' }}>
+              Generate Your Free Dynamic QR Code Below
+            </h3>
+          </div>
+          <span style={{ fontSize: 12, background: '#eff6ff', color: '#0057ff', fontWeight: 600, padding: '4px 12px', borderRadius: 999 }}>
+            Download PNG / SVG Instantly
+          </span>
+        </div>
+        <QrCodeTool />
+      </div>
+
         <div style={{ fontSize: 16, lineHeight: 1.8, color: '#374151' }}>
           <h2 style={{ fontSize: 22, fontWeight: 700, color: INK, letterSpacing: '-0.02em', margin: '40px 0 14px' }}>How to generate a free QR code</h2>
           <ol style={{ paddingLeft: 22, display: 'flex', flexDirection: 'column', gap: 12 }}>
@@ -63,7 +90,7 @@ export default function Page() {
           </ul>
           <div style={{ background: '#111111', borderRadius: 14, padding: '36px', marginTop: 40, textAlign: 'center' }}>
             <div style={{ fontSize: 20, fontWeight: 800, color: '#fff', letterSpacing: '-0.03em', marginBottom: 10 }}>Generate your free QR code now</div>
-            <p style={{ color: '#777777', fontSize: 14, margin: '0 0 20px' }}>Dynamic QR codes · Instant download · Free forever</p>
+            <p style={{ color: '#cbd5e1', fontSize: 14, margin: '0 0 20px' }}>Dynamic QR codes · Instant download · Free forever</p>
             <a href="/tools/qr-code-generator" style={{ display: 'inline-block', background: '#0057ff', color: '#fff', padding: '11px 26px', borderRadius: 999, fontWeight: 700, fontSize: 14, textDecoration: 'none' }}>Generate QR Code →</a>
           </div>
         </div>

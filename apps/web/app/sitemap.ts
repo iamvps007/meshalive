@@ -1,4 +1,4 @@
-import { MetadataRoute } from "next";
+import { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = "https://meshalive.com";
@@ -18,15 +18,42 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/terms`,               lastModified: now, changeFrequency: "yearly" as const, priority: 0.3 },
 
     // ── Tools hub ───────────────────────────────────────────
+    // ── High-Intent Country & Industry SEO Tools ────────────
+    { url: `${base}/tools/url-shortener-usa`,            lastModified: now, changeFrequency: weekly,  priority: 0.95 },
+    { url: `${base}/tools/url-shortener-uk`,             lastModified: now, changeFrequency: weekly,  priority: 0.95 },
+    { url: `${base}/tools/url-shortener-canada`,         lastModified: now, changeFrequency: weekly,  priority: 0.94 },
+    { url: `${base}/tools/url-shortener-australia`,      lastModified: now, changeFrequency: weekly,  priority: 0.94 },
+    { url: `${base}/tools/url-shortener-for-real-estate`, lastModified: now, changeFrequency: weekly, priority: 0.95 },
+    { url: `${base}/tools/url-shortener-for-ecommerce`,  lastModified: now, changeFrequency: weekly,  priority: 0.95 },
+    { url: `${base}/tools/link-in-bio-for-podcasters`,   lastModified: now, changeFrequency: weekly,  priority: 0.94 },
+    { url: `${base}/tools/url-shortener-for-teachers`,   lastModified: now, changeFrequency: weekly,  priority: 0.93 },
+
+    // ── High-Value Pillar Blog Guides ────────────────────────
+    // ── Link in Bio SEO Pillar Guides ─────────────────────────
+    { url: `${base}/blog/best-link-in-bio-tools-free-alternatives`,        lastModified: now, changeFrequency: weekly, priority: 0.95 },
+    { url: `${base}/blog/how-to-create-a-link-in-bio-page`,               lastModified: now, changeFrequency: weekly, priority: 0.95 },
+    { url: `${base}/blog/link-in-bio-conversion-rate-optimization-guide`,  lastModified: now, changeFrequency: weekly, priority: 0.94 },
+    { url: `${base}/blog/url-shortener-for-dubai-real-estate-business`, lastModified: now, changeFrequency: weekly, priority: 0.94 },
+    { url: `${base}/blog/b2b-link-management-and-utm-tracking-guide`,   lastModified: now, changeFrequency: weekly, priority: 0.94 },
     { url: `${base}/tools`,                              lastModified: now, changeFrequency: weekly,  priority: 0.98 },
+
+    // ── Tools: High-Priority Regional & Creator Growth ───────
+    { url: `${base}/tools/upi-qr-code-generator`,        lastModified: now, changeFrequency: weekly,  priority: 0.99 },
+    { url: `${base}/tools/wifi-qr-code-generator`,       lastModified: now, changeFrequency: weekly,  priority: 0.96 },
+    { url: `${base}/tools/amazon-affiliate-link-shortener`, lastModified: now, changeFrequency: weekly, priority: 0.96 },
+    { url: `${base}/tools/youtube-subscribe-link-generator`, lastModified: now, changeFrequency: weekly, priority: 0.95 },
+    { url: `${base}/tools/url-shortener-india`,          lastModified: now, changeFrequency: weekly,  priority: 0.95 },
+    { url: `${base}/tools/url-shortener-uae`,            lastModified: now, changeFrequency: weekly,  priority: 0.92 },
 
     // ── Tools: Core URL shortening ───────────────────────────
     { url: `${base}/tools/url-shortener`,                lastModified: now, changeFrequency: weekly,  priority: 0.95 },
     { url: `${base}/tools/qr-code-generator`,            lastModified: now, changeFrequency: weekly,  priority: 0.9  },
     { url: `${base}/tools/link-in-bio`,                  lastModified: now, changeFrequency: weekly,  priority: 0.85 },
+    { url: `${base}/tools/link-in-bio-for-instagram`, lastModified: now, changeFrequency: weekly,  priority: 0.94 },
+    { url: `${base}/tools/link-in-bio-for-developers`, lastModified: now, changeFrequency: weekly,  priority: 0.94 },
+    { url: `${base}/tools/link-in-bio-for-youtube`,    lastModified: now, changeFrequency: weekly,  priority: 0.94 },
     { url: `${base}/tools/url-shortener-with-analytics`, lastModified: now, changeFrequency: monthly, priority: 0.9  },
     { url: `${base}/tools/url-shortener-for-whatsapp`,   lastModified: now, changeFrequency: monthly, priority: 0.9  },
-    { url: `${base}/tools/url-shortener-india`,          lastModified: now, changeFrequency: monthly, priority: 0.85 },
     { url: `${base}/tools/custom-url-shortener`,         lastModified: now, changeFrequency: monthly, priority: 0.85 },
     { url: `${base}/tools/branded-url-shortener`,        lastModified: now, changeFrequency: monthly, priority: 0.85 },
     { url: `${base}/tools/bulk-url-shortener`,           lastModified: now, changeFrequency: weekly,  priority: 0.9  },
@@ -52,6 +79,37 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/tools/tinyurl-alternative`,          lastModified: now, changeFrequency: monthly, priority: 0.9  },
     { url: `${base}/tools/rebrandly-alternative`,        lastModified: now, changeFrequency: monthly, priority: 0.85 },
 
+    // ── VS comparison pages ──────────────────────────────────────
+    { url: `${base}/vs/bitly`,            lastModified: now, changeFrequency: weekly , priority: 0.97 },
+    { url: `${base}/vs/tinyurl`,          lastModified: now, changeFrequency: weekly , priority: 0.95 },
+    { url: `${base}/vs/rebrandly`,        lastModified: now, changeFrequency: weekly , priority: 0.93 },
+    { url: `${base}/vs/short-io`,         lastModified: now, changeFrequency: weekly , priority: 0.91 },
+
+    // ── New tool pages ────────────────────────────────────────────
+    { url: `${base}/tools/url-shortener-for-email`,           lastModified: now, changeFrequency: monthly, priority: 0.88 },
+    { url: `${base}/tools/url-shortener-for-youtube`,         lastModified: now, changeFrequency: monthly, priority: 0.88 },
+    { url: `${base}/tools/url-shortener-no-login`,            lastModified: now, changeFrequency: monthly, priority: 0.88 },
+    { url: `${base}/tools/google-url-shortener-alternative`,  lastModified: now, changeFrequency: monthly, priority: 0.88 },
+
+    // ── Colombia Localized SEO pages ────────────────────────────
+    { url: `${base}/tools/acortador-de-url-colombia`,                    lastModified: now, changeFrequency: weekly , priority: 0.96 },
+    { url: `${base}/tools/crear-link-de-whatsapp-colombia`,             lastModified: now, changeFrequency: weekly , priority: 0.96 },
+    { url: `${base}/tools/generador-codigo-qr-colombia`,                lastModified: now, changeFrequency: weekly , priority: 0.96 },
+    { url: `${base}/blog/estrategia-whatsapp-marketing-enlaces-colombia`, lastModified: now, changeFrequency: weekly , priority: 0.93 },
+
+    { url: `${base}/tools/acortador-links-de-pago-colombia`, lastModified: now, changeFrequency: weekly, priority: 0.95 },
+    { url: `${base}/tools/generador-codigo-qr-menu-restaurante-colombia`, lastModified: now, changeFrequency: weekly, priority: 0.95 },
+    { url: `${base}/tools/link-en-bio-colombia-gratis`, lastModified: now, changeFrequency: weekly, priority: 0.95 },
+    { url: `${base}/tools/generador-codigo-qr-wifi-colombia`, lastModified: now, changeFrequency: weekly, priority: 0.95 },
+    { url: `${base}/tools/generador-enlaces-utm-colombia`, lastModified: now, changeFrequency: weekly, priority: 0.95 },
+    { url: `${base}/tools/acortador-de-url-para-instagram-colombia`, lastModified: now, changeFrequency: weekly, priority: 0.95 },
+    { url: `${base}/tools/acortador-de-enlaces-para-tiktok-colombia`, lastModified: now, changeFrequency: weekly, priority: 0.95 },
+    { url: `${base}/tools/generador-codigo-qr-vcard-colombia`, lastModified: now, changeFrequency: weekly, priority: 0.95 },
+    { url: `${base}/tools/acortador-url-para-catalogos-domicilios-colombia`, lastModified: now, changeFrequency: weekly, priority: 0.95 },
+    { url: `${base}/tools/acortador-url-agencias-marketing-colombia`, lastModified: now, changeFrequency: weekly, priority: 0.95 },
+    { url: `${base}/tools/bitly-alternativa-gratis-colombia`, lastModified: now, changeFrequency: weekly, priority: 0.95 },
+    { url: `${base}/tools/generador-enlaces-grupos-whatsapp-colombia`, lastModified: now, changeFrequency: weekly, priority: 0.95 },
+    { url: `${base}/tools/badges`, lastModified: now, changeFrequency: monthly, priority: 0.8 },
     // ── Solutions ───────────────────────────────────────────
     { url: `${base}/solutions/marketing`,  lastModified: now, changeFrequency: monthly, priority: 0.8 },
     { url: `${base}/solutions/creators`,   lastModified: now, changeFrequency: monthly, priority: 0.8 },
@@ -60,6 +118,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
     // ── Blog ─────────────────────────────────────────────────
     { url: `${base}/blog`,                               lastModified: now, changeFrequency: weekly,  priority: 0.85 },
+    { url: `${base}/blog/link-shortener-earn-money-india`, lastModified: now, changeFrequency: weekly,  priority: 0.92 },
     { url: `${base}/blog/url-shortener-for-whatsapp`,    lastModified: now, changeFrequency: monthly, priority: 0.9  },
     { url: `${base}/blog/bitly-alternatives`,            lastModified: now, changeFrequency: monthly, priority: 0.9  },
     { url: `${base}/blog/tinyurl-alternative`,           lastModified: now, changeFrequency: monthly, priority: 0.88 },

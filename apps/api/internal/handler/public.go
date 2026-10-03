@@ -51,11 +51,10 @@ func (h *PublicHandler) shorten(c *fiber.Ctx) error {
 		return apiErr(c, fiber.StatusBadRequest, "INVALID_URL", "url must start with http:// or https://")
 	}
 
-	clickLimit := int32(20)
 	input := service.CreateLinkInput{
 		WorkspaceID: systemWorkspaceID,
 		Destination: body.URL,
-		ClickLimit:  &clickLimit,
+		ClickLimit:  nil,
 	}
 	if body.ExpiresInHours > 0 {
 		hours := int(math.Min(float64(body.ExpiresInHours), 8760))

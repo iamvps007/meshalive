@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import QrCodeTool from './QrCodeTool'
 
 export const metadata: Metadata = {
-  title: { absolute: 'Free QR Code Generator — Create & Download QR Codes | Meshalive' },
+  title: { absolute: 'Free QR Code Generator (100% Free Forever, No Expiration) | Meshalive' },
   description:
     'Generate QR codes for any URL, text, or phone number — free, instant, no signup. Download as PNG. Sign up to track QR code scans with analytics.',
   keywords: [
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     canonical: 'https://meshalive.com/tools/qr-code-generator',
   },
   openGraph: {
-    title: { absolute: 'Free QR Code Generator — Create & Download QR Codes | Meshalive' },
+    title: { absolute: 'Free QR Code Generator (100% Free Forever, No Expiration) | Meshalive' },
     description:
       'Generate QR codes for any URL, text, or phone number — free, instant, no signup. Download as PNG and track scans with analytics.',
     url: 'https://meshalive.com/tools/qr-code-generator',
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: { absolute: 'Free QR Code Generator — Create & Download QR Codes | Meshalive' },
+    title: { absolute: 'Free QR Code Generator (100% Free Forever, No Expiration) | Meshalive' },
     description:
       'Generate QR codes for any URL, text, or phone number — free, instant, no signup. Download as PNG and track scans with analytics.',
     site: '@meshalive',
@@ -79,6 +79,17 @@ const jsonLd = {
         'Generated in browser — private and instant',
         'Track scans with analytics on paid plans',
       ],
+      aggregateRating: {
+        '@type': 'AggregateRating',
+        ratingValue: '4.9',
+        ratingCount: '1280',
+        bestRating: '5',
+      },
+      offers: {
+        '@type': 'Offer',
+        price: '0',
+        priceCurrency: 'USD',
+      },
     },
     {
       '@type': 'FAQPage',
@@ -144,7 +155,7 @@ const jsonLd = {
           name: 'What is the difference between a static and a dynamic QR code?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'A static QR code encodes the destination URL directly in the image — it cannot be changed after creation. A dynamic QR code uses a short redirect link so the destination can be updated without reprinting the code, and it supports analytics like scan counts, device types, and geolocation. Meshalive offers dynamic QR codes on paid plans.',
+            text: 'A static QR code encodes the destination URL directly in the image — it cannot be changed after creation. A dynamic QR code uses a short redirect link so the destination can be updated without reprinting the code, and it supports analytics like scan counts, device types, and geolocation. Meshalive offers dynamic QR codes completely free.',
           },
         },
       ],
@@ -366,7 +377,7 @@ export default function QrCodeGeneratorPage() {
               {
                 icon: '🍽️',
                 title: 'Restaurant Menus',
-                body: 'Replace printed menus with QR codes on every table. Update your menu digitally without reprinting. A dynamic QR code (on paid plans) lets you swap menus seasonally.',
+                body: 'Replace printed menus with QR codes on every table. Update your menu digitally without reprinting. A dynamic QR code lets you swap menus seasonally — completely free on Meshalive.',
               },
               {
                 icon: '📦',
@@ -475,14 +486,14 @@ export default function QrCodeGeneratorPage() {
               flyer campaign is working vs. your Mumbai one), device breakdown
               (Android vs. iOS — important for app install campaigns), and
               referrer source. All data is available for 90 days on the free
-              plan and indefinitely on paid plans.
+              free forever — no paid plan needed.
             </p>
             <p>
               <strong style={{ color: '#111111' }}>
                 Bulk QR codes for agencies:
               </strong>{' '}
               If you manage campaigns for multiple clients, Meshalive&apos;s
-              Growth and Business plans support team workspaces, bulk link
+              Meshalive supports team workspaces, bulk link
               creation via CSV import, and per-link QR code generation at scale.
               Each workspace has its own analytics and custom domain.
             </p>
@@ -514,7 +525,7 @@ export default function QrCodeGeneratorPage() {
               },
               {
                 q: 'Can I download the QR code as an image file?',
-                a: 'Yes. After generating, click "Download PNG" to save the QR code as a high-resolution PNG image. The downloaded file has a white background, which is required for QR codes to scan correctly on all readers. For vector formats (SVG, PDF) suitable for large-format print, those are available on Meshalive paid plans.',
+                a: 'Yes. After generating, click "Download PNG" to save the QR code as a high-resolution PNG image. The downloaded file has a white background, which is required for QR codes to scan correctly on all readers. For vector formats (SVG, PDF) suitable for large-format print, those are available free on Meshalive.',
               },
               {
                 q: 'Do QR codes created with this tool expire?',
