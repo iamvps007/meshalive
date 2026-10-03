@@ -54,6 +54,7 @@ const TOOLS = [
       { href: '/tools/custom-url-shortener',         icon: '✏️',  name: 'Custom URL Shortener',          desc: 'Create custom branded short links with your own slug.' },
       { href: '/tools/branded-url-shortener',        icon: '🏷️',  name: 'Branded URL Shortener',         desc: 'Branded short links with custom domains and analytics.' },
       { href: '/tools/bulk-url-shortener',     icon: '📋', name: 'Bulk URL Shortener',      desc: 'Shorten hundreds of URLs at once.' },
+            { href: '/tools/permanent-qr-code-generator', icon: '♾️', name: 'Permanent QR Code Generator', desc: '100% free non-expiring QR codes with unlimited lifetime scans.' },
       { href: '/tools/qr-code-generator',      icon: '⬛', name: 'QR Code Generator',       desc: 'Generate QR codes and download as PNG — free.' },
       { href: '/tools/temporary-link-generator',icon: '⏱️', name: 'Temporary Link Generator', desc: 'Create expiring links that auto-delete after 1h to 7 days.' },
       { href: '/tools/affiliate-link-cloaker',  icon: '🔒', name: 'Affiliate Link Cloaker',  desc: 'Clean short URLs for Amazon and Flipkart affiliate links.' },

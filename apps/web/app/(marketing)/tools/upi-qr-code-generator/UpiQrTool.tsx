@@ -1,4 +1,5 @@
 'use client';
+import * as gtag from '@/lib/gtag';
 
 import React, { useState } from 'react';
 import QRCode from 'qrcode';
@@ -50,6 +51,7 @@ export default function UpiQrTool() {
         errorCorrectionLevel: 'H',
       });
       setQrDataUrl(dataUrl);
+      gtag.event('generate_upi_qr', { amount: amt || 'custom', has_name: Boolean(name) });
     } catch (err: any) {
       setError(err?.message || 'Failed to generate UPI QR code');
     } finally {
@@ -67,6 +69,7 @@ export default function UpiQrTool() {
     const a = document.createElement('a');
     a.href = qrDataUrl;
     const filename = `${payeeName.trim() ? payeeName.trim().toLowerCase().replace(/\s+/g, '-') : 'upi'}-qr-meshalive.png`;
+    gtag.event('download_upi_qr', { amount: amount || 'custom' });
     a.download = filename;
     a.click();
   };

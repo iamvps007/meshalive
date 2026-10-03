@@ -47,6 +47,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
     // ── Tools: Core URL shortening ───────────────────────────
     { url: `${base}/tools/url-shortener`,                lastModified: now, changeFrequency: weekly,  priority: 0.95 },
+        { url: `${base}/tools/permanent-qr-code-generator`, lastModified: now, changeFrequency: weekly,  priority: 0.99 },
     { url: `${base}/tools/qr-code-generator`,            lastModified: now, changeFrequency: weekly,  priority: 0.9  },
     { url: `${base}/tools/link-in-bio`,                  lastModified: now, changeFrequency: weekly,  priority: 0.85 },
     { url: `${base}/tools/link-in-bio-for-instagram`, lastModified: now, changeFrequency: weekly,  priority: 0.94 },

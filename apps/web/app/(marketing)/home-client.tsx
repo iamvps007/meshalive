@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { Icon } from '@/components/ui/icon';
 import QRCode from 'qrcode';
 import { api } from '@/lib/api';
+import * as gtag from '@/lib/gtag';
 
 const INK = '#111111';
 const MUTED = '#6b7280';
@@ -34,6 +35,7 @@ export default function HomePage() {
           color: { dark: '#111111', light: '#ffffff' },
         });
       } catch {}
+      gtag.event('shorten_url', { method: 'homepage', slug: result.slug });
       setModal({ slug: result.slug, qrDataUrl });
       setUrl('');
     } catch {
@@ -46,6 +48,7 @@ export default function HomePage() {
   const copyShortUrl = () => {
     if (!modal) return;
     navigator.clipboard.writeText(`https://msha.live/${modal.slug}`);
+    gtag.event('copy_short_url', { method: 'homepage_modal', slug: modal.slug });
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
@@ -273,7 +276,7 @@ export default function HomePage() {
             Unlimited links, full analytics dashboard, custom domains — free forever.
           </p>
           <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
-            <Link href="/register" style={{
+            <Link href="/register" onClick={() => gtag.event('cta_click', { location: 'homepage_shorten_modal', action: 'save_and_track' })} style={{
               display: 'inline-flex', alignItems: 'center', gap: 8,
               background: '#ffffff', color: INK,
               padding: '13px 26px', borderRadius: 999,
@@ -388,7 +391,7 @@ export default function HomePage() {
               <p style={{ fontSize: 13, color: MUTED, margin: '0 0 12px', lineHeight: 1.5 }}>
                 Sign up free to track clicks, use custom slugs, and manage all your links.
               </p>
-              <Link href="/register" style={{
+              <Link href="/register" onClick={() => gtag.event('cta_click', { location: 'homepage_shorten_modal', action: 'save_and_track' })} style={{
                 display: 'inline-flex', alignItems: 'center', gap: 6,
                 padding: '10px 22px', borderRadius: 999,
                 background: INK, color: '#ffffff',

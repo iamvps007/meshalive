@@ -1,4 +1,5 @@
 'use client'
+import * as gtag from '@/lib/gtag';
 
 import { useState, useCallback } from 'react'
 
@@ -61,6 +62,7 @@ export default function WhatsappLinkTool() {
     if (!waUrl) return
     navigator.clipboard.writeText(waUrl).then(() => {
       setCopied(true)
+      gtag.event('copy_whatsapp_link', { country: countryCode, has_message: Boolean(message) });
       setTimeout(() => setCopied(false), 2000)
     })
   }, [waUrl])

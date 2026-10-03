@@ -1,4 +1,5 @@
 'use client'
+import * as gtag from '@/lib/gtag';
 
 import QRCode from 'qrcode'
 import { useState, useRef } from 'react'
@@ -38,6 +39,7 @@ export default function QrCodeTool() {
         errorCorrectionLevel: 'M',
       })
       setQrDataUrl(dataUrl)
+      gtag.event('generate_qr', { size, type: 'standard' })
     } catch (err) {
       setError(
         err instanceof Error
@@ -53,6 +55,7 @@ export default function QrCodeTool() {
     if (!qrDataUrl) return
     const a = document.createElement('a')
     a.href = qrDataUrl
+    gtag.event('download_qr', { size, type: 'standard' })
     a.download = 'qr-code.png'
     document.body.appendChild(a)
     a.click()

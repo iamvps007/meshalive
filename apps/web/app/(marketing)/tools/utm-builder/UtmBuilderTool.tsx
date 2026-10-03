@@ -1,4 +1,5 @@
 'use client'
+import * as gtag from '@/lib/gtag';
 
 import { useState, useCallback } from 'react'
 
@@ -66,6 +67,7 @@ export default function UtmBuilderTool() {
     if (!utmUrl) return
     navigator.clipboard.writeText(utmUrl).then(() => {
       setCopied(true)
+      gtag.event('copy_utm_link', { source, medium, campaign })
       setTimeout(() => setCopied(false), 2000)
     })
   }, [utmUrl])
