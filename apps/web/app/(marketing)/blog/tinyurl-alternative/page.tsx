@@ -2,12 +2,12 @@ import UrlShortenerTool from '../../tools/url-shortener/UrlShortenerTool';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Best TinyURL Alternatives in 2026 — Free URL Shorteners Compared',
-  description: 'TinyURL has no analytics, no custom slugs, and no link editing on its free plan. Here are the 5 best TinyURL alternatives ranked by features, price, and what you actually get for free.',
+  title: '5 Best Free TinyURL Alternatives in 2026 (With Analytics & Custom Slugs)',
+  description: 'TinyURL lacks analytics and custom editing on its free tier. Discover the top 5 free TinyURL alternatives in 2026 offering real-time click stats, QR codes, and custom slugs.',
   keywords: ['tinyurl alternative', 'tinyurl alternative free', 'better than tinyurl', 'free url shortener custom slug', 'url shortener with analytics free', 'tinyurl vs bitly'],
   alternates: { canonical: 'https://meshalive.com/blog/tinyurl-alternative' },
   openGraph: {
-    title: 'Best TinyURL Alternatives in 2026 — Free URL Shorteners Compared',
+    title: '5 Best Free TinyURL Alternatives in 2026 (With Analytics & Custom Slugs)',
     description: 'TinyURL gives you a shorter link and nothing else. Here are 5 alternatives that actually track clicks, let you edit links, and generate QR codes — for free.',
     url: 'https://meshalive.com/blog/tinyurl-alternative',
     type: 'article',

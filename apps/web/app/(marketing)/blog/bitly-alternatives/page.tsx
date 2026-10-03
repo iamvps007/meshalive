@@ -2,12 +2,12 @@ import UrlShortenerTool from '../../tools/url-shortener/UrlShortenerTool';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Best Bitly Alternatives in 2026 (Free URL Shorteners Compared)',
-  description: 'Bitly now limits free users to 10 links per month. We compare the 6 best Bitly alternatives on price, analytics, custom domains, API access, and QR codes — so you can switch today.',
+  title: '7 Best Free Bitly Alternatives in 2026 (Tested & Compared) — Meshalive',
+  description: 'Tired of Bitlys 10 link limit? We compare the best free Bitly alternatives with unlimited short links, real-time analytics, custom domains, and free QR codes for 2026.',
   keywords: ['bitly alternative', 'bitly alternative free', 'free url shortener', 'url shortener comparison', 'best url shortener 2026', 'rebrandly alternative', 'tinyurl alternative'],
   alternates: { canonical: 'https://meshalive.com/blog/bitly-alternatives' },
   openGraph: {
-    title: 'Best Bitly Alternatives in 2026 (Free URL Shorteners Compared)',
+    title: '7 Best Free Bitly Alternatives in 2026 (Tested & Compared) — Meshalive',
     description: 'Bitly limits free users to 10 links/month. Here are 6 better alternatives with unlimited free links, real analytics, and no credit card required.',
     url: 'https://meshalive.com/blog/bitly-alternatives',
     type: 'article',

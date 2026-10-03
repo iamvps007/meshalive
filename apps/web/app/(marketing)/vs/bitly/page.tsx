@@ -2,7 +2,7 @@ import UrlShortenerTool from '../../tools/url-shortener/UrlShortenerTool';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: { absolute: 'Meshalive vs Bitly — Full Comparison 2026 | Meshalive' },
+  title: { absolute: 'Meshalive vs Bitly (2026 Full Comparison) — Which Free Shortener Wins?' },
   description: "Meshalive vs Bitly 2026 — free plan comparison, analytics, and API. Meshalive is completely free with unlimited links and full analytics. No paid plans.",
   keywords: ['meshalive vs bitly', 'bitly alternative', 'best bitly alternative', 'bitly alternative free', 'bitly alternative india'],
   alternates: { canonical: 'https://meshalive.com/vs/bitly' },

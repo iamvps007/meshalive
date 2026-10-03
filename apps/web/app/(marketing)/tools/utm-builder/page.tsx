@@ -2,9 +2,9 @@ import type { Metadata } from 'next'
 import UtmBuilderTool from './UtmBuilderTool'
 
 export const metadata: Metadata = {
-  title: { absolute: 'Free UTM Builder, Generator & Creator — Track Campaign URLs | Meshalive' },
+  title: { absolute: 'Free UTM Parameter Builder & Campaign URL Creator (2026) — Meshalive' },
   description:
-    'Free UTM builder, generator, and link creator. Create Google Analytics (GA4) campaign tracking links instantly. Add utm_source, utm_medium, utm_campaign. 100% free with no signup.',
+    'Generate tracked campaign URLs instantly with Google Analytics 4 (GA4) UTM parameters. Free presets for Facebook, Google, LinkedIn & TikTok. No login, 100% free forever.',
   keywords: [
     'utm builder',
     'utm generator',
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     canonical: 'https://meshalive.com/tools/utm-builder',
   },
   openGraph: {
-    title: { absolute: 'Free UTM Builder, Generator & Creator — Track Campaign URLs | Meshalive' },
+    title: { absolute: 'Free UTM Parameter Builder & Campaign URL Creator (2026) — Meshalive' },
     description: 'Build UTM-tagged URLs free and instantly. Track campaigns in Google Analytics.',
     url: 'https://meshalive.com/tools/utm-builder',
     siteName: 'Meshalive',
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: { absolute: 'Free UTM Builder, Generator & Creator — Track Campaign URLs | Meshalive' },
+    title: { absolute: 'Free UTM Parameter Builder & Campaign URL Creator (2026) — Meshalive' },
     description: 'Build UTM-tagged URLs free. Track campaigns in Google Analytics.',
     site: '@meshalive',
     images: ['https://meshalive.com/og/utm-builder.png'],

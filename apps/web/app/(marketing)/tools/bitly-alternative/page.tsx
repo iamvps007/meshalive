@@ -2,13 +2,13 @@ import type { Metadata } from 'next';
 import UrlShortenerTool from '../url-shortener/UrlShortenerTool';
 
 export const metadata: Metadata = {
-  title: { absolute: 'Best Free Bitly Alternative 2026 — Unlimited Links + Analytics | Meshalive' },
-  description: 'The best free Bitly alternative. Meshalive gives you unlimited short links, full click analytics, custom domains, QR codes, and API access — all completely free. No credit card required.',
+  title: { absolute: 'Best Free Bitly Alternative (2026) — Unlimited Links & Analytics | Meshalive' },
+  description: 'Looking for a free alternative to Bitly? Create unlimited short links, track real-time click analytics, and download dynamic QR codes 100% free forever without signup.',
   keywords: ['bitly alternative', 'free bitly alternative', 'bitly alternative free', 'bitly replacement', 'url shortener like bitly'],
   alternates: { canonical: 'https://meshalive.com/tools/bitly-alternative' },
   openGraph: {
     type: 'website', url: 'https://meshalive.com/tools/bitly-alternative',
-    title: { absolute: 'Best Free Bitly Alternative 2026 — Unlimited Links + Analytics | Meshalive' },
+    title: { absolute: 'Best Free Bitly Alternative (2026) — Unlimited Links & Analytics | Meshalive' },
     description: 'Unlimited short links, full analytics, custom domains, QR codes, and API access — all free. The Bitly alternative that is actually free.',
     siteName: 'Meshalive',
   },

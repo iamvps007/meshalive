@@ -100,6 +100,36 @@ export default function Page() {
             ))}
           </div>
 
+
+          {/* Popular Free Marketing Tools Hub */}
+          <div style={{ marginTop: 64, marginBottom: 56 }}>
+            <h2 style={{ fontSize: 'clamp(22px,2.5vw,30px)', fontWeight: 800, color: INK, letterSpacing: '-0.025em', margin: '0 0 12px' }}>
+              Explore our free marketing and link tools
+            </h2>
+            <p style={{ fontSize: 16, color: MUTED, margin: '0 0 28px', maxWidth: 640 }}>
+              Free online utilities with no registration required. Generate tracked links, custom QR codes, and campaign tags.
+            </p>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 16 }}>
+              {[
+                { title: 'UTM Parameter Builder', href: '/tools/utm-builder', icon: '🎯', desc: 'Create GA4 campaign URLs with custom source, medium, and campaign tags.' },
+                { title: 'UPI QR Code Generator', href: '/tools/upi-qr-code-generator', icon: '⚡', desc: 'Instant printable payment QR codes for GPay, PhonePe, Paytm with custom amounts.' },
+                { title: 'WhatsApp Link Generator', href: '/tools/crear-link-de-whatsapp-colombia', icon: '💬', desc: 'Generate direct WhatsApp click-to-chat links with pre-filled messages.' },
+                { title: 'Bitly Alternative Free', href: '/tools/bitly-alternative', icon: '🔗', desc: 'Unlimited short links, real-time analytics, and custom slugs without paying $35/mo.' },
+                { title: 'vCard QR Code Maker', href: '/tools/vcard-generator', icon: '👤', desc: 'Generate digital business card QR codes with full contact details.' },
+                { title: 'TinyURL Alternative', href: '/blog/tinyurl-alternative', icon: '📊', desc: 'Compare the best free TinyURL alternatives with analytics and QR support.' },
+              ].map(t => (
+                <a key={t.href} href={t.href} style={{
+                  display: 'flex', flexDirection: 'column', padding: '20px',
+                  background: '#ffffff', border: `1px solid ${HAIR}`, borderRadius: 14,
+                  textDecoration: 'none', color: 'inherit', transition: 'transform 0.15s, border-color 0.15s',
+                }}>
+                  <div style={{ fontSize: 24, marginBottom: 10 }}>{t.icon}</div>
+                  <div style={{ fontSize: 16, fontWeight: 700, color: INK, marginBottom: 6 }}>{t.title}</div>
+                  <div style={{ fontSize: 13, color: MUTED, lineHeight: 1.6 }}>{t.desc}</div>
+                </a>
+              ))}
+            </div>
+          </div>
           <h2 style={{ fontSize: 'clamp(22px,2.5vw,30px)', fontWeight: 800, color: INK, letterSpacing: '-0.025em', margin: '0 0 32px' }}>
             Frequently asked questions
           </h2>
