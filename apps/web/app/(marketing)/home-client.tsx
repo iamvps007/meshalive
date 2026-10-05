@@ -388,6 +388,12 @@ export default function HomePage() {
             </div>
 
             <div style={{ width: '100%', textAlign: 'center' }}>
+              <div style={{ marginBottom: 12, padding: '8px 12px', background: '#f8fafc', borderRadius: 8, border: '1px solid #e2e8f0' }}>
+                <span style={{ fontSize: 12, color: '#475569' }}>Need a print-ready QR code that never expires? </span>
+                <Link href="/tools/permanent-qr-code-generator" style={{ fontSize: 12, fontWeight: 700, color: '#0057ff', textDecoration: 'none' }}>
+                  Use Permanent QR Tool →
+                </Link>
+              </div>
               <p style={{ fontSize: 13, color: MUTED, margin: '0 0 12px', lineHeight: 1.5 }}>
                 Sign up free to track clicks, use custom slugs, and manage all your links.
               </p>

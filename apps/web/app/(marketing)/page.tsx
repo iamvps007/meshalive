@@ -111,6 +111,7 @@ export default function Page() {
             </p>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 16 }}>
               {[
+                { title: 'Permanent QR Code Generator', href: '/tools/permanent-qr-code-generator', icon: '♾️', desc: '100% free non-expiring QR codes with unlimited scans. No 14-day trial traps.' },
                 { title: 'UTM Parameter Builder', href: '/tools/utm-builder', icon: '🎯', desc: 'Create GA4 campaign URLs with custom source, medium, and campaign tags.' },
                 { title: 'UPI QR Code Generator', href: '/tools/upi-qr-code-generator', icon: '⚡', desc: 'Instant printable payment QR codes for GPay, PhonePe, Paytm with custom amounts.' },
                 { title: 'WhatsApp Link Generator', href: '/tools/crear-link-de-whatsapp-colombia', icon: '💬', desc: 'Generate direct WhatsApp click-to-chat links with pre-filled messages.' },

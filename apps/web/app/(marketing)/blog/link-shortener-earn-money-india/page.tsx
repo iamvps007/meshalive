@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Best Link Shorteners to Earn Money in India (2026 Guide) | Meshalive',
+  title: { absolute: 'Best URL Shorteners to Earn Money in India (₹25k-₹50k/mo) | Meshalive' },
   description:
     'Discover how Indian creators, Telegram channel owners, and affiliate marketers earn ₹25,000–₹50,000/month with link shorteners. Learn why popup ad shorteners fail and how to use clean tracking links.',
   keywords: [
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   alternates: { canonical: 'https://meshalive.com/blog/link-shortener-earn-money-india' },
   openGraph: {
     type: 'article',
-    title: 'Best Link Shorteners to Earn Money in India (2026 Guide) | Meshalive',
+    title: { absolute: 'Best URL Shorteners to Earn Money in India (₹25k-₹50k/mo) | Meshalive' },
     description:
       'Learn how to earn money with short links in India. Stop losing audience to spammy 5-layer popup ad shorteners and build long-term affiliate income with clean, fast redirects.',
     url: 'https://meshalive.com/blog/link-shortener-earn-money-india',

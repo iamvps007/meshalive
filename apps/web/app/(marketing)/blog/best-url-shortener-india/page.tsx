@@ -2,7 +2,7 @@ import UrlShortenerTool from '../../tools/url-shortener/UrlShortenerTool';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Best Free URL Shortener for India in 2026 (Razorpay, UPI, GST)',
+  title: { absolute: 'Best Free URL Shortener in India (2026) — UPI & WhatsApp Ready | Meshalive' },
   description:
     'Compare the best URL shorteners for Indian businesses — INR pricing, UPI payments, GST invoicing, WhatsApp support.',
   keywords: [
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   alternates: { canonical: 'https://meshalive.com/blog/best-url-shortener-india' },
   openGraph: {
     type: 'article',
-    title: 'Best Free URL Shortener for India in 2026 (Razorpay, UPI, GST)',
+    title: { absolute: 'Best Free URL Shortener in India (2026) — UPI & WhatsApp Ready | Meshalive' },
     description:
       'Compare the best URL shorteners for Indian businesses — INR pricing, UPI payments, GST invoicing, WhatsApp support.',
     url: 'https://meshalive.com/blog/best-url-shortener-india',
