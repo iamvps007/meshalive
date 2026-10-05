@@ -4,9 +4,9 @@ import YoutubeSubscribeTool from './YoutubeSubscribeTool';
 import React from 'react';
 
 export const metadata: Metadata = {
-  title: { absolute: 'Free YouTube Auto Subscribe Link Generator with Confirmation | Meshalive' },
+  title: { absolute: 'Free YouTube Subscribe Link Generator (Auto-Subscribe, No Login) | Meshalive' },
   description:
-    'Create an auto-subscribe link for your YouTube channel. Automatically prompts viewers to subscribe with sub_confirmation=1. Get a short link and QR code free.',
+    'Free YouTube auto subscribe link generator — paste your channel URL and instantly create a link that auto-prompts viewers to subscribe. No login needed. Get a short link + QR code.',
   keywords: [
     'youtube subscribe link generator',
     'youtube auto subscribe link generator',
