@@ -38,6 +38,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/tools`,                              lastModified: now, changeFrequency: weekly,  priority: 0.98 },
 
     // ── Tools: High-Priority Regional & Creator Growth ───────
+    { url: `${base}/tools/invoice-generator`,           lastModified: now, changeFrequency: weekly,  priority: 0.99 },
     { url: `${base}/tools/upi-qr-code-generator`,        lastModified: now, changeFrequency: weekly,  priority: 0.99 },
     { url: `${base}/tools/wifi-qr-code-generator`,       lastModified: now, changeFrequency: weekly,  priority: 0.96 },
     { url: `${base}/tools/amazon-affiliate-link-shortener`, lastModified: now, changeFrequency: weekly, priority: 0.96 },

@@ -16,6 +16,7 @@ export const metadata: Metadata = {
 }
 
 const FEATURED_TOOLS = [
+  { href: '/tools/invoice-generator', icon: '🧾', name: 'Free Invoice Generator', stat: 'Zero-paywall utility', desc: 'Create and download professional vector PDF invoices with scan-to-pay QR codes (UPI, PayPal, Stripe). Zero signup.' },
   { href: '/tools/upi-qr-code-generator', icon: '⚡', name: 'UPI QR Code Generator', stat: 'India payments utility', desc: 'Create printable UPI payment QR codes with custom amount and name for PhonePe, GPay, Paytm & BHIM.' },
   { href: '/tools/whatsapp-link-generator', icon: '💬', name: 'WhatsApp Link Generator', stat: 'High-intent lead capture', desc: 'Create click-to-chat wa.me links with optional pre-filled messages for websites, Instagram bios, ads, and QR codes.' },
   { href: '/tools/youtube-subscribe-link-generator', icon: '▶️', name: 'YouTube Subscribe Link', stat: 'Creator growth tool', desc: 'Generate auto-subscribe prompt confirmation links with custom short URLs and QR codes to boost subscribers.' },
@@ -23,6 +24,15 @@ const FEATURED_TOOLS = [
 ]
 
 const TOOLS = [
+  {
+    category: 'Business & Freelancer Utilities',
+    items: [
+      { href: '/tools/invoice-generator',            icon: '🧾', name: 'Free Invoice Generator',        desc: 'In-browser vector PDF invoice & receipt maker with payment QR codes.' },
+      { href: '/tools/upi-qr-code-generator',        icon: '⚡', name: 'UPI QR Code Generator',        desc: 'Generate printable scan-to-pay QR codes with custom amount.' },
+      { href: '/tools/vcard-generator',              icon: '📇', name: 'vCard QR Generator',          desc: 'Create a digital business card QR code, exports as .vcf.' },
+      { href: '/tools/wifi-qr-code-generator',       icon: '📶', name: 'Wi-Fi QR Code Generator',       desc: 'Generate scan-to-connect Wi-Fi QR cards for guest networks & cafes.' },
+    ],
+  },
   {
     category: 'India & Regional Growth',
     items: [

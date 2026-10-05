@@ -113,6 +113,7 @@ export default function Page() {
               {[
                 { title: 'Permanent QR Code Generator', href: '/tools/permanent-qr-code-generator', icon: '♾️', desc: '100% free non-expiring QR codes with unlimited scans. No 14-day trial traps.' },
                 { title: 'UTM Parameter Builder', href: '/tools/utm-builder', icon: '🎯', desc: 'Create GA4 campaign URLs with custom source, medium, and campaign tags.' },
+                { title: 'Free Invoice Generator', href: '/tools/invoice-generator', icon: '🧾', desc: 'Vector PDF invoices with embedded payment QR codes (UPI, Stripe, PayPal). 100% private.' },
                 { title: 'UPI QR Code Generator', href: '/tools/upi-qr-code-generator', icon: '⚡', desc: 'Instant printable payment QR codes for GPay, PhonePe, Paytm with custom amounts.' },
                 { title: 'WhatsApp Link Generator', href: '/tools/crear-link-de-whatsapp-colombia', icon: '💬', desc: 'Generate direct WhatsApp click-to-chat links with pre-filled messages.' },
                 { title: 'Bitly Alternative Free', href: '/tools/bitly-alternative', icon: '🔗', desc: 'Unlimited short links, real-time analytics, and custom slugs without paying $35/mo.' },
