@@ -32,7 +32,9 @@ const CATEGORY_INFRA: MenuItem[] = [
 ];
 
 const CATEGORY_PAYMENTS_QR: MenuItem[] = [
-  { icon: 'zap', label: 'UPI Payment QR', desc: 'Scan-to-pay for GPay, PhonePe, Paytm', href: '/tools/upi-qr-code-generator', badge: 'POPULAR', badgeColor: '#ea580c' },
+  { icon: 'infinity', label: 'Permanent QR Code', desc: '100% static, never expires, no trial trap', href: '/tools/permanent-qr-code-generator', badge: 'LIFETIME', badgeColor: '#16a34a' },
+  { icon: 'receipt', label: 'Free Invoice Maker', desc: 'Vector PDF invoice with scan-to-pay QR', href: '/tools/invoice-generator', badge: 'FREE', badgeColor: '#2563eb' },
+  { icon: 'zap', label: 'UPI Payment Standee', desc: 'Printable counter standee for shops', href: '/tools/upi-qr-code-generator', badge: 'POPULAR', badgeColor: '#ea580c' },
   { icon: 'globe', label: 'Wi-Fi Connect QR', desc: 'Instant 1-scan connection for offices', href: '/tools/wifi-qr-code-generator', badge: 'NEW', badgeColor: '#0284c7' },
   { icon: 'qr', label: 'Dynamic QR Codes', desc: 'Printable vector QR codes with stats', href: '/tools/qr-code-generator' },
   { icon: 'credit-card', label: 'vCard Digital Profile', desc: 'Scan to save contact card (.vcf)', href: '/tools/vcard-generator' },
@@ -335,7 +337,9 @@ const FOOTER_COLS = [
   {
     title: 'High-Intent Tools',
     items: [
-      ['UPI QR Generator', '/tools/upi-qr-code-generator'],
+      ['Permanent QR Code', '/tools/permanent-qr-code-generator'],
+      ['Free Invoice Generator', '/tools/invoice-generator'],
+      ['UPI Standee Maker', '/tools/upi-qr-code-generator'],
       ['Wi-Fi QR Generator', '/tools/wifi-qr-code-generator'],
       ['Amazon Affiliate Shortener', '/tools/amazon-affiliate-link-shortener'],
       ['YouTube Subscribe Link', '/tools/youtube-subscribe-link-generator'],

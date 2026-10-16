@@ -3,6 +3,38 @@ import Script from 'next/script';
 import UrlShortenerTool from '../url-shortener/UrlShortenerTool';
 import React from 'react';
 
+const faqSchemaIndia = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  'mainEntity': [
+    {
+      '@type': 'Question',
+      'name': 'Which is the best Indian URL shortener in 2026?',
+      'acceptedAnswer': {
+        '@type': 'Answer',
+        'text': 'Meshalive is the leading free Indian URL shortener offering sub-50ms redirect latency across India, WhatsApp campaign analytics, GST-compliant invoicing, and zero ad gates or spam.'
+      }
+    },
+    {
+      '@type': 'Question',
+      'name': 'How does WhatsApp link tracking work in India?',
+      'acceptedAnswer': {
+        '@type': 'Answer',
+        'text': 'Meshalive identifies WhatsApp clicks as a distinct traffic source in your analytics dashboard, allowing Indian SMBs and affiliate marketers to see exactly which broadcast lists and groups generate conversions.'
+      }
+    },
+    {
+      '@type': 'Question',
+      'name': 'Is this Indian link shortener 100% free without sign up?',
+      'acceptedAnswer': {
+        '@type': 'Answer',
+        'text': 'Yes. You can shorten any URL, generate QR codes, and create branded short links instantly without registering or entering payment details.'
+      }
+    }
+  ]
+};
+
+
 export const metadata: Metadata = {
   title: { absolute: 'Indian URL Shortener (100% Free) — Best Link Shortener India | Meshalive' },
   description:
@@ -43,6 +75,7 @@ const S = {
 export default function Page() {
   return (
     <main style={S.page}>
+      <Script id='faq-schema-india' type='application/ld+json' dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchemaIndia) }} />
       <section style={{ maxWidth:860, margin:'0 auto', padding:'clamp(48px,8vw,88px) 16px clamp(40px,6vw,64px)', textAlign:'center' }}>
         <div style={{ display:'inline-flex', alignItems:'center', gap:6, background:'#f0fdf4', border:'1px solid #bbf7d0', borderRadius:999, padding:'4px 14px', fontSize:12, fontWeight:700, color:'#16a34a', letterSpacing:'0.05em', textTransform:'uppercase', marginBottom:20 }}>
           Best URL Shortener in India
